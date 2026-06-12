@@ -1,0 +1,436 @@
+/* ==========================================================================
+   RESET & VARIABLES GLOBALES
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color-primario: #d4af37; /* Dorado sutil / elegante */
+    --color-oscuro: #1c1c1c;   /* Negro minimalista */
+    --color-claro: #fcfbfa;    /* Off-white de fondo */
+    --color-gris: #757575;     /* Gris para textos secundarios */
+    --color-rosa-soft: #f7f1ee;/* Fondo suave complementario */
+    --fuente-titulo: 'Cormorant Garamond', serif;
+    --fuente-cuerpo: 'Montserrat', sans-serif;
+    --transicion: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--fuente-cuerpo);
+    background-color: var(--color-claro);
+    color: var(--color-oscuro);
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+   HEADER / NAVEGACIÓN
+   ========================================================================== */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 10%;
+    position: sticky;
+    top: 0;
+    background-color: rgba(252, 251, 250, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    border-bottom: 1px solid rgba(28, 28, 28, 0.05);
+}
+
+.logo {
+    font-family: var(--fuente-titulo);
+    font-size: 1.8rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    color: var(--color-primario);
+    font-weight: 400;
+    font-style: italic;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav a {
+    text-decoration: none;
+    color: var(--color-oscuro);
+    font-size: 0.9rem;
+    font-weight: 400;
+    margin-left: 30px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: var(--transicion);
+}
+
+.nav a:hover {
+    color: var(--color-primario);
+}
+
+.nav a.btn-nav {
+    background-color: var(--color-oscuro);
+    color: var(--color-claro);
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.nav a.btn-nav:hover {
+    background-color: var(--color-primario);
+    color: var(--color-oscuro);
+}
+
+/* ==========================================================================
+   HERO SECTION (SECCIÓN PRINCIPAL)
+   ========================================================================== */
+.hero-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: calc(100vh - 85px);
+    align-items: center;
+    padding: 40px 10%;
+    gap: 50px;
+    background-color: var(--color-rosa-soft);
+}
+
+.hero-content h1 {
+    font-family: var(--fuente-titulo);
+    font-size: 4rem;
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 25px;
+}
+
+.hero-content p {
+    color: var(--color-gris);
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    max-width: 500px;
+    font-weight: 300;
+}
+
+.btn-primary, .btn-secondary {
+    display: inline-block;
+    text-decoration: none;
+    background-color: var(--color-oscuro);
+    color: var(--color-claro);
+    padding: 15px 35px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: var(--transicion);
+    border: 1px solid var(--color-oscuro);
+}
+
+.btn-primary:hover, .btn-secondary:hover {
+    background-color: transparent;
+    color: var(--color-oscuro);
+}
+
+.hero-image-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-image {
+    width: 100%;
+    max-width: 420px;
+    height: 520px;
+    object-fit: cover;
+    border-radius: 250px 250px 0 0;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+.hero-image-badge {
+    position: absolute;
+    bottom: 40px;
+    left: 5%;
+    background-color: var(--color-claro);
+    padding: 15px 25px;
+    font-family: var(--fuente-titulo);
+    font-size: 1.2rem;
+    font-style: italic;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border-left: 3px solid var(--color-primario);
+}
+
+/* ==========================================================================
+   SECCIÓN EXPERIENCIA (NATALIA FERRANTE)
+   ========================================================================== */
+.experience-section {
+    padding: 120px 10%;
+    background-color: var(--color-claro);
+}
+
+.experience-container {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 80px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.experience-image-wrapper img {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: 20px 20px 0px 0px var(--color-rosa-soft);
+}
+
+.experience-content .subtitle {
+    font-family: var(--fuente-titulo);
+    font-size: 1.3rem;
+    color: var(--color-primario);
+    font-style: italic;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.experience-content h2 {
+    font-family: var(--fuente-titulo);
+    font-size: 3rem;
+    font-weight: 400;
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+}
+
+.experience-content .highlight-text {
+    font-size: 1.2rem;
+    color: var(--color-oscuro);
+    font-weight: 500;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    border-left: 2px solid var(--color-primario);
+    padding-left: 15px;
+}
+
+.experience-content p {
+    color: var(--color-gris);
+    font-size: 1rem;
+    margin-bottom: 30px;
+    font-weight: 300;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--color-oscuro);
+    border-color: var(--color-oscuro);
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-oscuro);
+    color: var(--color-claro);
+}
+
+/* ==========================================================================
+   SERVICIOS (RESTRUCTURADO EN GRID DINÁMICO)
+   ========================================================================== */
+.services-section {
+    padding: 120px 10%;
+    background-color: var(--color-rosa-soft);
+}
+
+.section-title-container {
+    text-align: center;
+    margin-bottom: 70px;
+}
+
+.section-title-container .subtitle {
+    font-family: var(--fuente-titulo);
+    font-size: 1.3rem;
+    color: var(--color-primario);
+    font-style: italic;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.section-title-container h2 {
+    font-family: var(--fuente-titulo);
+    font-size: 2.8rem;
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.service-card {
+    background-color: var(--color-claro);
+    padding: 25px;
+    text-align: center;
+    transition: var(--transicion);
+    border: 1px solid transparent;
+    border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+}
+
+.service-card:hover {
+    border-color: rgba(212, 175, 55, 0.3);
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
+}
+
+.card-image-wrapper {
+    overflow: hidden;
+    margin-bottom: 25px;
+    border-radius: 2px;
+}
+
+.card-image-wrapper img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    transition: var(--transicion);
+}
+
+.service-card:hover .card-image-wrapper img {
+    transform: scale(1.04);
+}
+
+.service-card h3 {
+    font-family: var(--fuente-titulo);
+    font-size: 1.7rem;
+    font-weight: 400;
+    margin-bottom: 15px;
+    letter-spacing: 0.5px;
+}
+
+.service-card p {
+    color: var(--color-gris);
+    font-size: 0.95rem;
+    font-weight: 300;
+    padding: 0 5px;
+}
+
+/* ==========================================================================
+   FOOTER (PIE DE PÁGINA)
+   ========================================================================== */
+.footer {
+    background-color: var(--color-oscuro);
+    color: var(--color-claro);
+    padding: 100px 10% 40px 10%;
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.footer-quote-section {
+    margin-bottom: 60px;
+}
+
+.motivational-quote {
+    font-family: var(--fuente-titulo);
+    font-size: 2.2rem;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--color-rosa-soft);
+    font-weight: 300;
+    margin-bottom: 25px;
+}
+
+.quote-author {
+    font-family: var(--fuente-cuerpo);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-primario);
+}
+
+.footer-divider {
+    height: 1px;
+    background-color: rgba(252, 251, 250, 0.1);
+    margin-bottom: 40px;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: var(--color-gris);
+    font-weight: 300;
+    letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   BOTÓN FLOTANTE DE WHATSAPP
+   ========================================================================== */
+.whatsapp-btn {
+    position: fixed;
+    bottom: 35px;
+    right: 35px;
+    background-color: #25d366;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+    z-index: 999;
+    transition: var(--transicion);
+}
+
+.whatsapp-btn:hover {
+    transform: scale(1.1) translateY(-5px);
+    box-shadow: 0 15px 30px rgba(37, 211, 102, 0.6);
+}
+
+/* ==========================================================================
+   DISEÑO ADAPTABLE (RESPONSIVE)
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .hero-section {
+        grid-template-columns: 1fr;
+        padding: 60px 5%;
+        text-align: center;
+    }
+    .hero-content p { margin: 0 auto 40px auto; }
+    .hero-image-container { order: -1; }
+    
+    .experience-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    .experience-image-wrapper img { height: 450px; }
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding: 20px 5%;
+        flex-direction: column;
+        gap: 15px;
+    }
+    .nav a { margin: 0 10px; font-size: 0.8rem; }
+    .hero-content h1 { font-size: 2.8rem; }
+    .experience-content h2 { font-size: 2.3rem; }
+    .motivational-quote { font-size: 1.6rem; }
+    .footer-bottom { flex-direction: column; gap: 10px; }
+    .whatsapp-btn { bottom: 20px; right: 20px; width: 50px; height: 50px; }
+}
