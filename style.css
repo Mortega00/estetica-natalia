@@ -98,7 +98,7 @@ transition:var(--transicion);
 
     letter-spacing:1px;
 
-    transition:.3s;
+    transition:var(--transicion);
 }
 
 .nav a:hover{
@@ -161,6 +161,7 @@ gap:40px;
 }
 .hero-content{
     max-width:600px;
+    animation:fadeUp .9s ease forwards;
 }
 
 .hero-content h1{
@@ -214,6 +215,8 @@ gap:40px;
     width:100%;
     display:flex;
     justify-content:center;
+
+    animation: fadeUp 1.2s ease forwards;
 }
 
 .hero-image{
@@ -223,6 +226,7 @@ gap:40px;
     object-fit:cover;
     border-radius:220px 220px 0 0;
     box-shadow:0 20px 45px rgba(0,0,0,.10);
+
 }
 
 .hero-image-badge{
@@ -258,6 +262,8 @@ gap:40px;
 }
 
 .experience-image-wrapper{
+    overflow:hidden;
+    border-radius:8px;
     width:100%;
 }
 
@@ -267,6 +273,10 @@ gap:40px;
     object-fit:cover;
     border-radius:8px;
     box-shadow:15px 15px 0 var(--color-rosa-soft);
+    transition:transform .8s ease;
+}
+.experience-image-wrapper:hover img{
+    transform:scale(1.04);
 }
 
 .experience-content{
@@ -393,11 +403,13 @@ gap:40px;
     box-shadow:0 8px 20px rgba(0,0,0,.05);
 
     overflow:hidden;
+
+    cursor:pointer;
 }
 
 .service-card:hover{
 
-    transform:translateY(-10px);
+    transform:translateY(-6px);
 
     box-shadow:0 20px 45px rgba(0,0,0,.10);
 
@@ -558,13 +570,20 @@ gap:40px;
     }
 
     .hero-image-container{
-        flex: 1;
-        justify-content: flex-end;
+    flex:1;
+    justify-content:flex-end;
+
+    animation:fadeUp 1.2s ease forwards;
     }
 
     .hero-image{
         max-width: 420px;
         height: 520px;
+        transition:transform .8s ease;
+    }
+
+    .hero-image:hover{
+        transform:scale(1.02);
     }
 
     .hero-image-badge{
@@ -635,56 +654,93 @@ gap:40px;
     flex-direction:row;
     justify-content:space-between;
 }
-}
-/* DISEÑO DEL BOTÓN FLOTANTE (Para computadoras y tablets) */
-.whatsapp-btn-floating {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #25d366;
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 15px;
-    font-weight: 600;
-    padding: 12px 20px;
-    border-radius: 30px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    z-index: 9999; /* Asegura que quede siempre por encima de todo */
-    white-space: nowrap;
-    transition: transform 0.2s ease, background-color 0.2s ease;
-}
 
-.whatsapp-btn-floating:hover {
-    background-color: #20ba5a;
-    transform: translateY(-3px);
-}
+} /* <-- Acá termina TODO el @media desktop */
 
-.whatsapp-btn-floating .whatsapp-icon {
-    width: 20px;
-    height: 20px;
-    flex-shrink: 0;
-}
+    /* ==========================================================
+   ANIMACIONES
+========================================================== */
 
-/* 📱 ADAPTACIÓN PARA CELULARES (Dentro de tu @media max-width: 768px si ya tenés una) */
-@media (max-width: 768px) {
-    /* En celulares achicamos el botón para que solo sea el círculo con el ícono y no moleste al navegar */
-    .whatsapp-btn-floating {
-        width: 55px;
-        height: 55px;
-        padding: 0;
-        justify-content: center;
-        border-radius: 50%;
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:translateY(40px);
     }
-    /* Ocultamos el texto en pantallas chicas */
-    .whatsapp-btn-floating span {
-        display: none;
+
+    to{
+        opacity:1;
+        transform:translateY(0);
     }
-    .whatsapp-btn-floating .whatsapp-icon {
-        width: 25px;
-        height: 25px;
-    }
+
 }
 
+/* ==========================================================
+   WHATSAPP FLOATING
+========================================================== */
+
+.whatsapp-btn-floating{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+
+    background:#25d366;
+    color:#fff;
+
+    text-decoration:none;
+
+    font-size:15px;
+    font-weight:600;
+
+    padding:12px 20px;
+
+    border-radius:30px;
+
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    box-shadow:0 4px 12px rgba(0,0,0,.3);
+
+    z-index:9999;
+
+    white-space:nowrap;
+
+    transition:var(--transicion);
+}
+
+.whatsapp-btn-floating:hover{
+    background:#20ba5a;
+    transform:translateY(-3px);
+}
+
+.whatsapp-btn-floating .whatsapp-icon{
+    width:20px;
+    height:20px;
+    flex-shrink:0;
+}
+
+/* ==========================================================
+   WHATSAPP MOBILE
+========================================================== */
+
+@media (max-width:768px){
+
+    .whatsapp-btn-floating{
+        width:55px;
+        height:55px;
+        padding:0;
+        justify-content:center;
+        border-radius:50%;
+    }
+
+    .whatsapp-btn-floating span{
+        display:none;
+    }
+
+    .whatsapp-btn-floating .whatsapp-icon{
+        width:25px;
+        height:25px;
+    }
+
+}
