@@ -459,32 +459,6 @@ gap:40px;
     font-size:.85rem;
 
 }
-
-/* ==========================================================================
-   BOTÓN FLOTANTE DE WHATSAPP
-   ========================================================================== */
-.whatsapp-btn {
-    position: fixed;
-    bottom: 35px;
-    right: 35px;
-    background-color: #25d366;
-    color: white;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
-    z-index: 999;
-    transition: var(--transicion);
-}
-
-.whatsapp-btn:hover {
-    transform: scale(1.1) translateY(-5px);
-    box-shadow: 0 15px 30px rgba(37, 211, 102, 0.6);
-}
-
 /* ==========================================================================
    DESKTOP (Mobile First)
    ========================================================================== */
