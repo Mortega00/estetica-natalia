@@ -305,90 +305,90 @@ gap:40px;
 
 }
 
-/* ==========================================================================
-   SERVICIOS (RESTRUCTURADO EN GRID DINÁMICO)
-   ========================================================================== */
-.services-section {
-    padding: 120px 10%;
-    background-color: var(--color-rosa-soft);
+/* ==========================================================
+   SERVICES
+========================================================== */
+
+.services-section{
+    padding:60px 20px;
+    background:var(--color-rosa-soft);
 }
 
-.section-title-container {
-    text-align: center;
-    margin-bottom: 70px;
+.section-title-container{
+    text-align:center;
+    margin-bottom:50px;
 }
 
-.section-title-container .subtitle {
-    font-family: var(--fuente-titulo);
-    font-size: 1.3rem;
-    color: var(--color-primario);
-    font-style: italic;
-    display: block;
-    margin-bottom: 10px;
+.section-title-container .subtitle{
+    display:block;
+    margin-bottom:10px;
+
+    font-family:var(--fuente-titulo);
+    font-size:1.2rem;
+    font-style:italic;
+
+    color:var(--color-primario);
 }
 
-.section-title-container h2 {
-    font-family: var(--fuente-titulo);
-    font-size: 2.8rem;
-    font-weight: 400;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+.section-title-container h2{
+    font-family:var(--fuente-titulo);
+    font-size:2.2rem;
+    font-weight:400;
 }
 
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 40px;
-    max-width: 1200px;
-    margin: 0 auto;
+.services-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:30px;
 }
 
-.service-card {
-    background-color: var(--color-claro);
-    padding: 25px;
-    text-align: center;
-    transition: var(--transicion);
-    border: 1px solid transparent;
-    border-radius: 4px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+.service-card{
+    background:white;
+
+    padding:25px;
+
+    border-radius:8px;
+
+    text-align:center;
+
+    transition:var(--transicion);
+
+    box-shadow:0 8px 20px rgba(0,0,0,.05);
 }
 
-.service-card:hover {
-    border-color: rgba(212, 175, 55, 0.3);
-    transform: translateY(-8px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
+.service-card:hover{
+    transform:translateY(-6px);
 }
 
-.card-image-wrapper {
-    overflow: hidden;
-    margin-bottom: 25px;
-    border-radius: 2px;
+.card-image-wrapper{
+    overflow:hidden;
+    border-radius:6px;
+    margin-bottom:20px;
 }
 
-.card-image-wrapper img {
-    width: 100%;
-    height: 260px;
-    object-fit: cover;
-    transition: var(--transicion);
+.card-image-wrapper img{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+
+    transition:var(--transicion);
 }
 
-.service-card:hover .card-image-wrapper img {
-    transform: scale(1.04);
+.service-card:hover img{
+    transform:scale(1.05);
 }
 
-.service-card h3 {
-    font-family: var(--fuente-titulo);
-    font-size: 1.7rem;
-    font-weight: 400;
-    margin-bottom: 15px;
-    letter-spacing: 0.5px;
+.service-card h3{
+    font-family:var(--fuente-titulo);
+    font-size:1.7rem;
+    font-weight:400;
+
+    margin-bottom:15px;
 }
 
-.service-card p {
-    color: var(--color-gris);
-    font-size: 0.95rem;
-    font-weight: 300;
-    padding: 0 5px;
+.service-card p{
+    color:var(--color-gris);
+    line-height:1.7;
 }
 
 /* ==========================================================================
@@ -559,6 +559,30 @@ gap:40px;
 
 .experience-image-wrapper img{
     height:600px;
+}
+/* ==========================
+   SERVICES
+========================== */
+
+.services-section{
+    padding:120px 10%;
+}
+
+.section-title-container{
+    margin-bottom:70px;
+}
+
+.section-title-container h2{
+    font-size:2.8rem;
+}
+
+.services-grid{
+    grid-template-columns:repeat(3,1fr);
+    gap:40px;
+}
+
+.card-image-wrapper img{
+    height:260px;
 }
 }
 /* DISEÑO DEL BOTÓN FLOTANTE (Para computadoras y tablets) */
