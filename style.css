@@ -32,64 +32,96 @@ body {
 /* ==========================================================================
    HEADER / NAVEGACIÓN
    ========================================================================== */
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 25px 10%;
-    position: sticky;
-    top: 0;
-    background-color: rgba(252, 251, 250, 0.95);
-    backdrop-filter: blur(10px);
-    z-index: 100;
-    border-bottom: 1px solid rgba(28, 28, 28, 0.05);
+/* ==========================================================
+   HEADER
+========================================================== */
+
+.header{
+    position:sticky;
+    top:0;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+    gap:18px;
+
+    width:100%;
+
+    padding:20px;
+
+    background:rgba(252,251,250,.95);
+    backdrop-filter:blur(10px);
+
+    border-bottom:1px solid rgba(0,0,0,.05);
+
+    z-index:999;
 }
 
-.logo {
-    font-family: var(--fuente-titulo);
-    font-size: 1.8rem;
-    font-weight: 600;
-    letter-spacing: 1px;
+.logo{
+    font-family:var(--fuente-titulo);
+    font-size:2rem;
+    font-weight:600;
+    text-align:center;
 }
 
-.logo span {
-    color: var(--color-primario);
-    font-weight: 400;
-    font-style: italic;
+.nav{
+    width:100%;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+    gap:14px;
 }
 
-.nav {
-    display: flex;
-    align-items: center;
+.nav a{
+
+    margin:0;
+
+    text-decoration:none;
+
+    color:var(--color-oscuro);
+
+    font-size:.95rem;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
+
+    transition:.3s;
 }
 
-.nav a {
-    text-decoration: none;
-    color: var(--color-oscuro);
-    font-size: 0.9rem;
-    font-weight: 400;
-    margin-left: 30px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    transition: var(--transicion);
+.nav a:hover{
+
+    color:var(--color-primario);
+
 }
 
-.nav a:hover {
-    color: var(--color-primario);
+.btn-nav{
+
+    width:100%;
+
+    max-width:260px;
+
+    text-align:center;
+
+    padding:14px;
+
+    border-radius:40px;
+
+    background:var(--color-oscuro);
+
+    color:white !important;
+
 }
 
-.nav a.btn-nav {
-    background-color: var(--color-oscuro);
-    color: var(--color-claro);
-    padding: 12px 24px;
-    border-radius: 50px;
-    font-size: 0.8rem;
-    font-weight: 500;
-}
+.btn-nav:hover{
 
-.nav a.btn-nav:hover {
-    background-color: var(--color-primario);
-    color: var(--color-oscuro);
+    background:var(--color-primario);
+
+    color:black !important;
+
 }
 
 /* ==========================================================================
@@ -420,17 +452,42 @@ body {
     }
     .experience-image-wrapper img { height: 450px; }
 }
-@media (max-width: 768px) {
-    .header {
-        padding: 20px 5%;
-        flex-direction: column;
-        gap: 15px;
-    }
-    .nav a { margin: 0 10px; font-size: 0.8rem; }
-    .hero-content h1 { font-size: 2.8rem; }
-    .experience-content h2 { font-size: 2.3rem; }
-    .motivational-quote { font-size: 1.6rem; }
-    .footer-bottom { flex-direction: column; gap: 10px; }
+/* ==========================================================
+   DESKTOP
+========================================================== */
+
+@media (min-width:992px){
+
+.header{
+
+    flex-direction:row;
+
+    justify-content:space-between;
+
+    padding:25px 10%;
+
+}
+
+.nav{
+
+    width:auto;
+
+    flex-direction:row;
+
+    gap:30px;
+
+}
+
+.btn-nav{
+
+    width:auto;
+
+    max-width:none;
+
+    padding:12px 24px;
+
+}
+
 }
 /* DISEÑO DEL BOTÓN FLOTANTE (Para computadoras y tablets) */
 .whatsapp-btn-floating {
