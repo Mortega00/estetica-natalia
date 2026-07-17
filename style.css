@@ -127,80 +127,92 @@ body {
 /* ==========================================================================
    HERO SECTION (SECCIÓN PRINCIPAL)
    ========================================================================== */
-.hero-section {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    min-height: calc(100vh - 85px);
-    align-items: center;
-    padding: 40px 10%;
-    gap: 50px;
-    background-color: var(--color-rosa-soft);
+/* ==========================================================
+   HERO
+========================================================== */
+
+.hero-section{
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+text-align:center;
+
+padding:40px 20px;
+
+background:var(--color-rosa-soft);
+
+gap:40px;
+
+}
+.hero-content{
+    max-width:600px;
 }
 
-.hero-content h1 {
-    font-family: var(--fuente-titulo);
-    font-size: 4rem;
-    font-weight: 400;
-    line-height: 1.1;
-    margin-bottom: 25px;
+.hero-content h1{
+    font-family:var(--fuente-titulo);
+    font-size:2.7rem;
+    line-height:1.1;
+    font-weight:400;
+    margin-bottom:20px;
 }
 
-.hero-content p {
-    color: var(--color-gris);
-    font-size: 1.1rem;
-    margin-bottom: 40px;
-    max-width: 500px;
-    font-weight: 300;
+.hero-content p{
+    color:var(--color-gris);
+    font-size:1rem;
+    margin-bottom:30px;
 }
 
-.btn-primary, .btn-secondary {
-    display: inline-block;
-    text-decoration: none;
-    background-color: var(--color-oscuro);
-    color: var(--color-claro);
-    padding: 15px 35px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    font-size: 0.85rem;
-    font-weight: 500;
-    transition: var(--transicion);
-    border: 1px solid var(--color-oscuro);
+.btn-primary{
+    display:inline-block;
+    text-decoration:none;
+    background:var(--color-oscuro);
+    color:white;
+    padding:15px 28px;
+    border-radius:40px;
+    transition:var(--transicion);
 }
 
-.btn-primary:hover, .btn-secondary:hover {
-    background-color: transparent;
-    color: var(--color-oscuro);
+.btn-primary:hover{
+    background:var(--color-primario);
+    color:black;
 }
 
-.hero-image-container {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.hero-image-container{
+    position:relative;
+    width:100%;
+    display:flex;
+    justify-content:center;
 }
 
-.hero-image {
-    width: 100%;
-    max-width: 420px;
-    height: 520px;
-    object-fit: cover;
-    border-radius: 250px 250px 0 0;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+.hero-image{
+    width:100%;
+    max-width:370px;
+    height:430px;
+    object-fit:cover;
+    border-radius:220px 220px 0 0;
 }
 
-.hero-image-badge {
-    position: absolute;
-    bottom: 40px;
-    left: 5%;
-    background-color: var(--color-claro);
-    padding: 15px 25px;
-    font-family: var(--fuente-titulo);
-    font-size: 1.2rem;
-    font-style: italic;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-    border-left: 3px solid var(--color-primario);
-}
+.hero-image-badge{
+    position:absolute;
+    bottom:20px;
+    left:15px;
 
+    background:white;
+
+    padding:10px 18px;
+
+    font-family:var(--fuente-titulo);
+
+    font-style:italic;
+
+    border-left:3px solid var(--color-primario);
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
 /* ==========================================================================
    SECCIÓN EXPERIENCIA (NATALIA FERRANTE)
    ========================================================================== */
@@ -435,58 +447,73 @@ body {
 }
 
 /* ==========================================================================
-   DISEÑO ADAPTABLE (RESPONSIVE)
+   DESKTOP (Mobile First)
    ========================================================================== */
-@media (max-width: 1024px) {
-    .hero-section {
-        grid-template-columns: 1fr;
-        padding: 60px 5%;
-        text-align: center;
+
+@media (min-width: 992px) {
+
+    /* ==========================
+       HEADER
+    ========================== */
+
+    .header{
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 25px 10%;
     }
-    .hero-content p { margin: 0 auto 40px auto; }
-    .hero-image-container { order: -1; }
-    
-    .experience-container {
-        grid-template-columns: 1fr;
-        gap: 40px;
+
+    .nav{
+        width: auto;
+        flex-direction: row;
+        gap: 30px;
     }
-    .experience-image-wrapper img { height: 450px; }
-}
-/* ==========================================================
-   DESKTOP
-========================================================== */
 
-@media (min-width:992px){
+    .btn-nav{
+        width: auto;
+        max-width: none;
+        padding: 12px 24px;
+    }
 
-.header{
+    /* ==========================
+       HERO
+    ========================== */
 
-    flex-direction:row;
+    .hero-section{
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        text-align: left;
+        padding: 80px 10%;
+    }
 
-    justify-content:space-between;
+    .hero-content{
+        flex: 1;
+        max-width: 550px;
+    }
 
-    padding:25px 10%;
+    .hero-content h1{
+        font-size: 4rem;
+    }
 
-}
+    .hero-content p{
+        font-size: 1.1rem;
+        max-width: 500px;
+    }
 
-.nav{
+    .hero-image-container{
+        flex: 1;
+        justify-content: flex-end;
+    }
 
-    width:auto;
+    .hero-image{
+        max-width: 420px;
+        height: 520px;
+    }
 
-    flex-direction:row;
-
-    gap:30px;
-
-}
-
-.btn-nav{
-
-    width:auto;
-
-    max-width:none;
-
-    padding:12px 24px;
-
-}
+    .hero-image-badge{
+        bottom: 40px;
+        left: 0;
+    }
 
 }
 /* DISEÑO DEL BOTÓN FLOTANTE (Para computadoras y tablets) */
