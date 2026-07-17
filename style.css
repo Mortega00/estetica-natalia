@@ -420,7 +420,6 @@ body {
     }
     .experience-image-wrapper img { height: 450px; }
 }
-
 @media (max-width: 768px) {
     .header {
         padding: 20px 5%;
@@ -432,5 +431,56 @@ body {
     .experience-content h2 { font-size: 2.3rem; }
     .motivational-quote { font-size: 1.6rem; }
     .footer-bottom { flex-direction: column; gap: 10px; }
-    .whatsapp-btn { bottom: 20px; right: 20px; width: 50px; height: 50px; }
 }
+/* DISEÑO DEL BOTÓN FLOTANTE (Para computadoras y tablets) */
+.whatsapp-btn-floating {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25d366;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 12px 20px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 9999; /* Asegura que quede siempre por encima de todo */
+    white-space: nowrap;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.whatsapp-btn-floating:hover {
+    background-color: #20ba5a;
+    transform: translateY(-3px);
+}
+
+.whatsapp-btn-floating .whatsapp-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+/* 📱 ADAPTACIÓN PARA CELULARES (Dentro de tu @media max-width: 768px si ya tenés una) */
+@media (max-width: 768px) {
+    /* En celulares achicamos el botón para que solo sea el círculo con el ícono y no moleste al navegar */
+    .whatsapp-btn-floating {
+        width: 55px;
+        height: 55px;
+        padding: 0;
+        justify-content: center;
+        border-radius: 50%;
+    }
+    /* Ocultamos el texto en pantallas chicas */
+    .whatsapp-btn-floating span {
+        display: none;
+    }
+    .whatsapp-btn-floating .whatsapp-icon {
+        width: 25px;
+        height: 25px;
+    }
+}
+
