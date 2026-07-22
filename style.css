@@ -448,6 +448,99 @@ gap:40px;
 }
 
 /* ==========================================================
+   TESTIMONIOS
+========================================================== */
+
+.testimonials-section{
+
+    padding:60px 20px;
+
+    background:var(--color-claro);
+
+}
+
+.testimonials-grid{
+
+    display:grid;
+
+    grid-template-columns:1fr;
+
+    gap:30px;
+
+}
+
+.testimonial-card{
+
+    background:white;
+
+    padding:35px;
+
+    border-radius:10px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.05);
+
+    transition:var(--transicion);
+
+    animation:fadeUp .8s ease forwards;
+
+}
+
+.testimonial-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 20px 45px rgba(0,0,0,.10);
+
+}
+
+.stars{
+
+    color:var(--color-primario);
+
+    font-size:1.2rem;
+
+    letter-spacing:3px;
+
+    margin-bottom:18px;
+
+}
+
+.testimonial-card p{
+
+    color:var(--color-gris);
+
+    line-height:1.8;
+
+    font-style:italic;
+
+    margin-bottom:25px;
+
+}
+
+.testimonial-author{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:4px;
+
+}
+
+.testimonial-author strong{
+
+    color:var(--color-oscuro);
+
+}
+
+.testimonial-author span{
+
+    color:var(--color-gris);
+
+    font-size:.9rem;
+
+}
+/* ==========================================================
    FOOTER
 ========================================================== */
 
@@ -637,6 +730,24 @@ gap:40px;
 
 .card-image-wrapper img{
     height:260px;
+}
+
+/* ==========================
+   TESTIMONIOS
+========================== */
+
+.testimonials-section{
+
+    padding:120px 10%;
+
+}
+
+.testimonials-grid{
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:40px;
+
 }
 /* ==========================
    FOOTER
