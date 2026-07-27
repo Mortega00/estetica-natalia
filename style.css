@@ -497,6 +497,7 @@ transform:translateY(0);
 
     scrollbar-width:none;
 
+    -webkit-overflow-scrolling: touch;
 }
 
 .testimonials-grid::-webkit-scrollbar{
@@ -1206,3 +1207,92 @@ display:none;
         height:25px;
     }
     }
+
+    @media (max-width:768px){
+
+.header{
+    padding:14px 20px;
+    gap:12px;
+}
+
+.logo{
+    font-size:1.6rem;
+}
+
+.nav{
+    flex-direction:row;
+    justify-content:center;
+    gap:18px;
+    flex-wrap:wrap;
+}
+
+.nav a{
+    font-size:.8rem;
+}
+
+.hero-section{
+    padding:35px 20px;
+    gap:25px;
+}
+
+.hero-content h1{
+    font-size:2.2rem;
+}
+
+.hero-image{
+    max-width:300px;
+    height:360px;
+}
+
+.experience-section,
+.services-section,
+.testimonials-section,
+.why-section,
+.gallery-section,
+.cta-section{
+    padding:55px 20px;
+}
+
+.section-title-container{
+    margin-bottom:35px;
+}
+
+.section-title-container h2{
+    font-size:2rem;
+}
+
+.services-grid{
+    grid-template-columns:1fr;
+}
+
+.why-grid{
+    grid-template-columns:1fr;
+}
+
+.service-card{
+    padding:20px;
+}
+
+.card-image-wrapper img{
+    height:220px;
+}
+
+.testimonial-card{
+    min-width:290px;
+    max-width:290px;
+    padding:25px;
+}
+
+.gallery-grid img{
+    height:220px;
+}
+
+.footer{
+    padding:50px 20px;
+}
+
+.motivational-quote{
+    font-size:1.5rem;
+}
+
+}
