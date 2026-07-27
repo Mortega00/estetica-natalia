@@ -1094,6 +1094,14 @@ display:none;
     flex-shrink:0;
 }
 
+@keyframes pulse{
+
+0%{transform:scale(1);}
+50%{transform:scale(1.08);}
+100%{transform:scale(1);}
+
+}
+
 /* ==========================================================
    WHATSAPP MOBILE
 ========================================================== */
@@ -1106,6 +1114,7 @@ display:none;
         padding:0;
         justify-content:center;
         border-radius:50%;
+        animation:pulse 2.5s infinite;
     }
 
     .whatsapp-btn-floating span{
