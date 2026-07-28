@@ -3,402 +3,276 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Nativa Estética ofrece tratamientos de cosmetología, masajes, drenaje linfático, dermapen y bienestar integral. Reservá tu turno por WhatsApp.">
-    <meta property="og:title" content="Nativa Estética">
-    <meta property="og:description" content="Cosmetología, Dermapen, Masajes y Bienestar en Remedios de Escalada.">
-    <meta property="og:image" content="assets/preview.jpg">
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="es_AR">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Nativa Estética">
-    <meta name="twitter:description" content="Cosmetología, Dermapen, Masajes y Bienestar.">
-    <meta name="twitter:image" content="assets/preview.jpg">
-    <meta name="keywords" content="estética, cosmetología, dermapen, drenaje linfático, masajes, bienestar, belleza, Remedios de Escalada">
-    <meta name="author" content="Nativa Estética">
-    <meta name="theme-color" content="#fcfbfa">
-    <title>Nativa Estética | Cosmetología, Masajes y Bienestar</title>
+    <meta name="description" content="Nativa Estética - Cosmetología y Bienestar en Remedios de Escalada">
+    <title>Nativa Estética | Cosmetología & Bienestar</title>
+    
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon.png">
-    <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+    <!-- ==================== HEADER ==================== -->
     <header class="header">
-        <a href="#inicio" class="logo">
-    Nativa Estética
-</a>
-        <nav class="nav">
-            <a href="#inicio">Inicio</a>
-            <a href="#servicios">Servicios</a>
-            <a href="#experiencia">Experiencia</a>
-        </nav>
+        <div class="container header-content">
+            <a href="#inicio" class="brand-logo">
+                <img src="assets/favicon.png" alt="Nativa Icono" class="logo-icon">
+                <div class="brand-text">
+                    <span class="brand-name">NATIVA</span>
+                    <span class="brand-tagline">ESTETICA</span>
+                </div>
+            </a>
+            <nav class="nav">
+                <a href="#servicios">Tratamientos</a>
+                <a href="#experiencia">Sobre mí</a>
+                <a href="#agenda" class="btn-nav">Reservar</a>
+            </nav>
+        </div>
     </header>
 
+    <!-- ==================== HERO ==================== -->
     <section id="inicio" class="hero-section">
-        <div class="hero-content">
-            <h1>Regalate una hora<br>para sentirte mejor.</h1>
-            <p>Más de 25 años ayudando a personas a sentirse mejor con tratamientos personalizados.</p>
-            <a
-href="https://wa.link/ujl9s9"
-class="btn-primary"
-target="_blank"
-rel="noopener noreferrer">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <span class="hero-badge">✿ MÁS DE 25 AÑOS DE TRAYECTORIA</span>
+                <h1>Regalate una hora para sentirte mejor</h1>
+                <p>Un espacio pensado para que durante una hora te olvides del estrés, alivies dolores y vuelvas a sentirte bien</p>
+                
+                <div class="hero-actions">
+                    <a href="#agenda" class="btn-primary">Quiero regalarme este momento</a>
+                    <a href="https://wa.me/5491132194320?text=Hola%20Natalia,%20quisiera%20recibir%20asesoramiento%20personalizado" class="btn-secondary" target="_blank">Asesoramiento Gratis</a>
+                </div>
 
-Reservar turno
-</a>
-        </div>
-        <div class="hero-image-container">
-            <img src="assets/nativa-estetica.png" alt="Experiencia de Estética Premium" class="hero-image" 
-            loading="eager" decoding="async">
+                <ul class="hero-benefits">
+                    <li>✔ Atención 100% personalizada</li>
+                    <li>✔ Remedios de Escalada · Lunes a Domingo</li>
+                    <li>✔ Cada tratamiento se adapta a lo que necesitas</li>
+                </ul>
+            </div>
+            
+            <div class="hero-image-container">
+                <img src="assets/nativa-estetica.png" alt="Experiencia Nativa Estética" class="hero-image" loading="eager">
+            </div>
         </div>
     </section>
 
-    <section id="experiencia"class="experience-section reveal">
-        <div class="experience-container">
+    <!-- ==================== SERVICIOS ==================== -->
+    <section id="servicios" class="services-section reveal">
+        <div class="container">
+            <div class="section-title-container">
+                <span class="subtitle">¿Qué necesita tu cuerpo hoy?</span>
+                <h2>Tratamientos Destacados</h2>
+                <p class="section-desc">Descubrí cuál puede ayudarte según lo que necesitas</p>
+            </div>
+            
+            <div class="services-grid">
+                
+                <!-- TARJETA 1 -->
+                <div class="service-card" data-service="drenaje">
+                    <div class="card-image-wrapper">
+                        <img src="assets/drenaje-linfatico.png" alt="Drenaje Linfático Manual" loading="lazy">
+                    </div>
+                    <div class="card-info">
+                        <span class="card-badge">Embarazadas & Post-Quirúrgico</span>
+                        <h3>Drenaje Linfático Manual</h3>
+                        <p class="card-problem">Alivia piernas pesadas, retención de líquidos e inflamación corporal</p>
+                        <span class="btn-card-more">+ Ver detalles</span>
+                    </div>
+                </div>
+
+                <!-- TARJETA 2 -->
+                <div class="service-card" data-service="descontracturante">
+                    <div class="card-image-wrapper">
+                        <img src="assets/masajes-descontracturantes1.png" alt="Masajes Descontracturantes" loading="lazy">
+                    </div>
+                    <div class="card-info">
+                        <span class="card-badge">Alivio Inmediato</span>
+                        <h3>Masajes Descontracturantes</h3>
+                        <p class="card-problem">Libera la tensión en cuello, hombros y espalda acumulada por estrés</p>
+                        <span class="btn-card-more">+ Ver detalles</span>
+                    </div>
+                </div>
+
+                <!-- TARJETA 3 -->
+                <div class="service-card" data-service="dermapen">
+                    <div class="card-image-wrapper">
+                        <img src="assets/dermapen.png" alt="Dermapen Facial" loading="lazy">
+                    </div>
+                    <div class="card-info">
+                        <span class="card-badge">Renovación Facial</span>
+                        <h3>Dermapen & Microneedling</h3>
+                        <p class="card-problem">Estimula colágeno para atenuar líneas de expresión y manchas</p>
+                        <span class="btn-card-more">+ Ver detalles</span>
+                    </div>
+                </div>
+
+                <!-- TARJETA 4 -->
+                <div class="service-card" data-service="piedras">
+                    <div class="card-image-wrapper">
+                        <img src="assets/piedras-calientes.png" alt="Masaje con Piedras Calientes" loading="lazy">
+                    </div>
+                    <div class="card-info">
+                        <span class="card-badge">Relax Absoluto</span>
+                        <h3>Piedras Calientes</h3>
+                        <p class="card-problem">Calor térmico que afloja la rigidez muscular y desconecta la mente</p>
+                        <span class="btn-card-more">+ Ver detalles</span>
+                    </div>
+                </div>
+
+                <!-- TARJETA 5 -->
+                <div class="service-card" data-service="facial">
+                    <div class="card-image-wrapper">
+                        <img src="assets/salud-bienestar.png" alt="Higiene Facial e Hidratación" loading="lazy">
+                    </div>
+                    <div class="card-info">
+                        <span class="card-badge">Piel Luminosa</span>
+                        <h3>Higiene Facial Profunda</h3>
+                        <p class="card-problem">Limpieza e hidratación para devolver la frescura y pureza al rostro</p>
+                        <span class="btn-card-more">+ Ver detalles</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- MODAL INFORMATIVO -->
+    <div id="serviceModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">&times;</button>
+            <h3 id="modalTitle">Título del Servicio</h3>
+            <div class="modal-body">
+                <p id="modalDescription">Descripción...</p>
+                <div class="modal-info-box">
+                    <p><strong>⏱ Duración:</strong> <span id="modalDuration">-</span></p>
+                    <p><strong>🗓 Recomendación:</strong> <span id="modalSessions">-</span></p>
+                    <p><strong>🎯 Para quién es:</strong> <span id="modalTarget">-</span></p>
+                </div>
+            </div>
+            <a href="#agenda" class="btn-primary" id="modalBookBtn">Agendar este servicio</a>
+        </div>
+    </div>
+
+    <!-- ==================== EXPERIENCIA / UN POCO SOBRE MI ==================== -->
+    <section id="experiencia" class="experience-section reveal">
+        <div class="container experience-grid">
             <div class="experience-image-wrapper">
                 <img src="assets/natalia-ferrante.png" alt="Natalia Ferrante" loading="lazy">
             </div>
             <div class="experience-content">
-                <span class="subtitle">Confianza y Trayectoria</span>
-                <h2>¡Hola, soy Natalia Ferrante!</h2>
-                <p class="highlight-text">Cosmetóloga y Esteticista con más de 25 años de trayectoria dedicados al cuidado de la salud y la belleza integral</p>
-
-                <p>Cada tratamiento está pensado para ayudarte a sentirte mejor, relajarte y cuidar tu piel con una atención completamente personalizada.</p>
+                <span class="subtitle">Un poco sobre mí</span>
+                <h2>Hola, soy Natalia Ferrante</h2>
+                <p class="highlight-text">Cosmetóloga y Esteticista con más de 25 años de experiencia</p>
+                <p>Durante más de 25 años acompañé a cientos de personas que llegaban con dolor, cansancio o simplemente necesitaban volver a regalarse un momento para ellas. Mi objetivo es que cada sesión sea un espacio donde puedas relajarte, sentirte mejor y salir renovada.</p>
             </div>
         </div>
     </section>
 
-    <section id="servicios" class="services-section reveal">
-        <div class="section-title-container">
-            <span class="subtitle">Nuestras Especialidades</span>
-            <h2>Servicios Estéticos Profesionales</h2>
-        </div>
-        
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="card-image-wrapper">
-                    <img src="assets/salud-bienestar.png" alt="Salud y Bienestar" loading="lazy">
-                </div>
-                <h3>Salud y Bienestar</h3>
-                <p>Tratamientos integrales diseñados para restablecer el equilibrio de tu cuerpo, devolviéndole su frescura y vitalidad natural</p>
+    <!-- ==================== AGENDA ==================== -->
+    <section id="agenda" class="booking-section reveal">
+        <div class="container">
+            <div class="section-title-container">
+                <span class="subtitle">Tu momento empieza acá</span>
+                <h2>Elegí el día que mejor te quede y coordinemos tu próxima sesión</h2>
             </div>
 
-            <div class="service-card">
-                <div class="card-image-wrapper">
-                    <img src="assets/masajes-descontracturantes1.png" alt="Masajes Descontracturantes" loading="lazy">
+            <div class="booking-card">
+                <div class="deposit-notice">
+                    <span>⚠️ <strong>Aviso:</strong> Para cuidar el tiempo de todas las pacientes, los turnos se reservan con una seña previa. Si necesitás reprogramar, solo avisá con al menos 24 horas de anticipación</span>
                 </div>
-                <h3>Masajes Descontracturantes</h3>
-                <p>Terapias de relajación profunda y descontracturantes para liberar tensiones acumuladas y renovar tu energía diaria</p>
-            </div>
 
-            <div class="service-card">
-                <div class="card-image-wrapper">
-                    <img src="assets/drenaje-linfatico.png" alt="Drenaje Linfático"loading="lazy">
+                <div class="booking-step">
+                    <label class="step-label">1. Seleccioná el día</label>
+                    <div class="date-picker-scroll" id="dateContainer"></div>
                 </div>
-                <h3>Drenaje Linfático</h3>
-                <p>Técnica manual especializada para estimular el sistema circulatorio, eliminar toxinas y reducir la retención de líquidos</p>
-            </div>
 
-            <div class="service-card">
-                <div class="card-image-wrapper">
-                    <img src="assets/piedras-calientes.png" alt="Masajes con Piedras Calientes"loading="lazy">
+                <div class="booking-step">
+                    <label class="step-label">2. Horarios disponibles</label>
+                    <div class="slots-grid" id="slotsContainer">
+                        <p class="select-prompt">Elegí un día arriba</p>
+                    </div>
                 </div>
-                <h3>Piedras Calientes</h3>
-                <p>Calor profundo que alivia el dolor muscular, calma la mente y renueva tu energía a través del poder de las piedras volcánicas</p>
-            </div>
 
-            <div class="service-card">
-                <div class="card-image-wrapper">
-                    <img src="assets/dermapen.png" alt="Dermapen" loading="lazy">
+                <div class="booking-summary hidden" id="bookingSummary">
+                    <div class="summary-details">
+                        <span>Reserva para el:</span> <strong id="summaryText">--</strong>
+                    </div>
+                    <button id="btnSendWhatsapp" class="btn-whatsapp-confirm">
+                        Confirmar mi turno
+                    </button>
                 </div>
-                <h3>Dermapen</h3>
 
-<p>Estimula la regeneración de la piel, mejora manchas, marcas y líneas de expresión</p>
+                <div class="custom-consultation">
+                    <p>¿No sabés cuál es el tratamiento ideal para vos?</p>
+                    <a href="https://wa.me/5491132194320?text=Hola%20Natalia!%20Quisiera%20asesoramiento%20personalizado." target="_blank" class="link-whatsapp-help">Escribime y lo vemos juntas 💬</a>
+                </div>
             </div>
         </div>
     </section>
 
-<!-- ==========================================
-     TESTIMONIOS
-========================================== -->
-
-<section class="testimonials-section reveal">
-
-    <div class="section-title-container">
-        <span class="subtitle">Experiencias reales</span>
-        <h2>Lo que dicen mis pacientes</h2>
-    </div>
-
-    <div class="scroll-hint">
-← Deslizá para ver más opiniones →
-</div>
-
-    <div class="testimonials-grid">
-
-        <article class="testimonial-card">
-
-            <div class="stars">★★★★★</div>
-
-            <p>
-                "Desde la primera sesión me sentí completamente cómoda.
-                El ambiente transmite muchísima paz y salí renovada"
-            </p>
-
-            <div class="testimonial-author">
-                <strong>Veronica G.</strong>
-                <span>Limpieza Facial</span>
+    <!-- ==================== TESTIMONIOS ==================== -->
+    <section id="testimonios" class="testimonials-section reveal">
+        <div class="container">
+            <div class="section-title-container">
+                <span class="subtitle">Experiencias Reales</span>
+                <h2>Lo Que Dicen Mis Pacientes</h2>
             </div>
 
-        </article>
+            <div class="testimonials-grid">
+                <article class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"Fui durante mi embarazo por la hinchazón en las piernas y el drenaje me cambió la vida"</p>
+                    <div class="testimonial-author">
+                        <strong>Lucía M.</strong>
+                        <span>Drenaje Linfático</span>
+                    </div>
+                </article>
 
-        <article class="testimonial-card">
+                <article class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"Llegué contracturada por la oficina y en una sesión sentí un alivio enorme en la espalda"</p>
+                    <div class="testimonial-author">
+                        <strong>Carolina R.</strong>
+                        <span>Masaje Descontracturante</span>
+                    </div>
+                </article>
 
-            <div class="stars">★★★★★</div>
-
-            <p>
-                "Excelente atención. Muy profesional y cada detalle hace
-                que la experiencia sea realmente relajante"
-            </p>
-
-            <div class="testimonial-author">
-                <strong>Carolina R.</strong>
-                <span>Masajes Descontracturantes</span>
+                <article class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"Nati es sumamente profesional. Te explica todo con paciencia y los productos son de primera"</p>
+                    <div class="testimonial-author">
+                        <strong>Mariana G.</strong>
+                        <span>Limpieza Facial</span>
+                    </div>
+                </article>
             </div>
-
-        </article>
-
-        <article class="testimonial-card">
-
-            <div class="stars">★★★★★</div>
-
-            <p>
-                "Me costaba mucho relajarme con terapeutas nuevos, pero Nati tiene una energía hermosa que te hace sentir cuidada y cómoda desde que entras"
-            </p>
-
-            <div class="testimonial-author">
-                <strong>Sandra G.</strong>
-                <span>Drenaje Linfático</span>
-            </div>
-
-        </article>
-
-        <article class="testimonial-card">
-
-            <div class="stars">★★★★★</div>
-
-            <p>
-                "Volvería una y mil veces. El lugar es hermoso y el trato
-                fue impecable desde el primer momento"
-            </p>
-
-            <div class="testimonial-author">
-                <strong>Nancy M.</strong>
-                <span>Dermapen</span>
-            </div>
-
-        </article>
-
-        <article class="testimonial-card">
-
-            <div class="stars">★★★★★</div>
-
-            <p>
-                "Los resultados se sienten de inmediato. La técnica es precisa y efectiva, ideal para quienes buscan un alivio real del estrés acumulado"
-            </p>
-
-            <div class="testimonial-author">
-                <strong>Patricia H.</strong>
-                <span>Masoterapia</span>
-            </div>
-
-        </article>
-
-
-        <article class="testimonial-card">
-
-            <div class="stars">★★★★★</div>
-
-            <p>
-                "Una experiencia premium de principio a fin. La comodidad de las instalaciones, la calidad de los aceites y la atención profesional marcan la diferencia"
-            </p>
-
-            <div class="testimonial-author">
-                <strong>Alejandra P.</strong>
-                <span>Pack x10 sesiones</span>
-            </div>
-
-        </article>
-
-
-        <article class="testimonial-card">
-
-            <div class="stars">★★★★★</div>
-
-            <p>
-                "Ir con Nati fue la mejor decisión. Su calidez te hace sentir en confianza de inmediato y el trato es impecable de principio a fin "
-            </p>
-            <div class="testimonial-author">
-                <strong>Anabella S.</strong>
-                <span>Maderoterapia</span>
-    </div>
-
-        </article>
-
-
+        </div>
     </section>
 
-<section class="why-section reveal">
-
-    <div class="section-title-container">
-        <span class="subtitle">¿Por qué elegirnos?</span>
-        <h2>Un espacio pensado para tu bienestar</h2>
-    </div>
-
-    <div class="why-grid">
-
-        <div class="why-item">
-            <div class="why-icon">🌿</div>
-            <h3>Más de 25 años de experiencia</h3>
-            <p>Décadas dedicadas al cuidado estético y al bienestar integral de cada paciente</p>
-        </div>
-
-        <div class="why-item">
-            <div class="why-icon">🤍</div>
-            <h3>Atención personalizada</h3>
-            <p>Cada tratamiento se adapta a las necesidades y objetivos de cada persona</p>
-        </div>
-
-        <div class="why-item">
-            <div class="why-icon">✨</div>
-            <h3>Tecnología y técnicas actuales</h3>
-            <p>Combinamos experiencia con tratamientos modernos para obtener mejores resultados</p>
-        </div>
-
-        <div class="why-item">
-            <div class="why-icon">🌸</div>
-            <h3>Ambiente relajante</h3>
-            <p>Un espacio cálido donde cada visita se convierte en un momento para vos</p>
-        </div>
-
-        <div class="why-item">
-            <div class="why-icon">⭐</div>
-            <h3>Resultados visibles</h3>
-            <p>Tratamientos pensados para mejorar tu bienestar desde la primera sesión</p>
-        </div>
-
-        <div class="why-item">
-            <div class="why-icon">💬</div>
-            <h3>Acompañamiento constante</h3>
-            <p>Te asesoramos antes, durante y después de cada tratamiento</p>
-        </div>
-
-    </div>
-
-</section>
-
-<section class="gallery-section reveal">
-
-    <div class="section-title-container">
-        <span class="subtitle">Nuestro espacio</span>
-        <h2>Momentos que inspiran bienestar</h2>
-    </div>
-
-    <div class="gallery-grid">
-
-        <img src="assets/centro-estetica.png" alt="Centro de estética" loading="lazy">
-
-        <img src="assets/masajista-estetica.png" alt="Masajes" loading="lazy">
-
-        <img src="assets/cosmetologia.png" alt="Cosmetología" loading="lazy">
-
-        <img src="assets/spa.png" alt="Spa" loading="lazy">
-
-    </div>
-
-</section>
-
+    <!-- ==================== FOOTER ==================== -->
     <footer class="footer">
-        <div class="footer-content">
-                <div class="footer-bottom">
-
-    <div>
-
-        <h3>Nativa Estética</h3>
-
-    </div>
-
-    <div>
-
-        <p>
-            📍 Remedios de Escalada
-        </p>
-
-        <p>
-            Lunes a Domingo · 8 a 19 hs
-        </p>
-
-    </div>
-
-    <div>
-
-        <a
-            href="https://wa.link/ujl9s9"
-            target="_blank"
-            rel="noopener noreferrer">
-
-            Hablar por WhatsApp
-
-        </a>
-
-    </div>
-
-</div>
-
-<p class="copyright">
-
-© 2026 Nativa Estética.
-Todos los derechos reservados.
-
-</p>
+        <div class="container">
+            <div class="footer-brand">
+                <h3>NATIVA ESTETICA</h3>
+                <p>Estética & Bienestar Integral</p>
             </div>
-    <!-- BOTÓN FLOTANTE DE WHATSAPP -->
-<a
-    href="https://wa.link/ujl9s9"
-    class="whatsapp-btn-floating"
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="Contactar por WhatsApp"
->
+            <div class="footer-info">
+                <p>📍 Remedios de Escalada, Buenos Aires</p>
+            </div>
+            <p class="copyright">© 2026 Nativa Estética. Todos los derechos reservados.</p>
+        </div>
+    </footer>
 
-    <svg
-        class="whatsapp-icon"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 448 512"
-        aria-hidden="true"
-        fill="currentColor">
+    <!-- BOTÓN FLOTANTE WHATSAPP -->
+    <a href="https://wa.me/5491132194320" class="whatsapp-btn-floating" target="_blank" aria-label="WhatsApp">
+        <svg class="whatsapp-icon" viewBox="0 0 448 512" fill="currentColor">
+            <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+        </svg>
+    </a>
 
-        <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
-    </svg>
-</a>
-<script> const observer = new IntersectionObserver(entries => {
-entries.forEach(entry => {
-    if(entry.isIntersecting){
-
-entry.target.classList.add("active");
-
-observer.unobserve(entry.target);
-
-}
-  });
-});
-
-document.querySelectorAll(".reveal").forEach(el => {
-  observer.observe(el);
-});
-</script>
-
+    <script src="app.js"></script>
 </body>
 </html>
