@@ -33,6 +33,11 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
+/* Utilidad global */
+.hidden {
+    display: none !important;
+}
+
 /* Container Global para Desktop */
 .container {
     width: 100%;
@@ -354,8 +359,6 @@ body {
     z-index: 2000;
 }
 
-.modal-overlay.hidden { display: none; }
-
 .modal-content {
     background: white;
     width: 100%;
@@ -473,7 +476,7 @@ body {
 .testimonial-author span { font-size: 0.7rem; color: var(--color-gris); }
 
 /* ==========================================================================
-   AGENDA DE TURNOS & FORMULARIO DE RESERVA (RENOVADO)
+   AGENDA DE TURNOS & FORMULARIO DE RESERVA
    ========================================================================== */
 .booking-section {
     padding: 40px 0;
@@ -543,6 +546,99 @@ body {
 
 .btn-booking:hover {
     background: var(--color-oscuro);
+}
+
+/* -------------------------------------------------------------
+   ESTILOS DE CALENDARIO INTERACTIVO (AGREGADO PARA APP.JS)
+   ------------------------------------------------------------- */
+.calendar-wrapper {
+    background: #faf8f5;
+    border: 1px solid var(--color-gris-linea);
+    border-radius: 10px;
+    padding: 15px;
+    margin-top: 5px;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.calendar-header span {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--color-oscuro);
+}
+
+.calendar-nav-btn {
+    background: white;
+    border: 1px solid var(--color-gris-linea);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: var(--transicion);
+}
+
+.calendar-nav-btn:hover {
+    background: var(--color-primario);
+    color: white;
+    border-color: var(--color-primario);
+}
+
+.calendar-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-gris);
+    margin-bottom: 8px;
+}
+
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+}
+
+.day-btn {
+    background: white;
+    border: 1px solid var(--color-gris-linea);
+    border-radius: 6px;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transicion);
+    color: var(--color-oscuro);
+}
+
+.day-btn:hover:not(:disabled) {
+    border-color: var(--color-primario);
+    color: var(--color-primario);
+}
+
+.day-btn.selected {
+    background: var(--color-primario) !important;
+    color: white !important;
+    border-color: var(--color-primario) !important;
+    font-weight: 700;
+}
+
+.day-btn:disabled {
+    opacity: 0.3;
+    background: #f0f0f0;
+    cursor: not-allowed;
 }
 
 /* Pantalla de Confirmación y Pago */

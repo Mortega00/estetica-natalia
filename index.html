@@ -38,7 +38,7 @@
                 <span class="hero-badge">✿ MÁS DE 25 AÑOS DE TRAYECTORIA</span>
                 <h1>Regalate una hora para sentirte mejor</h1>
                 <p>Un espacio pensado para que durante una hora te olvides del estrés, alivies dolores y vuelvas a sentirte bien</p>
-               
+                
                 <div class="hero-actions">
                     <a href="#agenda" class="btn-primary">Quiero regalarme este momento</a>
                     <a href="https://wa.me/5491132194320?text=Hola%20Natalia,%20quisiera%20recibir%20asesoramiento%20personalizado" class="btn-secondary" target="_blank">Asesoramiento Gratis</a>
@@ -50,7 +50,7 @@
                     <li>✔ Cada tratamiento se adapta a lo que necesitas</li>
                 </ul>
             </div>
-           
+            
             <div class="hero-image-container">
                 <img src="assets/nativa-estetica.png" alt="Experiencia Nativa Estética" class="hero-image" loading="eager">
             </div>
@@ -65,9 +65,9 @@
                 <h2>Tratamientos Destacados</h2>
                 <p class="section-desc">Descubrí cuál puede ayudarte según lo que necesitas</p>
             </div>
-           
+            
             <div class="services-grid">
-               
+                
                 <!-- TARJETA 1 -->
                 <div class="service-card" data-service="drenaje">
                     <div class="card-image-wrapper">
@@ -170,101 +170,94 @@
     </section>
 
     <!-- ==================== AGENDA DE TURNOS ==================== -->
-<section id="agenda" class="booking-section reveal">
-    <div class="container">
-        <div class="booking-container">
-            <div class="section-title-container">
-                <h2>Reservá tu Sesión</h2>
-                <p class="section-desc">
-                    ⚠️ Los turnos se reservan con una seña previa de <strong>$2000</strong>.
-                </p>
-            </div>
-          
-            <!-- FORMULARIO DE RESERVA -->
-            <form id="form-turnos" class="booking-form">
-                <div class="form-group">
-                    <label for="nombre">Nombre y Apellido:</label>
-                    <input type="text" id="nombre" class="form-control" required placeholder="Ej: María Pérez">
+    <section id="agenda" class="booking-section reveal">
+        <div class="container">
+            <div class="booking-container">
+                <div class="section-title-container">
+                    <h2>Reservá tu Sesión</h2>
+                    <p class="section-desc">
+                        ⚠️ Los turnos se reservan con una seña previa de <strong>$2000</strong>.
+                    </p>
                 </div>
-
-                <div class="form-group">
-                    <label for="telefono">WhatsApp (con código de área):</label>
-                    <input type="tel" id="telefono" class="form-control" required placeholder="Ej: 1123456789">
-                </div>
-
-                <div class="form-group">
-                    <label for="tratamiento">Tratamiento:</label>
-                    <select id="tratamiento" class="form-control" required>
-                        <option value="" disabled selected>Seleccioná un servicio</option>
-                        <option value="Drenaje Linfático Manual">Drenaje Linfático Manual</option>
-                        <option value="Masajes Descontracturantes">Masajes Descontracturantes</option>
-                        <option value="Dermapen & Microneedling">Dermapen & Microneedling</option>
-                        <option value="Piedras Calientes">Piedras Calientes</option>
-                        <option value="Higiene Facial Profunda">Higiene Facial Profunda</option>
-                    </select>
-                </div>
-
-                <!-- 1. CALENDARIO VISUAL EN LUGAR DEL INPUT DE FECHA -->
-                <div class="form-group">
-                    <label>Seleccioná el Día:</label>
-                    
-                    <div class="calendar-widget">
-                        <div class="calendar-header">
-                            <button type="button" id="prevMonthBtn">&lt;</button>
-                            <span id="calendarMonthYear"></span>
-                            <button type="button" id="nextMonthBtn">&gt;</button>
-                        </div>
-                        <div class="calendar-weekdays">
-                            <span>Dom</span><span>Lun</span><span>Mar</span><span>Mié</span><span>Jue</span><span>Vie</span><span>Sáb</span>
-                        </div>
-                        <div id="dateContainer" class="calendar-days"></div>
+              
+                <!-- FORMULARIO DE RESERVA -->
+                <form id="form-turnos" class="booking-form">
+                    <div class="form-group">
+                        <label for="nombre">Nombre y Apellido:</label>
+                        <input type="text" id="nombre" class="form-control" required placeholder="Ej: María Pérez">
                     </div>
 
-                    <!-- Input oculto para que el formulario siga recibiendo la fecha seleccionada -->
+                    <div class="form-group">
+                        <label for="telefono">WhatsApp (con código de área):</label>
+                        <input type="tel" id="telefono" class="form-control" required placeholder="Ej: 1123456789">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tratamiento">Tratamiento:</label>
+                        <select id="tratamiento" class="form-control" required>
+                            <option value="" disabled selected>Seleccioná un servicio</option>
+                            <option value="Drenaje Linfático Manual">Drenaje Linfático Manual</option>
+                            <option value="Masajes Descontracturantes">Masajes Descontracturantes</option>
+                            <option value="Dermapen & Microneedling">Dermapen & Microneedling</option>
+                            <option value="Piedras Calientes">Piedras Calientes</option>
+                            <option value="Higiene Facial Profunda">Higiene Facial Profunda</option>
+                        </select>
+                    </div>
+
+                    <!-- 1. SELECCIÓN DE DÍA CON CARDS HORIZONTALES -->
+                    <div class="form-group">
+                        <label>1. Seleccioná el Día:</label>
+                        <div id="dateContainer" class="date-scroll-container">
+                            <!-- JS inserta los días acá -->
+                        </div>
+                    </div>
+
+                    <!-- 2. SELECCIÓN DE HORARIOS CON BOTONES -->
+                    <div class="form-group">
+                        <label>2. Horarios Disponibles (Sesiones de 1hr):</label>
+                        <div id="slotsContainer" class="slots-grid-container">
+                            <p class="select-day-msg">Elegí primero un día arriba</p>
+                        </div>
+                    </div>
+
+                    <!-- INPUTS OCULTOS PARA JS Y FORM -->
                     <input type="hidden" id="fecha" required>
-                </div>
+                    <input type="hidden" id="hora" required>
 
-                <!-- 2. SELECTOR DE HORARIOS (Tuyo sin cambios) -->
-                <div class="form-group">
-                    <label for="hora">Horarios Disponibles (Sesiones de 1hr):</label>
-                    <select id="hora" class="form-control" required disabled>
-                        <option value="" disabled selected>Seleccioná primero una fecha</option>
-                    </select>
-                </div>
-
-                <!-- 3. BOTÓN DE RESERVA (Tuyo sin cambios) -->
-                <button type="submit" id="btn-reservar" class="btn-booking">
-                    Reservar Lugar
-                </button>
-            </form>
-            <!-- PANTALLA DE PAGO / ALIAS -->
-            <div id="pantalla-confirmacion" class="payment-screen" style="display: none;">
-                <h3 class="payment-title">¡Tu lugar está pre-reservado!</h3>
-                
-                <div class="timer-badge">
-                    ⏳ Tu reserva expira en: <span id="temporizador">10:00</span>
-                </div>
-
-                <p style="color:#555; font-size:0.95em;">Para congelar el turno, transferí la seña de <strong>$2000</strong> al Alias:</p>
-                
-                <div class="alias-box">
-                    <span id="texto-alias" class="alias-text">NATIVA.ESTETICA.MP</span>
-                    <button id="btn-copiar" type="button" class="btn-copy">
-                        📋 Copiar
+                    <!-- 3. BOTÓN DE RESERVA -->
+                    <button type="submit" id="btn-reservar" class="btn-booking">
+                        Reservar Lugar
                     </button>
+                </form>
+
+                <!-- PANTALLA DE PAGO / ALIAS -->
+                <div id="pantalla-confirmacion" class="payment-screen" style="display: none;">
+                    <h3 class="payment-title">¡Tu lugar está pre-reservado!</h3>
+                    
+                    <div class="timer-badge">
+                        ⏳ Tu reserva expira en: <span id="temporizador">10:00</span>
+                    </div>
+
+                    <p style="color:#555; font-size:0.95em;">Para congelar el turno, transferí la seña de <strong>$2000</strong> al Alias:</p>
+                    
+                    <div class="alias-box">
+                        <span id="texto-alias" class="alias-text">NATIVA.ESTETICA.MP</span>
+                        <button id="btn-copiar" type="button" class="btn-copy">
+                            📋 Copiar
+                        </button>
+                    </div>
+                    
+                    <p style="font-size: 0.85em; color: #666; margin: 15px 0 20px 0;">
+                        Al transferir, tocá el botón verde para enviarle el comprobante a Natalia. Si pasados los 10 minutos no se envía, el turno se liberará automáticamente.
+                    </p>
+                    
+                    <a id="btn-whatsapp" target="_blank" class="btn-whatsapp-send">
+                        🟢 Enviar Comprobante por WhatsApp
+                    </a>
                 </div>
-                
-                <p style="font-size: 0.85em; color: #666; margin: 15px 0 20px 0;">
-                    Al transferir, tocá el botón verde para enviarle el comprobante a Natalia. Si pasados los 10 minutos no se envía, el turno se liberará automáticamente.
-                </p>
-                
-                <a id="btn-whatsapp" target="_blank" class="btn-whatsapp-send">
-                    🟢 Enviar Comprobante por WhatsApp
-                </a>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- ==================== TESTIMONIOS ==================== -->
     <section id="testimonios" class="testimonials-section reveal">

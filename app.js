@@ -44,6 +44,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const modal = document.getElementById("serviceModal");
     const closeModal = document.getElementById("closeModal");
     const modalBookBtn = document.getElementById("modalBookBtn");
+    const selectServicio = document.getElementById("servicio");
+    let selectedServiceKey = ""; // Para guardar qué servicio abrió el modal
 
     if (modal) {
         document.querySelectorAll(".service-card").forEach(card => {
@@ -52,6 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const data = serviciosDetalle[key];
 
                 if (data) {
+                    selectedServiceKey = key;
                     document.getElementById("modalTitle").textContent = data.titulo;
                     document.getElementById("modalDescription").textContent = data.descripcion;
                     document.getElementById("modalDuration").textContent = data.duracion;
@@ -74,6 +77,12 @@ document.addEventListener("DOMContentLoaded", () => {
         if (modalBookBtn) {
             modalBookBtn.addEventListener("click", () => {
                 modal.classList.add("hidden");
+
+                // Preseleccionar el servicio en el formulario de la agenda
+                if (selectServicio && selectedServiceKey) {
+                    selectServicio.value = selectedServiceKey;
+                }
+
                 const agendaSection = document.getElementById("agenda");
                 if (agendaSection) {
                     agendaSection.scrollIntoView({ behavior: "smooth" });
@@ -93,6 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const selectHora = document.getElementById("hora");
     const formTurnos = document.getElementById("form-turnos");
     const pantallaConfirmacion = document.getElementById("pantalla-confirmacion");
+    const btnNuevoTurno = document.getElementById("btnNuevoTurno");
 
     let currentDate = new Date();
 
@@ -182,7 +192,61 @@ document.addEventListener("DOMContentLoaded", () => {
     renderCalendar();
 
     // -------------------------------------------------------------
-    // 3. ANIMACIONES AL HACER SCROLL (.reveal)
+    // 3. ENVÍO DEL FORMULARIO DE TURNO (WHATSAPP + PANTALLA)
+    // -------------------------------------------------------------
+    if (formTurnos) {
+        formTurnos.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            // Validar que haya seleccionado fecha
+            if (!inputFecha.value) {
+                alert("Por favor, selecciona un día en el calendario.");
+                return;
+            }
+
+            const servicioTxt = selectServicio.options[selectServicio.selectedIndex].text;
+            const fechaVal = inputFecha.value;
+            const horaVal = selectHora.value;
+            const nombreVal = document.getElementById("nombre").value;
+            const telefonoVal = document.getElementById("telefono").value;
+
+            // Rellenar la pantalla de confirmación en la web
+            document.getElementById("confServicio").textContent = servicioTxt;
+            document.getElementById("confFecha").textContent = fechaVal;
+            document.getElementById("confHora").textContent = `${horaVal} hs`;
+
+            // Ocultar formulario y mostrar pantalla de confirmación
+            formTurnos.classList.add("hidden");
+            if (pantallaConfirmacion) pantallaConfirmacion.classList.remove("hidden");
+
+            // OPCIONAL: Enviar mensaje automático por WhatsApp
+            const telefonoEstetica = "5491112345678"; // Cambiar por tu número real
+            const mensajeWA = `Hola! Quisiera confirmar la reserva del turno:%0A` +
+                `• *Servicio:* ${servicioTxt}%0A` +
+                `• *Fecha:* ${fechaVal}%0A` +
+                `• *Hora:* ${horaVal} hs%0A` +
+                `• *Nombre:* ${nombreVal}%0A` +
+                `• *Teléfono:* ${telefonoVal}`;
+
+            window.open(`https://wa.me/${telefonoEstetica}?text=${mensajeWA}`, "_blank");
+        });
+    }
+
+    // Botón para pedir otro turno desde la pantalla final
+    if (btnNuevoTurno) {
+        btnNuevoTurno.addEventListener("click", () => {
+            formTurnos.reset();
+            selectHora.disabled = true;
+            selectHora.innerHTML = '<option value="" disabled selected>Primero elegí una fecha</option>';
+            document.querySelectorAll(".day-btn").forEach(b => b.classList.remove("selected"));
+
+            pantallaConfirmacion.classList.add("hidden");
+            formTurnos.classList.remove("hidden");
+        });
+    }
+
+    // -------------------------------------------------------------
+    // 4. ANIMACIONES AL HACER SCROLL (a.reveal)
     // -------------------------------------------------------------
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
