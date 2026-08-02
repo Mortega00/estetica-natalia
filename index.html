@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Nativa Estética - Cosmetología y Bienestar en Remedios de Escalada">
     <title>Nativa Estética | Cosmetología & Bienestar</title>
-    
+   
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
+   
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -40,7 +40,7 @@
                 <span class="hero-badge">✿ MÁS DE 25 AÑOS DE TRAYECTORIA</span>
                 <h1>Regalate una hora para sentirte mejor</h1>
                 <p>Un espacio pensado para que durante una hora te olvides del estrés, alivies dolores y vuelvas a sentirte bien</p>
-                
+               
                 <div class="hero-actions">
                     <a href="#agenda" class="btn-primary">Quiero regalarme este momento</a>
                     <a href="https://wa.me/5491132194320?text=Hola%20Natalia,%20quisiera%20recibir%20asesoramiento%20personalizado" class="btn-secondary" target="_blank">Asesoramiento Gratis</a>
@@ -52,7 +52,7 @@
                     <li>✔ Cada tratamiento se adapta a lo que necesitas</li>
                 </ul>
             </div>
-            
+           
             <div class="hero-image-container">
                 <img src="assets/nativa-estetica.png" alt="Experiencia Nativa Estética" class="hero-image" loading="eager">
             </div>
@@ -67,9 +67,9 @@
                 <h2>Tratamientos Destacados</h2>
                 <p class="section-desc">Descubrí cuál puede ayudarte según lo que necesitas</p>
             </div>
-            
+           
             <div class="services-grid">
-                
+               
                 <!-- TARJETA 1 -->
                 <div class="service-card" data-service="drenaje">
                     <div class="card-image-wrapper">
@@ -171,47 +171,86 @@
         </div>
     </section>
 
-    <!-- ==================== AGENDA ==================== -->
-    <section id="agenda" class="booking-section reveal">
-        <div class="container">
+    <!-- ==================== AGENDA DE TURNOS ==================== -->
+<section id="agenda" class="booking-section reveal">
+    <div class="container">
+        <div class="booking-container">
             <div class="section-title-container">
-                <span class="subtitle">Tu momento empieza acá</span>
-                <h2>Elegí el día que mejor te quede y coordinemos tu próxima sesión</h2>
+                <h2>Reservá tu Sesión</h2>
+                <p class="section-desc">
+                    ⚠️ Los turnos se reservan con una seña previa de <strong>$2000</strong>.
+                </p>
             </div>
-
-            <div class="booking-card">
-                <div class="deposit-notice">
-                    <span>⚠️ <strong>Aviso:</strong> Para cuidar el tiempo de todas las pacientes, los turnos se reservan con una seña previa. Si necesitás reprogramar, solo avisá con al menos 24 horas de anticipación</span>
+          
+            <!-- FORMULARIO DE RESERVA -->
+            <form id="form-turnos" class="booking-form">
+                <div class="form-group">
+                    <label for="nombre">Nombre y Apellido:</label>
+                    <input type="text" id="nombre" class="form-control" required placeholder="Ej: María Pérez">
                 </div>
 
-                <div class="booking-step">
-                    <label class="step-label">1. Seleccioná el día</label>
-                    <div class="date-picker-scroll" id="dateContainer"></div>
+                <div class="form-group">
+                    <label for="telefono">WhatsApp (con código de área):</label>
+                    <input type="tel" id="telefono" class="form-control" required placeholder="Ej: 1123456789">
                 </div>
 
-                <div class="booking-step">
-                    <label class="step-label">2. Horarios disponibles</label>
-                    <div class="slots-grid" id="slotsContainer">
-                        <p class="select-prompt">Elegí un día arriba</p>
-                    </div>
+                <div class="form-group">
+                    <label for="tratamiento">Tratamiento:</label>
+                    <select id="tratamiento" class="form-control" required>
+                        <option value="" disabled selected>Seleccioná un servicio</option>
+                        <option value="Drenaje Linfático Manual">Drenaje Linfático Manual</option>
+                        <option value="Masajes Descontracturantes">Masajes Descontracturantes</option>
+                        <option value="Dermapen & Microneedling">Dermapen & Microneedling</option>
+                        <option value="Piedras Calientes">Piedras Calientes</option>
+                        <option value="Higiene Facial Profunda">Higiene Facial Profunda</option>
+                    </select>
                 </div>
 
-                <div class="booking-summary hidden" id="bookingSummary">
-                    <div class="summary-details">
-                        <span>Reserva para el:</span> <strong id="summaryText">--</strong>
-                    </div>
-                    <button id="btnSendWhatsapp" class="btn-whatsapp-confirm">
-                        Confirmar mi turno
+                <div class="form-group">
+                    <label for="fecha">Seleccioná el Día:</label>
+                    <input type="date" id="fecha" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="hora">Horarios Disponibles (Sesiones de 1hr):</label>
+                    <select id="hora" class="form-control" required disabled>
+                        <option value="" disabled selected>Seleccioná primero una fecha</option>
+                    </select>
+                </div>
+
+                <button type="submit" id="btn-reservar" class="btn-booking">
+                    Reservar Lugar
+                </button>
+            </form>
+
+            <!-- PANTALLA DE PAGO / ALIAS -->
+            <div id="pantalla-confirmacion" class="payment-screen" style="display: none;">
+                <h3 class="payment-title">¡Tu lugar está pre-reservado!</h3>
+                
+                <div class="timer-badge">
+                    ⏳ Tu reserva expira en: <span id="temporizador">10:00</span>
+                </div>
+
+                <p style="color:#555; font-size:0.95em;">Para congelar el turno, transferí la seña de <strong>$2000</strong> al Alias:</p>
+                
+                <div class="alias-box">
+                    <span id="texto-alias" class="alias-text">NATIVA.ESTETICA.MP</span>
+                    <button id="btn-copiar" type="button" class="btn-copy">
+                        📋 Copiar
                     </button>
                 </div>
-
-                <div class="custom-consultation">
-                    <p>¿No sabés cuál es el tratamiento ideal para vos?</p>
-                    <a href="https://wa.me/5491132194320?text=Hola%20Natalia!%20Quisiera%20asesoramiento%20personalizado." target="_blank" class="link-whatsapp-help">Escribime y lo vemos juntas 💬</a>
-                </div>
+                
+                <p style="font-size: 0.85em; color: #666; margin: 15px 0 20px 0;">
+                    Al transferir, tocá el botón verde para enviarle el comprobante a Natalia. Si pasados los 10 minutos no se envía, el turno se liberará automáticamente.
+                </p>
+                
+                <a id="btn-whatsapp" target="_blank" class="btn-whatsapp-send">
+                    🟢 Enviar Comprobante por WhatsApp
+                </a>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- ==================== TESTIMONIOS ==================== -->
     <section id="testimonios" class="testimonials-section reveal">
@@ -257,7 +296,7 @@
         <div class="container">
             <div class="footer-brand">
                 <h3>NATIVA ESTETICA</h3>
-                <p>Estética & Bienestar Integral</p>
+                <p>Estética & Bienestar</p>
             </div>
             <div class="footer-info">
                 <p>📍 Remedios de Escalada, Buenos Aires</p>
@@ -273,6 +312,7 @@
         </svg>
     </a>
 
-    <script src="app.js"></script>
+    <!-- CDN DE FIREBASE (VERSION MODULAR) -->
+    <script type="module" src="app.js"></script>
 </body>
 </html>

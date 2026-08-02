@@ -6,44 +6,45 @@ document.addEventListener("DOMContentLoaded", () => {
     const serviciosDetalle = {
         drenaje: {
             titulo: "Drenaje Linfático Manual",
-            descripcion: "Técnica suave de masajes manuales que estimula el sistema linfático para eliminar toxinas, líquidos retenidos y mejorar sensiblemente la circulación",
+            descripcion: "Técnica suave de masajes manuales que estimula el sistema linfático para eliminar toxinas, líquidos retenidos y mejorar sensiblemente la circulación.",
             duracion: "60 minutos",
             sesiones: "Según evaluación (recomendado 1 o 2 veces por semana)",
-            target: "Embarazadas, personas en etapa post-quirúrgica, con edemas o sensación constante de piernas pesadas"
+            target: "Embarazadas, personas en etapa post-quirúrgica, con edemas o sensación constante de piernas pesadas."
         },
         descontracturante: {
             titulo: "Masaje Descontracturante Profundo",
-            descripcion: "Masaje enfocado en zonas de alta tensión (cuello, hombros, espalda). Utiliza presiones profundas para deshacer nudos musculares y aliviar molestias físicas",
+            descripcion: "Masaje enfocado en zonas de alta tensión (cuello, hombros, espalda). Utiliza presiones profundas para deshacer nudos musculares y aliviar molestias físicas.",
             duracion: "50 a 60 minutos",
             sesiones: "1 sesión semanal o según necesidad de dolor",
-            target: "Personas con contracturas por estrés, mala postura o trabajo sedentario frente a computadoras"
+            target: "Personas con contracturas por estrés, mala postura o trabajo sedentario frente a computadoras."
         },
         dermapen: {
             titulo: "Dermapen & Microneedling Facial",
-            descripcion: "Tratamiento de micro-punciones que estimula la producción natural de colágeno y elastina. Ayuda a atenuar cicatrices, manchas y aporta un brillo radiante",
+            descripcion: "Tratamiento de micro-punciones que estimula la producción natural de colágeno y elastina. Ayuda a atenuar cicatrices, manchas y aporta un brillo radiante.",
             duracion: "60 minutos",
             sesiones: "3 a 6 sesiones (1 por mes)",
-            target: "Personas con piel cansada, secuelas de acné, manchas de sol o líneas de expresión"
+            target: "Personas con piel cansada, secuelas de acné, manchas de sol o líneas de expresión."
         },
         piedras: {
             titulo: "Masaje con Piedras Calientes",
-            descripcion: "Terapia de relajación profunda utilizando piedras volcánicas calientes que transmiten temperatura a los músculos, disolviendo el estrés y la rigidez",
+            descripcion: "Terapia de relajación profunda utilizando piedras volcánicas calientes que transmiten temperatura a los músculos, disolviendo el estrés y la rigidez.",
             duracion: "60 minutos",
             sesiones: "Ideal como mimo mensual o cuando sientas agotamiento",
-            target: "Personas que buscan desconectar totalmente del estrés urbano y relajar tensiones profundas"
+            target: "Personas que buscan desconectar totalmente del estrés urbano y relajar tensiones profundas."
         },
         facial: {
             titulo: "Higiene Facial e Hidratación Profunda",
             descripcion: "Limpieza facial completa con exfoliación, extracción de impurezas, máscara descongestiva e hidratación con principios activos de primera calidad.",
             duracion: "60 minutos",
             sesiones: "1 vez al mes para mantenimiento",
-            target: "Para todo tipo de piel que busque recuperar suavidad, pureza y luminosidad natural"
+            target: "Para todo tipo de piel que busque recuperar suavidad, pureza y luminosidad natural."
         }
     };
 
     // Control del Modal
     const modal = document.getElementById("serviceModal");
     const closeModal = document.getElementById("closeModal");
+    const modalBookBtn = document.getElementById("modalBookBtn");
 
     document.querySelectorAll(".service-card").forEach(card => {
         card.addEventListener("click", () => {
@@ -63,9 +64,21 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     closeModal.addEventListener("click", () => modal.classList.add("hidden"));
+    
     modal.addEventListener("click", (e) => {
         if (e.target === modal) modal.classList.add("hidden");
     });
+
+    // Acción al presionar "Reservar" dentro del Modal
+    if (modalBookBtn) {
+        modalBookBtn.addEventListener("click", () => {
+            modal.classList.add("hidden");
+            const turnosSection = document.getElementById("turnos");
+            if (turnosSection) {
+                turnosSection.scrollIntoView({ behavior: "smooth" });
+            }
+        });
+    }
 
     // -------------------------------------------------------------
     // 2. AGENDA DE TURNOS INTERACTIVA
@@ -96,7 +109,12 @@ document.addEventListener("DOMContentLoaded", () => {
             const fecha = new Date();
             fecha.setDate(hoy.getDate() + i);
 
-            const dateStr = fecha.toISOString().split("T")[0];
+            // Formato YYYY-MM-DD local (Evita desfasajes por zona horaria UTC)
+            const year = fecha.getFullYear();
+            const month = String(fecha.getMonth() + 1).padStart(2, '0');
+            const day = String(fecha.getDate()).padStart(2, '0');
+            const dateStr = `${year}-${month}-${day}`;
+
             const diaNombre = fecha.toLocaleDateString("es-AR", { weekday: "short" });
             const diaNum = fecha.getDate();
 
@@ -159,14 +177,16 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!fechaSeleccionada || !horaSeleccionada) return;
 
         const [year, month, day] = fechaSeleccionada.split("-");
-        const telefono = "5491132194320"; // Reemplazar con el WhatsApp real de Natalia
+        const telefono = "5491132194320";
         const mensaje = `Hola Natalia! Quisiera consultar la disponibilidad para reservar un turno el día ${day}/${month}/${year} a las ${horaSeleccionada} hs y que me indiques alias para realizar la seña. ¡Gracias!`;
 
         const url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
         window.open(url, "_blank");
     });
 
-    // Intersection Observer
+    // -------------------------------------------------------------
+    // 3. ANIMACIONES AL HACER SCROLL
+    // -------------------------------------------------------------
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -178,5 +198,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 
+    // Inicializar la grilla de días
     renderDias();
 });

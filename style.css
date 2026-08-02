@@ -198,6 +198,13 @@ body {
     font-size: 0.9rem;
     font-weight: 500;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border: none;
+    cursor: pointer;
+    transition: var(--transicion);
+}
+
+.btn-primary:hover {
+    background: var(--color-primario);
 }
 
 .btn-secondary {
@@ -225,7 +232,7 @@ body {
 }
 
 /* ==========================================================================
-   SERVICIOS (TARJETAS COMPACTAS EN MOBILE)
+   SERVICIOS
    ========================================================================== */
 .services-section {
     padding: 40px 0;
@@ -314,7 +321,6 @@ body {
     margin-bottom: 4px;
 }
 
-/* Corregido: Propiedad estándar line-clamp agregada */
 .card-problem {
     font-size: 0.75rem;
     color: var(--color-gris);
@@ -467,136 +473,157 @@ body {
 .testimonial-author span { font-size: 0.7rem; color: var(--color-gris); }
 
 /* ==========================================================================
-   AGENDA DE TURNOS
+   AGENDA DE TURNOS & FORMULARIO DE RESERVA (RENOVADO)
    ========================================================================== */
 .booking-section {
     padding: 40px 0;
     background: var(--color-nude);
 }
 
-.booking-card {
-    background: white;
-    padding: 20px;
-    border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+.booking-container {
+    padding: 20px 0;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
-.deposit-notice {
-    background: #fff8e1;
-    border-left: 3px solid #ffc107;
-    padding: 10px 12px;
-    border-radius: 6px;
-    font-size: 0.75rem;
-    color: #7a5e02;
-    margin-bottom: 18px;
-}
-
-.booking-step { margin-bottom: 18px; }
-
-.step-label {
-    display: block;
-    font-size: 0.8rem;
-    font-weight: 600;
-    margin-bottom: 8px;
-}
-
-.date-picker-scroll {
+/* Formulario Principal */
+.booking-form {
     display: flex;
-    gap: 8px;
-    overflow-x: auto;
-    padding-bottom: 8px;
-    -webkit-overflow-scrolling: touch;
-}
-
-.date-card {
-    min-width: 60px;
-    padding: 8px 4px;
+    flex-direction: column;
+    gap: 15px;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
     border: 1px solid var(--color-gris-linea);
-    border-radius: 8px;
-    text-align: center;
-    cursor: pointer;
-    background: #fafafa;
-    flex-shrink: 0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
 }
 
-.date-card .day-name { font-size: 0.65rem; text-transform: uppercase; color: var(--color-gris); }
-.date-card .day-num { font-size: 1rem; font-weight: 600; font-family: var(--fuente-titulo); }
-
-.date-card.active {
-    background: var(--color-oscuro);
-    color: white;
-    border-color: var(--color-oscuro);
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
 
-.slots-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 6px;
-}
-
-.slot-btn {
-    padding: 10px 4px;
-    border: 1px solid var(--color-verde-soft);
-    background: var(--color-verde-soft);
-    color: var(--color-verde-texto);
-    border-radius: 6px;
-    font-size: 0.8rem;
+.form-group label {
     font-weight: 600;
-    cursor: pointer;
-    text-align: center;
-}
-
-.slot-btn.disabled {
-    background: #f0f0f0;
-    color: #bbb;
-    border-color: #e0e0e0;
-    cursor: not-allowed;
-    text-decoration: line-through;
-}
-
-.slot-btn.selected {
-    background: var(--color-oscuro);
-    color: white;
-    border-color: var(--color-oscuro);
-}
-
-.booking-summary {
-    margin-top: 15px;
-    padding-top: 12px;
-    border-top: 1px solid var(--color-gris-linea);
-}
-
-.booking-summary.hidden { display: none; }
-
-.summary-details {
     font-size: 0.85rem;
-    text-align: center;
-    margin-bottom: 10px;
+    color: var(--color-oscuro);
 }
 
-.btn-whatsapp-confirm {
+.form-control {
     width: 100%;
-    background: #25D366;
+    padding: 10px 12px;
+    border: 1px solid var(--color-gris-linea);
+    border-radius: 6px;
+    font-family: var(--fuente-cuerpo);
+    font-size: 0.9rem;
+    color: var(--color-oscuro);
+    background: white;
+    transition: var(--transicion);
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--color-primario);
+    box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.15);
+}
+
+.btn-booking {
+    background: var(--color-primario);
     color: white;
     border: none;
     padding: 14px;
+    font-size: 0.95rem;
+    font-weight: 600;
     border-radius: 30px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: var(--transicion);
+}
+
+.btn-booking:hover {
+    background: var(--color-oscuro);
+}
+
+/* Pantalla de Confirmación y Pago */
+.payment-screen {
+    border: 2px dashed var(--color-primario);
+    padding: 25px;
+    border-radius: 12px;
+    margin-top: 20px;
+    text-align: center;
+    background: #fffdf9;
+}
+
+.payment-title {
+    color: var(--color-primario);
+    font-family: var(--fuente-titulo);
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.timer-badge {
+    background: #fff5f5;
+    color: #cc0000;
+    padding: 8px 16px;
+    border-radius: 20px;
+    display: inline-block;
     font-weight: 600;
     font-size: 0.85rem;
-    cursor: pointer;
+    margin-bottom: 15px;
 }
 
-.custom-consultation {
-    margin-top: 15px;
-    text-align: center;
-    font-size: 0.75rem;
-    color: var(--color-gris);
+.alias-box {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #f4f4f4;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin: 12px 0;
+    gap: 15px;
+    border: 1px solid var(--color-gris-linea);
 }
 
-.link-whatsapp-help {
-    color: var(--color-oscuro);
+.alias-text {
     font-weight: 600;
-    text-decoration: underline;
+    font-family: monospace;
+    font-size: 1.1em;
+    color: var(--color-oscuro);
+}
+
+.btn-copy {
+    background: var(--color-primario);
+    color: white;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: var(--transicion);
+}
+
+.btn-copy:hover {
+    background: var(--color-oscuro);
+}
+
+.btn-whatsapp-send {
+    display: inline-block;
+    background-color: #25D366;
+    color: white;
+    padding: 14px 28px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 30px;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 10px rgba(37, 211, 102, 0.25);
+    transition: var(--transicion);
+}
+
+.btn-whatsapp-send:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(37, 211, 102, 0.35);
 }
 
 /* ==========================================================================
@@ -660,11 +687,11 @@ body {
     opacity: 1;
     transform: translateY(0);
 }
-/* =====================================================================
-   HEADER MOBILE
-   ===================================================================== */
-@media (max-width: 767px) {
 
+/* ==========================================================================
+   HEADER MOBILE
+   ========================================================================== */
+@media (max-width: 767px) {
     .header {
         padding: 8px 0;
     }
@@ -701,21 +728,21 @@ body {
         font-size: 0.72rem;
     }
 
+    .nav a[href="#experiencia"]{
+        display: none;
+    }
+
     .btn-nav {
         padding: 6px 12px;
         font-size: 0.72rem;
         border-radius: 22px;
     }
-
 }
-    .nav a[href="#experiencia"]{
-        display:none;
-    }
+
 /* ==========================================================================
-   🖥️ MEDIA QUERIES PARA COMPUTADORA (DESKTOP >= 768px)
+   MEDIA QUERIES PARA COMPUTADORA (DESKTOP >= 768px)
    ========================================================================== */
 @media (min-width: 768px) {
-    
     .hero-section {
         padding: 60px 0;
     }
@@ -776,7 +803,6 @@ body {
         font-size: 1.3rem;
     }
 
-    /* Corregido: Propiedad estándar line-clamp agregada para Desktop */
     .card-problem {
         line-clamp: 3;
         -webkit-line-clamp: 3;
@@ -806,16 +832,6 @@ body {
 
     .experience-image-wrapper img {
         max-width: 100%;
-    }
-
-    .booking-card {
-        max-width: 600px;
-        margin: 0 auto;
-        padding: 30px;
-    }
-
-    .slots-grid {
-        grid-template-columns: repeat(6, 1fr);
     }
 
     .testimonials-grid {
