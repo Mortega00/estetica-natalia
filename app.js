@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
-    
+
     // -------------------------------------------------------------
-    // 1. BASE DE DATOS DE INFORMACIÓN DE SERVICIOS (MODAL)
+    // 1. MODAL DE SERVICIOS
     // -------------------------------------------------------------
     const serviciosDetalle = {
         drenaje: {
@@ -41,151 +41,148 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
-    // Control del Modal
     const modal = document.getElementById("serviceModal");
     const closeModal = document.getElementById("closeModal");
     const modalBookBtn = document.getElementById("modalBookBtn");
 
-    document.querySelectorAll(".service-card").forEach(card => {
-        card.addEventListener("click", () => {
-            const key = card.dataset.service;
-            const data = serviciosDetalle[key];
-
-            if (data) {
-                document.getElementById("modalTitle").textContent = data.titulo;
-                document.getElementById("modalDescription").textContent = data.descripcion;
-                document.getElementById("modalDuration").textContent = data.duracion;
-                document.getElementById("modalSessions").textContent = data.sesiones;
-                document.getElementById("modalTarget").textContent = data.target;
-
-                modal.classList.remove("hidden");
-            }
-        });
-    });
-
-    closeModal.addEventListener("click", () => modal.classList.add("hidden"));
-    
-    modal.addEventListener("click", (e) => {
-        if (e.target === modal) modal.classList.add("hidden");
-    });
-
-    // Acción al presionar "Reservar" dentro del Modal
-    if (modalBookBtn) {
-        modalBookBtn.addEventListener("click", () => {
-            modal.classList.add("hidden");
-            const turnosSection = document.getElementById("turnos");
-            if (turnosSection) {
-                turnosSection.scrollIntoView({ behavior: "smooth" });
-            }
-        });
-    }
-
-    // -------------------------------------------------------------
-    // 2. AGENDA DE TURNOS INTERACTIVA
-    // -------------------------------------------------------------
-    
-    // 📌 AQUÍ DEFINÍS LOS TURNOS OCUPADOS (AÑO-MES-DÍA)
-    const turnosOcupados = {
-        "2026-07-28": ["09:00", "11:00", "15:00"],
-        "2026-07-29": ["10:00", "14:00"]
-    };
-
-    const configHorarios = { inicio: 8, fin: 18 };
-
-    let fechaSeleccionada = null;
-    let horaSeleccionada = null;
-
-    const dateContainer = document.getElementById("dateContainer");
-    const slotsContainer = document.getElementById("slotsContainer");
-    const bookingSummary = document.getElementById("bookingSummary");
-    const summaryText = document.getElementById("summaryText");
-    const btnSendWhatsapp = document.getElementById("btnSendWhatsapp");
-
-    function renderDias() {
-        const hoy = new Date();
-        dateContainer.innerHTML = "";
-
-        for (let i = 0; i < 10; i++) {
-            const fecha = new Date();
-            fecha.setDate(hoy.getDate() + i);
-
-            // Formato YYYY-MM-DD local (Evita desfasajes por zona horaria UTC)
-            const year = fecha.getFullYear();
-            const month = String(fecha.getMonth() + 1).padStart(2, '0');
-            const day = String(fecha.getDate()).padStart(2, '0');
-            const dateStr = `${year}-${month}-${day}`;
-
-            const diaNombre = fecha.toLocaleDateString("es-AR", { weekday: "short" });
-            const diaNum = fecha.getDate();
-
-            const card = document.createElement("div");
-            card.className = "date-card";
-            card.innerHTML = `
-                <div class="day-name">${diaNombre}</div>
-                <div class="day-num">${diaNum}</div>
-            `;
-
+    if (modal) {
+        document.querySelectorAll(".service-card").forEach(card => {
             card.addEventListener("click", () => {
-                document.querySelectorAll(".date-card").forEach(c => c.classList.remove("active"));
-                card.classList.add("active");
-                fechaSeleccionada = dateStr;
-                renderHorarios(dateStr);
-            });
+                const key = card.dataset.service;
+                const data = serviciosDetalle[key];
 
-            dateContainer.appendChild(card);
+                if (data) {
+                    document.getElementById("modalTitle").textContent = data.titulo;
+                    document.getElementById("modalDescription").textContent = data.descripcion;
+                    document.getElementById("modalDuration").textContent = data.duracion;
+                    document.getElementById("modalSessions").textContent = data.sesiones;
+                    document.getElementById("modalTarget").textContent = data.target;
+
+                    modal.classList.remove("hidden");
+                }
+            });
+        });
+
+        if (closeModal) {
+            closeModal.addEventListener("click", () => modal.classList.add("hidden"));
+        }
+
+        modal.addEventListener("click", (e) => {
+            if (e.target === modal) modal.classList.add("hidden");
+        });
+
+        if (modalBookBtn) {
+            modalBookBtn.addEventListener("click", () => {
+                modal.classList.add("hidden");
+                const agendaSection = document.getElementById("agenda");
+                if (agendaSection) {
+                    agendaSection.scrollIntoView({ behavior: "smooth" });
+                }
+            });
         }
     }
 
-    function renderHorarios(dateStr) {
-        slotsContainer.innerHTML = "";
-        horaSeleccionada = null;
-        bookingSummary.classList.add("hidden");
+    // -------------------------------------------------------------
+    // 2. LÓGICA DE CALENDARIO Y RESERVA
+    // -------------------------------------------------------------
+    const dateContainer = document.getElementById("dateContainer");
+    const monthYearText = document.getElementById("calendarMonthYear");
+    const prevBtn = document.getElementById("prevMonthBtn");
+    const nextBtn = document.getElementById("nextMonthBtn");
+    const inputFecha = document.getElementById("fecha");
+    const selectHora = document.getElementById("hora");
+    const formTurnos = document.getElementById("form-turnos");
+    const pantallaConfirmacion = document.getElementById("pantalla-confirmacion");
 
-        const ocupados = turnosOcupados[dateStr] || [];
+    let currentDate = new Date();
 
-        for (let h = configHorarios.inicio; h <= configHorarios.fin; h++) {
-            const horaStr = `${h.toString().padStart(2, '0')}:00`;
-            const isOcupado = ocupados.includes(horaStr);
+    function renderCalendar() {
+        if (!dateContainer || !monthYearText) return;
 
-            const btn = document.createElement("button");
-            btn.className = `slot-btn ${isOcupado ? 'disabled' : ''}`;
-            btn.textContent = horaStr;
-            btn.disabled = isOcupado;
+        dateContainer.innerHTML = "";
+        const year = currentDate.getFullYear();
+        const month = currentDate.getMonth();
 
-            if (!isOcupado) {
-                btn.addEventListener("click", () => {
-                    document.querySelectorAll(".slot-btn").forEach(s => s.classList.remove("selected"));
-                    btn.classList.add("selected");
-                    horaSeleccionada = horaStr;
-                    actualizarResumen();
+        const firstDay = new Date(year, month, 1).getDay();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        const meses = [
+            "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+            "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+        ];
+
+        monthYearText.textContent = `${meses[month]} ${year}`;
+
+        // Días de relleno antes del primer día del mes
+        for (let i = 0; i < firstDay; i++) {
+            const emptyCell = document.createElement("div");
+            dateContainer.appendChild(emptyCell);
+        }
+
+        // Renderizar los días del mes
+        for (let day = 1; day <= daysInMonth; day++) {
+            const dayBtn = document.createElement("button");
+            dayBtn.type = "button";
+            dayBtn.classList.add("day-btn");
+            dayBtn.textContent = day;
+
+            const dateCheck = new Date(year, month, day);
+
+            // Deshabilitar domingos y días pasados
+            if (dateCheck < today || dateCheck.getDay() === 0) {
+                dayBtn.disabled = true;
+            } else {
+                dayBtn.addEventListener("click", () => {
+                    document.querySelectorAll(".day-btn").forEach(b => b.classList.remove("selected"));
+                    dayBtn.classList.add("selected");
+
+                    // Guardar fecha formateada YYYY-MM-DD
+                    const strMonth = String(month + 1).padStart(2, "0");
+                    const strDay = String(day).padStart(2, "0");
+                    inputFecha.value = `${year}-${strMonth}-${strDay}`;
+
+                    // Cargar horarios disponibles
+                    cargarHorarios();
                 });
             }
 
-            slotsContainer.appendChild(btn);
+            dateContainer.appendChild(dayBtn);
         }
     }
 
-    function actualizarResumen() {
-        if (fechaSeleccionada && horaSeleccionada) {
-            const [year, month, day] = fechaSeleccionada.split("-");
-            summaryText.textContent = `${day}/${month}/${year} a las ${horaSeleccionada} hs`;
-            bookingSummary.classList.remove("hidden");
-        }
+    if (prevBtn && nextBtn) {
+        prevBtn.addEventListener("click", () => {
+            currentDate.setMonth(currentDate.getMonth() - 1);
+            renderCalendar();
+        });
+
+        nextBtn.addEventListener("click", () => {
+            currentDate.setMonth(currentDate.getMonth() + 1);
+            renderCalendar();
+        });
     }
 
-    btnSendWhatsapp.addEventListener("click", () => {
-        if (!fechaSeleccionada || !horaSeleccionada) return;
+    function cargarHorarios() {
+        if (!selectHora) return;
+        selectHora.disabled = false;
+        selectHora.innerHTML = '<option value="" disabled selected>Seleccioná un horario</option>';
 
-        const [year, month, day] = fechaSeleccionada.split("-");
-        const telefono = "5491132194320";
-        const mensaje = `Hola Natalia! Quisiera consultar la disponibilidad para reservar un turno el día ${day}/${month}/${year} a las ${horaSeleccionada} hs y que me indiques alias para realizar la seña. ¡Gracias!`;
+        const horarios = ["09:00", "10:00", "11:00", "14:00", "15:00", "16:00", "17:00"];
+        horarios.forEach(hora => {
+            const opt = document.createElement("option");
+            opt.value = hora;
+            opt.textContent = `${hora} hs`;
+            selectHora.appendChild(opt);
+        });
+    }
 
-        const url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
-        window.open(url, "_blank");
-    });
+    // Inicializar el calendario
+    renderCalendar();
 
     // -------------------------------------------------------------
-    // 3. ANIMACIONES AL HACER SCROLL
+    // 3. ANIMACIONES AL HACER SCROLL (.reveal)
     // -------------------------------------------------------------
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -197,7 +194,4 @@ document.addEventListener("DOMContentLoaded", () => {
     }, { threshold: 0.1 });
 
     document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
-
-    // Inicializar la grilla de días
-    renderDias();
 });

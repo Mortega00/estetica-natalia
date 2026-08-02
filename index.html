@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Nativa Estética - Cosmetología y Bienestar en Remedios de Escalada">
     <title>Nativa Estética | Cosmetología & Bienestar</title>
-   
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-   
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -206,11 +204,27 @@
                     </select>
                 </div>
 
+                <!-- 1. CALENDARIO VISUAL EN LUGAR DEL INPUT DE FECHA -->
                 <div class="form-group">
-                    <label for="fecha">Seleccioná el Día:</label>
-                    <input type="date" id="fecha" class="form-control" required>
+                    <label>Seleccioná el Día:</label>
+                    
+                    <div class="calendar-widget">
+                        <div class="calendar-header">
+                            <button type="button" id="prevMonthBtn">&lt;</button>
+                            <span id="calendarMonthYear"></span>
+                            <button type="button" id="nextMonthBtn">&gt;</button>
+                        </div>
+                        <div class="calendar-weekdays">
+                            <span>Dom</span><span>Lun</span><span>Mar</span><span>Mié</span><span>Jue</span><span>Vie</span><span>Sáb</span>
+                        </div>
+                        <div id="dateContainer" class="calendar-days"></div>
+                    </div>
+
+                    <!-- Input oculto para que el formulario siga recibiendo la fecha seleccionada -->
+                    <input type="hidden" id="fecha" required>
                 </div>
 
+                <!-- 2. SELECTOR DE HORARIOS (Tuyo sin cambios) -->
                 <div class="form-group">
                     <label for="hora">Horarios Disponibles (Sesiones de 1hr):</label>
                     <select id="hora" class="form-control" required disabled>
@@ -218,11 +232,11 @@
                     </select>
                 </div>
 
+                <!-- 3. BOTÓN DE RESERVA (Tuyo sin cambios) -->
                 <button type="submit" id="btn-reservar" class="btn-booking">
                     Reservar Lugar
                 </button>
             </form>
-
             <!-- PANTALLA DE PAGO / ALIAS -->
             <div id="pantalla-confirmacion" class="payment-screen" style="display: none;">
                 <h3 class="payment-title">¡Tu lugar está pre-reservado!</h3>
