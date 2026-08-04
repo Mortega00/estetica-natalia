@@ -112,12 +112,11 @@ document.addEventListener("DOMContentLoaded", () => {
     // =============================================================
     // Objeto donde podés definir qué días y horas están ocupados (formato: "DD/MM/YYYY": ["HH:MM hs"])
     // En el futuro, esto se puede consumir de un backend o base de datos.
-    const turnosOcupados = {
-        // Ejemplo de turnos bloqueados para fechas específicas:
-        "05/08/2026": ["10:00 hs", "15:00 hs"],
-        "06/08/2026": ["09:00 hs", "11:00 hs", "16:00 hs"]
-    };
+    // Antes (tenía datos de prueba):
+// const turnosOcupados = { "2026-08-05": ["09:00", "11:00"] };
 
+// Ahora (todos los turnos libres desde el inicio):
+const turnosOcupados = {};
 
     // =============================================================
     // 3. SELECTOR DE DÍAS Y HORARIOS DISPONIBLES
