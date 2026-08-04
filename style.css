@@ -552,26 +552,28 @@ body {
    SELECTOR DE DÍAS (SCROLL HORIZONTAL DE DÍAS PRÓXIMOS)
    ------------------------------------------------------------- */
 .date-scroll-container {
-    display: flex;
+    display: flex !important;
+    flex-wrap: nowrap !important; /* Fuerza a que se mantengan en una sola fila */
     gap: 10px;
-    overflow-x: auto;
-    padding: 5px 2px 12px 2px;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin;
+    overflow-x: auto;            /* Habilita el scroll horizontal */
+    padding: 10px 5px;
+    -webkit-overflow-scrolling: touch; /* Scroll suave en celulares (iOS/Android) */
+    scrollbar-width: thin;       /* Barra de scroll discreta en desktop */
 }
 
+/* Cada tarjeta de día dentro de la fila */
 .date-card-btn {
-    flex: 0 0 85px;
-    background: white;
-    border: 1px solid var(--color-gris-linea);
-    border-radius: 10px;
-    padding: 10px 5px;
+    flex: 0 0 80px;              /* Ancho fijo de 80px para cada tarjeta (no se encogen) */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 10px 5px;
+    background: white;
+    border: 1px solid #e5e0d8;
+    border-radius: 10px;
     cursor: pointer;
-    transition: var(--transicion);
+    transition: all 0.3s ease;
 }
 
 .date-card-btn .day-name {
@@ -650,88 +652,185 @@ body {
     padding: 8px 0;
 }
 
+/* Estado deshabilitado / ocupado para los botones de hora */
+.slot-btn.disabled,
+.slot-btn:disabled {
+    background-color: #f0f0f0 !important;
+    color: #a0a0a0 !important;
+    border-color: #dcdcdc !important;
+    cursor: not-allowed !important;
+    opacity: 0.7;
+    text-decoration: line-through;
+}
+
 /* -------------------------------------------------------------
-   PANTALLA DE CONFIRMACIÓN Y PAGO (TEMPORIZADOR Y ALIAS)
+   PANTALLA DE CONFIRMACIÓN - UNIFICADA CON EL FORMULARIO
    ------------------------------------------------------------- */
-.payment-screen {
-    border: 2px dashed var(--color-primario);
-    padding: 25px 20px;
-    border-radius: 12px;
-    margin-top: 20px;
+.confirmation-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 28px 24px;
+    max-width: 480px;
+    margin: 20px auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--color-gris-linea, #efe8df);
     text-align: center;
-    background: #fffdf9;
+    font-family: inherit; /* Mantiene la misma tipografía del formulario */
 }
 
-.payment-title {
-    color: var(--color-primario);
-    font-family: var(--fuente-titulo);
-    font-size: 1.5rem;
-    margin-bottom: 10px;
+/* Subtítulo pequeño superior */
+.status-badge {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-oscuro, #333333);
+    margin-bottom: 6px;
+    text-transform: none;
 }
 
-.timer-badge {
-    background: #fff5f5;
+/* Título Principal (Mismo estilo sans-serif y peso que el formulario) */
+.confirmation-header h3 {
+    margin: 0 0 12px 0;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--color-oscuro, #333333);
+    font-family: inherit; /* Quita el serif y fuerza sans-serif */
+}
+
+.confirmation-header p {
+    font-size: 0.95rem;
+    color: var(--color-oscuro, #333333);
+    line-height: 1.4;
+    font-weight: 500;
+}
+
+/* Temporizador con badge visible */
+.timer-highlight {
+    font-weight: 700;
     color: #cc0000;
-    padding: 8px 16px;
-    border-radius: 20px;
-    display: inline-block;
-    font-weight: 600;
-    font-size: 0.85rem;
-    margin-bottom: 15px;
+    background: #fff5f5;
+    padding: 3px 10px;
+    border-radius: 6px;
 }
 
-.alias-box {
-    display: inline-flex;
+/* Resumen del turno (Estilo idéntico a los inputs/labels) */
+.resumen-box {
+    background: #fffdf9;
+    border: 1px solid var(--color-gris-linea, #e2e2e2);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin: 20px 0;
+    text-align: left;
+    font-size: 0.95rem;
+    color: var(--color-oscuro, #333333);
+}
+
+.resumen-box p {
+    margin: 6px 0;
+    font-size: 0.95rem;
+}
+
+.resumen-box p strong {
+    font-weight: 700;
+    color: var(--color-oscuro, #333333);
+}
+
+/* Tarjeta de Datos Bancarios */
+.datos-banco-card {
+    background: #fffdf9;
+    border: 1.5px dashed var(--color-primario, #c49a45);
+    border-radius: 12px;
+    padding: 18px 16px;
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.datos-banco-card h4 {
+    margin: 0;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    color: var(--color-primario, #c49a45);
+    text-transform: uppercase;
+}
+
+.banco-row {
+    font-size: 1.1rem;
+    color: var(--color-oscuro, #333333);
+    font-family: monospace;
+}
+
+.banco-row strong {
+    font-weight: 700;
+}
+
+/* Botón Copiar Alias */
+.btn-copy-alias {
+    background-color: var(--color-primario, #c49a45);
+    color: #ffffff;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transicion, all 0.2s ease);
+}
+
+.btn-copy-alias:hover {
+    background-color: var(--color-oscuro, #333333);
+    transform: translateY(-1px);
+}
+
+/* Contenedor de Botones de Acción */
+.actions-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+}
+
+/* Botón Enviar WhatsApp (Toma el formato exacto del botón Reservar Lugar) */
+.btn-whatsapp-action {
+    display: flex;
     align-items: center;
     justify-content: center;
-    background: #f4f4f4;
-    padding: 10px 15px;
-    border-radius: 8px;
-    margin: 12px 0;
-    gap: 15px;
-    border: 1px solid var(--color-gris-linea);
-}
-
-.alias-text {
-    font-weight: 600;
-    font-family: monospace;
-    font-size: 1.1em;
-    color: var(--color-oscuro);
-}
-
-.btn-copy {
-    background: var(--color-primario);
-    color: white;
+    background-color: #25D366; /* Podés cambiar por var(--color-primario) si querés dorado total */
+    color: #ffffff !important;
+    text-decoration: none !important;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 14px 20px;
+    border-radius: 25px; /* Mismo redondeado pill que Reservar Lugar */
+    transition: var(--transicion, all 0.3s ease);
     border: none;
-    padding: 6px 14px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.8rem;
-    font-weight: 600;
-    transition: var(--transicion);
+    box-shadow: 0 4px 10px rgba(37, 211, 102, 0.2);
 }
 
-.btn-copy:hover {
-    background: var(--color-oscuro);
-}
-
-.btn-whatsapp-send {
-    display: inline-block;
-    background-color: #25D366;
-    color: white;
-    padding: 14px 28px;
-    font-weight: 600;
-    text-decoration: none;
-    border-radius: 30px;
-    font-size: 0.95rem;
-    box-shadow: 0 4px 10px rgba(37, 211, 102, 0.25);
-    transition: var(--transicion);
-    cursor: pointer;
-}
-
-.btn-whatsapp-send:hover {
+.btn-whatsapp-action:hover {
+    background-color: #20ba5a;
     transform: translateY(-2px);
-    box-shadow: 0 6px 14px rgba(37, 211, 102, 0.35);
+    box-shadow: 0 6px 14px rgba(37, 211, 102, 0.3);
+}
+
+/* Botón Secundario (Sacar otro turno) */
+.btn-secondary-action {
+    background-color: transparent;
+    color: var(--color-oscuro, #333333);
+    border: 1px solid var(--color-gris-linea, #ccc);
+    padding: 13px 20px;
+    border-radius: 25px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transicion, all 0.2s ease);
+}
+
+.btn-secondary-action:hover {
+    background-color: #f5f2ed;
 }
 
 /* ==========================================================================

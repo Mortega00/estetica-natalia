@@ -207,7 +207,7 @@
                     <!-- 1. SELECCIÓN DE DÍA CON CARDS HORIZONTALES -->
                     <div class="form-group">
                         <label>1. Seleccioná el Día:</label>
-                        <div id="dateContainer" class="date-scroll-container">
+                        <div id="dateScrollContainer" class="date-scroll-container">
                             <!-- JS inserta los días dinámicamente -->
                         </div>
                     </div>
@@ -215,14 +215,14 @@
                     <!-- 2. SELECCIÓN DE HORARIOS CON BOTONES -->
                     <div class="form-group">
                         <label>2. Horarios Disponibles (Sesiones de 1hr):</label>
-                        <div id="slotsContainer" class="slots-grid-container">
+                        <div id="slotsContainer" class="slots-container">
                             <p class="select-day-msg">Elegí primero un día arriba</p>
                         </div>
                     </div>
 
                     <!-- INPUTS OCULTOS PARA JS Y FORM -->
-                    <input type="hidden" id="fecha" required>
-                    <input type="hidden" id="hora" required>
+                    <input type="hidden" id="fecha" name="fecha">
+                    <input type="hidden" id="hora" name="hora">
 
                     <!-- 3. BOTÓN DE RESERVA -->
                     <button type="submit" id="btn-reservar" class="btn-booking">
@@ -231,31 +231,43 @@
                 </form>
 
                 <!-- PANTALLA DE PAGO / ALIAS -->
-                <div id="pantalla-confirmacion" class="payment-screen" style="display: none;">
-                    <h3 class="payment-title">¡Tu lugar está pre-reservado!</h3>
-                    
-                    <div class="timer-badge">
-                        ⏳ Tu reserva expira en: <span id="temporizador">10:00</span>
-                    </div>
+                <div id="pantalla-confirmacion" class="confirmation-card hidden">
+    <div class="confirmation-header">
+        <span class="status-badge">Turno Pre-reservado</span>
+        <h3>¡Casi listo! Realizá la seña</h3>
+        <p>Tenés <span id="timer" class="timer-highlight">15:00</span> minutos para realizar la transferencia de $2.000 para asegurar tu lugar.</p>
+    </div>
 
-                    <p style="color:#555; font-size:0.95em;">Para congelar el turno, transferí la seña de <strong>$2000</strong> al Alias:</p>
-                    
-                    <div class="alias-box">
-                        <span id="texto-alias" class="alias-text">NATIVA.ESTETICA.MP</span>
-                        <button id="btn-copiar" type="button" class="btn-copy">
-                            📋 Copiar
-                        </button>
-                    </div>
-                    
-                    <p style="font-size: 0.85em; color: #666; margin: 15px 0 20px 0;">
-                        Al transferir, tocá el botón verde para enviarle el comprobante a Natalia. Si pasados los 10 minutos no se envía, el turno se liberará automáticamente.
-                    </p>
-                    
-                    <a id="btn-whatsapp" target="_blank" class="btn-whatsapp-send">
-                        🟢 Enviar Comprobante por WhatsApp
-                    </a>
-                </div>
-            </div>
+    <!-- Resumen del turno -->
+    <div class="resumen-box">
+        <p><strong>Servicio:</strong> <span id="confServicio">-</span></p>
+        <p><strong>Fecha:</strong> <span id="confFecha">-</span></p>
+        <p><strong>Hora:</strong> <span id="confHora">-</span></p>
+    </div>
+
+    <!-- DATOS BANCARIOS -->
+    <div class="datos-banco-card">
+        <h4>Datos para la transferencia</h4>
+        <div class="banco-row">
+            <span>Alias:</span>
+            <strong id="aliasText">ESTETICA.MAMA.MP</strong>
+        </div>
+        <button type="button" id="btnCopyAlias" class="btn-copy-alias">
+            📋 Copiar Alias
+        </button>
+    </div>
+
+    <!-- BOTONES DE ACCIÓN -->
+    <div class="actions-container">
+    <a id="btnSendWhatsapp" href="#" target="_blank" class="btn-whatsapp-action">
+        Enviar comprobante por WhatsApp
+    </a>
+    
+    <button type="button" id="btnNuevoTurno" class="btn-secondary-action">
+        Sacar otro turno
+    </button>
+        </div>
+        </div>
         </div>
     </section>
 
