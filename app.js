@@ -1,11 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
   /* ==========================================
-     0. INTEGRACIÓN CON GOOGLE APPS SCRIPT
-  ========================================== */
-  // REEMPLAZÁ ESTA URL POR LA DE TU WEB APP DESPLEGADA EN APPS SCRIPT
-  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyQwfHx3YnjHRnkdzfgoNqT_H4KwSgeZWe6E3786IVGgKbGdWeyFCzzNJc4maVQU2Dp/exec';
-
-  /* ==========================================
      DATOS DE TRATAMIENTOS Y COMBOS (Modales)
   ========================================== */
   const treatmentsData = {
@@ -183,200 +177,203 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ==========================================
-     3. MODAL DE TRATAMIENTOS Y COMBOS
-  ========================================== */
-  const treatmentModal = document.getElementById('treatmentModal');
-  const modalCloseBtn = document.getElementById('modalCloseBtn');
-  const modalReserveSingleBtn = document.getElementById('modalReserveSingleBtn');
-  const modalReservePackBtn = document.getElementById('modalReservePackBtn');
-  let currentSelectedModalTreatment = '';
+   3. MODAL DE TRATAMIENTOS Y COMBOS
+========================================== */
+const treatmentModal = document.getElementById('treatmentModal');
+const modalCloseBtn = document.getElementById('modalCloseBtn');
+const modalReserveSingleBtn = document.getElementById('modalReserveSingleBtn');
+const modalReservePackBtn = document.getElementById('modalReservePackBtn');
+let currentSelectedModalTreatment = '';
 
-  function openModal(dataId) {
-    const data = treatmentsData[dataId];
-    if (!data || !treatmentModal) return;
-    
-    currentSelectedModalTreatment = data.title;
-    
-    const mTitle = document.getElementById('modalTitle');
-    const mDesc = document.getElementById('modalDesc');
-    const mNeeds = document.getElementById('modalNeeds');
-    const mBenefits = document.getElementById('modalBenefits');
-    
-    if (mTitle) mTitle.textContent = data.title;
-    if (mDesc) mDesc.textContent = data.desc;
-    if (mNeeds) mNeeds.textContent = data.needs;
-    if (mBenefits) {
-      mBenefits.innerHTML = '';
-      data.benefits.forEach(b => {
-        const li = document.createElement('li');
-        li.textContent = b;
-        mBenefits.appendChild(li);
-      });
-    }
-    // Si abren un combo exclusivo, ocultamos el botón de 1 sesión para evitar confusiones
-    if (dataId.startsWith('combo')) {
-      if (modalReserveSingleBtn) modalReserveSingleBtn.style.display = 'none';
-      if (modalReservePackBtn) modalReservePackBtn.textContent = 'Reservar Combo';
-    } else {
-      if (modalReserveSingleBtn) modalReserveSingleBtn.style.display = 'block';
-      if (modalReservePackBtn) modalReservePackBtn.textContent = 'Reservar Plan x10 (Ahorro)';
-    }
-
-    treatmentModal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeModal() {
-    if (treatmentModal) {
-      treatmentModal.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-  }
-  const serviceCards = document.querySelectorAll('.service-card, .combo-card');
-  serviceCards.forEach(card => {
-    card.addEventListener('click', (e) => {
-      if (e.target.closest('.select-combo-btn')) return;
-      const dataId = card.getAttribute('data-id');
-      if (dataId) {
-        openModal(dataId);
-      }
+function openModal(dataId) {
+  const data = treatmentsData[dataId];
+  if (!data || !treatmentModal) return;
+  
+  currentSelectedModalTreatment = data.title;
+  
+  const mTitle = document.getElementById('modalTitle');
+  const mDesc = document.getElementById('modalDesc');
+  const mNeeds = document.getElementById('modalNeeds');
+  const mBenefits = document.getElementById('modalBenefits');
+  
+  if (mTitle) mTitle.textContent = data.title;
+  if (mDesc) mDesc.textContent = data.desc;
+  if (mNeeds) mNeeds.textContent = data.needs;
+  if (mBenefits) {
+    mBenefits.innerHTML = '';
+    data.benefits.forEach(b => {
+      const li = document.createElement('li');
+      li.textContent = b;
+      mBenefits.appendChild(li);
     });
-  });
+  }
 
-  if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeModal);
+  // Si abren un combo exclusivo, ocultamos el botón de 1 sesión para evitar confusiones
+  if (dataId.startsWith('combo')) {
+    if (modalReserveSingleBtn) modalReserveSingleBtn.style.display = 'none';
+    if (modalReservePackBtn) modalReservePackBtn.textContent = 'Reservar Combo';
+  } else {
+    if (modalReserveSingleBtn) modalReserveSingleBtn.style.display = 'block';
+    if (modalReservePackBtn) modalReservePackBtn.textContent = 'Reservar Plan x10 (Ahorro)';
+  }
+
+  treatmentModal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
   if (treatmentModal) {
-    treatmentModal.addEventListener('click', (e) => {
-      if (e.target === treatmentModal) closeModal();
-    });
+    treatmentModal.classList.remove('active');
+    document.body.style.overflow = '';
   }
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && treatmentModal && treatmentModal.classList.contains('active')) {
-      closeModal();
+}
+
+const serviceCards = document.querySelectorAll('.service-card, .combo-card');
+serviceCards.forEach(card => {
+  card.addEventListener('click', (e) => {
+    if (e.target.closest('.select-combo-btn')) return;
+    const dataId = card.getAttribute('data-id');
+    if (dataId) {
+      openModal(dataId);
     }
   });
+});
 
-  // Función auxiliar para cerrar modal, seleccionar opción y scrollear
-  function handleModalSelection(suffix) {
+if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeModal);
+if (treatmentModal) {
+  treatmentModal.addEventListener('click', (e) => {
+    if (e.target === treatmentModal) closeModal();
+  });
+}
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && treatmentModal && treatmentModal.classList.contains('active')) {
     closeModal();
-    if (currentSelectedModalTreatment) {
-      // Si la función selectServiceInSelect existe, la ejecutamos
-      if (typeof selectServiceInSelect === 'function') {
-        const serviceToSelect = suffix ? `${currentSelectedModalTreatment} ${suffix}` : currentSelectedModalTreatment;
-        
-        // Intentamos seleccionar exacto; si no encuentra la opción con sufijo, selecciona el título base
-        const selectElem = document.getElementById('selectService') || document.getElementById('serviceSelect') || document.querySelector('select');
-        if (selectElem) {
-          let optionExists = Array.from(selectElem.options).some(opt => opt.value.includes(serviceToSelect) || opt.text.includes(serviceToSelect));
-          if (optionExists) {
-            selectServiceInSelect(serviceToSelect);
-          } else {
-            selectServiceInSelect(currentSelectedModalTreatment);
-          }
+  }
+});
+
+// Función auxiliar para cerrar modal, seleccionar opción y scrollear
+function handleModalSelection(suffix) {
+  closeModal();
+  if (currentSelectedModalTreatment) {
+    // Si la función selectServiceInSelect existe, la ejecutamos
+    if (typeof selectServiceInSelect === 'function') {
+      const serviceToSelect = suffix ? `${currentSelectedModalTreatment} ${suffix}` : currentSelectedModalTreatment;
+      
+      // Intentamos seleccionar exacto; si no encuentra la opción con sufijo, selecciona el título base
+      const selectElem = document.getElementById('serviceSelect') || document.querySelector('select');
+      if (selectElem) {
+        let optionExists = Array.from(selectElem.options).some(opt => opt.value.includes(serviceToSelect) || opt.text.includes(serviceToSelect));
+        if (optionExists) {
+          selectServiceInSelect(serviceToSelect);
         } else {
           selectServiceInSelect(currentSelectedModalTreatment);
         }
+      } else {
+        selectServiceInSelect(currentSelectedModalTreatment);
       }
     }
-    
-    const reservaSec = document.getElementById('reserva') || document.getElementById('reservar');
-    if (reservaSec) {
-      reservaSec.scrollIntoView({ behavior: 'smooth' });
+  }
+  
+  const reservaSec = document.getElementById('reserva') || document.getElementById('reservar');
+  if (reservaSec) {
+    reservaSec.scrollIntoView({ behavior: 'smooth' });
+  }
+}
+
+// Eventos para los dos botones
+if (modalReserveSingleBtn) {
+  modalReserveSingleBtn.addEventListener('click', () => handleModalSelection('(1 Sesión)'));
+}
+
+if (modalReservePackBtn) {
+  modalReservePackBtn.addEventListener('click', () => handleModalSelection('(Plan x10)'));
+}
+
+  /* ==========================================
+   4. SELECCIÓN DE SERVICIOS Y COMBOS EN EL SELECT
+========================================== */
+const selectService = document.getElementById('selectService');
+
+function selectServiceInSelect(serviceName) {
+  if (!selectService || !serviceName) return;
+  const target = serviceName.toLowerCase().trim();
+  let matchedIndex = -1;
+
+  // 1. Intentar coincidencia exacta o directa de valor/texto
+  for (let i = 0; i < selectService.options.length; i++) {
+    const opt = selectService.options[i];
+    const optVal = opt.value.toLowerCase().trim();
+    const optText = opt.text.toLowerCase().trim();
+
+    if (optVal === target || optText === target) {
+      matchedIndex = i;
+      break;
     }
   }
 
-  // Eventos para los dos botones
-  if (modalReserveSingleBtn) {
-    modalReserveSingleBtn.addEventListener('click', () => handleModalSelection('(1 Sesión)'));
-  }
-
-  if (modalReservePackBtn) {
-    modalReservePackBtn.addEventListener('click', () => handleModalSelection('(Plan x10)'));
-  }
-
-  /* ==========================================
-     4. SELECCIÓN DE SERVICIOS Y COMBOS EN EL SELECT
-  ========================================== */
-  const selectService = document.getElementById('selectService') || document.getElementById('serviceSelect');
-
-  function selectServiceInSelect(serviceName) {
-    if (!selectService || !serviceName) return;
-    const target = serviceName.toLowerCase().trim();
-    let matchedIndex = -1;
-
-    // 1. Intentar coincidencia exacta o directa de valor/texto
+  // 2. Si no hubo coincidencia exacta, buscar si la opción contiene la cadena completa
+  if (matchedIndex === -1) {
     for (let i = 0; i < selectService.options.length; i++) {
       const opt = selectService.options[i];
       const optVal = opt.value.toLowerCase().trim();
       const optText = opt.text.toLowerCase().trim();
 
-      if (optVal === target || optText === target) {
+      if (optVal.includes(target) || optText.includes(target)) {
         matchedIndex = i;
         break;
       }
     }
-    // 2. Si no hubo coincidencia exacta, buscar si la opción contiene la cadena completa
-    if (matchedIndex === -1) {
-      for (let i = 0; i < selectService.options.length; i++) {
-        const opt = selectService.options[i];
-        const optVal = opt.value.toLowerCase().trim();
-        const optText = opt.text.toLowerCase().trim();
+  }
 
-        if (optVal.includes(target) || optText.includes(target)) {
-          matchedIndex = i;
-          break;
-        }
+  // 3. Búsqueda por el título base del servicio (por si el nombre en el modal difiere un poco)
+  if (matchedIndex === -1) {
+    const baseName = target.replace('(1 sesión)', '').replace('(plan x10)', '').replace('(60 min)', '').trim();
+    for (let i = 0; i < selectService.options.length; i++) {
+      const opt = selectService.options[i];
+      const optVal = opt.value.toLowerCase().trim();
+      const optText = opt.text.toLowerCase().trim();
+
+      if ((optVal.includes(baseName) || optText.includes(baseName)) && optVal !== '') {
+        matchedIndex = i;
+        break;
       }
-    }
-
-    // 3. Búsqueda por el título base del servicio (por si el nombre en el modal difiere un poco)
-    if (matchedIndex === -1) {
-      const baseName = target.replace('(1 sesión)', '').replace('(plan x10)', '').replace('(60 min)', '').trim();
-      for (let i = 0; i < selectService.options.length; i++) {
-        const opt = selectService.options[i];
-        const optVal = opt.value.toLowerCase().trim();
-        const optText = opt.text.toLowerCase().trim();
-
-        if ((optVal.includes(baseName) || optText.includes(baseName)) && optVal !== '') {
-          matchedIndex = i;
-          break;
-        }
-      }
-    }
-
-    // Aplicar selección y disparar evento de cambio si se encontró una opción
-    if (matchedIndex !== -1) {
-      selectService.selectedIndex = matchedIndex;
-      selectService.dispatchEvent(new Event('change'));
     }
   }
 
-  const comboButtons = document.querySelectorAll('.select-combo-btn');
-  comboButtons.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      let comboName = btn.getAttribute('data-service');
-      if (!comboName) {
-        const comboCard = btn.closest('.combo-card');
-        if (comboCard) {
-          const h3 = comboCard.querySelector('h3');
-          if (h3) comboName = h3.textContent;
-        }
+  // Aplicar selección y disparar evento de cambio si se encontró una opción
+  if (matchedIndex !== -1) {
+    selectService.selectedIndex = matchedIndex;
+    selectService.dispatchEvent(new Event('change'));
+  }
+}
+
+const comboButtons = document.querySelectorAll('.select-combo-btn');
+comboButtons.forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    let comboName = btn.getAttribute('data-service');
+    if (!comboName) {
+      const comboCard = btn.closest('.combo-card');
+      if (comboCard) {
+        const h3 = comboCard.querySelector('h3');
+        if (h3) comboName = h3.textContent;
       }
-      if (comboName) selectServiceInSelect(comboName);
-      const reservaSec = document.getElementById('reserva') || document.getElementById('reservar');
-      if (reservaSec) {
-        reservaSec.scrollIntoView({ behavior: 'smooth' });
-      }
-    });
+    }
+    if (comboName) selectServiceInSelect(comboName);
+    const reservaSec = document.getElementById('reserva') || document.getElementById('reservar');
+    if (reservaSec) {
+      reservaSec.scrollIntoView({ behavior: 'smooth' });
+    }
   });
+});
 
   /* ==========================================
-     5. CALENDARIO & HORARIOS (Conectado a Apps Script)
+     5. CALENDARIO & HORARIOS
   ========================================== */
+  const APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxwCMsf_mlqvmVityYG_g17gV0ALP1nvWK2EJqngGOmIcv7NKK2LDx2hOYjw3lqj8AA/exec';
   let selectedDate = null;
   let selectedTime = null;
-  let ocupadosAppsScript = []; // Almacena los horarios tomados traídos de la API
 
   const today = new Date();
   let currentCalMonth = today.getMonth();
@@ -419,65 +416,113 @@ document.addEventListener('DOMContentLoaded', () => {
     return false;
   }
 
-  // Consulta la API de Apps Script para obtener los horarios ocupados de la fecha seleccionada
-  async function fetchDisponibilidadAppsScript(dateObj) {
-    if (!dateObj) return;
-    const year = dateObj.getFullYear();
-    const month = String(dateObj.getMonth() + 1).padStart(2, '0');
-    const day = String(dateObj.getDate()).padStart(2, '0');
-    const fechaFormatted = `${year}-${month}-${day}`;
-
-    try {
-      const response = await fetch(`${SCRIPT_URL}?action=disponibilidad&fecha=${fechaFormatted}`);
-      const data = await response.json();
-      if (data.ok && Array.isArray(data.ocupados)) {
-        ocupadosAppsScript = data.ocupados;
-      } else {
-        ocupadosAppsScript = [];
-      }
-    } catch (err) {
-      console.warn('No se pudo sincronizar la disponibilidad con Apps Script, se usará la validación local:', err);
-      ocupadosAppsScript = [];
-    }
-  }
-
   async function renderTimeSlots() {
-    if (!timeGrid) return;
+  if (!timeGrid) return;
+
+  timeGrid.innerHTML = '';
+  selectedTime = null;
+
+  if (!selectedDate) return;
+
+  const startHour = 8;
+  const endHour = 20;
+
+  // ==========================================
+  // FECHA EN FORMATO YYYY-MM-DD
+  // ==========================================
+  const year = selectedDate.getFullYear();
+  const month = String(selectedDate.getMonth() + 1).padStart(2, '0');
+  const day = String(selectedDate.getDate()).padStart(2, '0');
+  const dateString = `${year}-${month}-${day}`;
+
+  // ==========================================
+  // MENSAJE DE CARGA
+  // ==========================================
+  const loadingMessage = document.createElement('div');
+  loadingMessage.classList.add('time-loading');
+  loadingMessage.textContent = 'Consultando horarios disponibles...';
+  loadingMessage.style.gridColumn = '1 / -1';
+  loadingMessage.style.textAlign = 'center';
+  loadingMessage.style.padding = '20px';
+  timeGrid.appendChild(loadingMessage);
+
+  try {
+    // ==========================================
+    // CONSULTAR GOOGLE APPS SCRIPT
+    // ==========================================
+    const response = await fetch(
+      `${APP_SCRIPT_URL}?fecha=${encodeURIComponent(dateString)}`
+    );
+
+    if (!response.ok) {
+      throw new Error(`Error HTTP: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    // ==========================================
+    // VALIDAR RESPUESTA
+    // ==========================================
+    if (!data || data.ok !== true || !Array.isArray(data.disponibles)) {
+      throw new Error('Respuesta inválida del servidor.');
+    }
+
+    // Convertimos disponibles a Set para
+    // realizar búsquedas más rápidas
+    const availableTimes = new Set(
+      data.disponibles.map(time => String(time).trim())
+    );
+
+    // ==========================================
+    // RENDERIZAR HORARIOS
+    // ==========================================
     timeGrid.innerHTML = '';
-    selectedTime = null;
-
-    if (!selectedDate) return;
-
-    timeGrid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #777;">Cargando disponibilidad...</p>';
-    await fetchDisponibilidadAppsScript(selectedDate);
-    timeGrid.innerHTML = '';
-
-    const startHour = 8;
-    const endHour = 20;
 
     for (let hour = startHour; hour <= endHour; hour++) {
       const timeString = `${String(hour).padStart(2, '0')}:00`;
-      const timeStringHs = `${String(hour).padStart(2, '0')}:00 Hs`; // Formato recibido de Apps Script
+
       const chip = document.createElement('div');
       chip.classList.add('time-chip');
       chip.setAttribute('data-time', timeString);
       chip.textContent = `${timeString} hs`;
 
-      // Evaluación individual a NIVEL 2 (HORARIO): Validación de 24 hs + Sincronización Apps Script
-      const isValid24Hs = isSlotAvailable24Hs(selectedDate, hour);
-      const isOcupadoScript = ocupadosAppsScript.includes(timeString) || ocupadosAppsScript.includes(timeStringHs);
+      // ==========================================
+      // NIVEL 1:
+      // ¿EL HORARIO ESTÁ DISPONIBLE EN APPS SCRIPT?
+      // ==========================================
+      const isAvailableFromServer = availableTimes.has(timeString);
 
-      if (!isValid24Hs || isOcupadoScript) {
+      // ==========================================
+      // NIVEL 2:
+      // ¿CUMPLE LAS 24 HORAS DE ANTICIPACIÓN?
+      // ==========================================
+      const isValid24Hs = isSlotAvailable24Hs(selectedDate, hour);
+
+      // ==========================================
+      // HORARIO FINALMENTE DISPONIBLE
+      // ==========================================
+      const isAvailable = isAvailableFromServer && isValid24Hs;
+
+      if (!isAvailable) {
         chip.classList.add('disabled');
         chip.style.opacity = '0.35';
         chip.style.cursor = 'not-allowed';
         chip.style.pointerEvents = 'none';
-        if (isOcupadoScript) {
-          chip.title = 'Horario reservado u ocupado';
+
+        // Si está ocupado, dejamos indicado internamente
+        if (!isAvailableFromServer) {
+          chip.setAttribute('data-status', 'ocupado');
+        } else if (!isValid24Hs) {
+          chip.setAttribute('data-status', 'menos-de-24hs');
         }
       } else {
+        chip.setAttribute('data-status', 'disponible');
+
         chip.addEventListener('click', () => {
-          document.querySelectorAll('.time-chip').forEach(c => c.classList.remove('selected'));
+          document
+            .querySelectorAll('.time-chip')
+            .forEach(c => c.classList.remove('selected'));
+
           chip.classList.add('selected');
           selectedTime = timeString;
         });
@@ -485,7 +530,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
       timeGrid.appendChild(chip);
     }
+
+  } catch (error) {
+    console.error('Error al consultar disponibilidad:', error);
+
+    // ==========================================
+    // ERROR DE CONEXIÓN
+    // ==========================================
+    timeGrid.innerHTML = '';
+
+    const errorMessage = document.createElement('div');
+    errorMessage.classList.add('time-error');
+    errorMessage.textContent =
+      'No pudimos consultar los horarios disponibles. Por favor, intentá nuevamente.';
+    errorMessage.style.gridColumn = '1 / -1';
+    errorMessage.style.textAlign = 'center';
+    errorMessage.style.padding = '20px';
+
+    timeGrid.appendChild(errorMessage);
   }
+}
 
   function renderCalendar() {
     if (!calDaysGrid || !calMonthTitle) return;
@@ -657,7 +721,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   if (btnNextStep) {
-    btnNextStep.addEventListener('click', async () => {
+    btnNextStep.addEventListener('click', () => {
       if (currentStep === 1) {
         if (!selectService || !selectService.value || selectService.value === '') {
           alert('Por favor selecciona un tratamiento o combo para continuar.');
@@ -670,6 +734,7 @@ document.addEventListener('DOMContentLoaded', () => {
           alert('Seleccioná una fecha y un horario antes de continuar.');
           return;
         }
+
         // Re-evaluación en tiempo real antes de avanzar al paso 3
         const hourNum = parseInt(selectedTime.split(':')[0], 10);
         if (!isSlotAvailable24Hs(selectedDate, hourNum)) {
@@ -707,7 +772,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         updateWizard();
       } else if (currentStep === totalSteps) {
-        await registrarReservaEnAppsScript();
         showConfirmationCard();
       }
     });
@@ -723,39 +787,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================
-     8. REGISTRO EN APPS SCRIPT, TIMER & WHATSAPP
+     8. CONFIRMACIÓN, TIMER & MENSAJE DE WHATSAPP
   ========================================== */
-  async function registrarReservaEnAppsScript() {
-    if (!selectedDate || !selectedTime) return;
-
-    const year = selectedDate.getFullYear();
-    const month = String(selectedDate.getMonth() + 1).padStart(2, '0');
-    const day = String(selectedDate.getDate()).padStart(2, '0');
-    const fechaFormatted = `${year}-${month}-${day}`;
-    const horaFormatted = `${selectedTime} Hs`;
-    const serviceSelectedText = selectService.options[selectService.selectedIndex].text || selectService.value;
-
-    const payload = {
-      fecha: fechaFormatted,
-      hora: horaFormatted,
-      tratamiento: serviceSelectedText,
-      nombre: custName.value.trim(),
-      whatsapp: custPhone.value.trim(),
-      observaciones: (custNotes && custNotes.value.trim()) ? custNotes.value.trim() : 'Sin comentarios'
-    };
-
-    try {
-      await fetch(SCRIPT_URL, {
-        method: 'POST',
-        mode: 'no-cors', // Evita bloqueos de CORS en Google Apps Script
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-    } catch (err) {
-      console.warn('No se pudo sincronizar automáticamente con la planilla de backend:', err);
-    }
-  }
-
   let timerInterval = null;
   function startTimer() {
     const timerCount = document.getElementById('timerCount');
@@ -800,6 +833,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (resumenHora) resumenHora.textContent = selectedTime;
       if (resumenNombre) resumenNombre.textContent = custName.value.trim();
       if (resumenTel) resumenTel.textContent = custPhone.value.trim();
+
       const message = `Hola Natalia! Quisiera reservar un turno.\n\n` +
                       `✨ Tratamiento:\n${serviceSelectedText}\n\n` +
                       `📅 Fecha:\n${formattedDate}\n\n` +
