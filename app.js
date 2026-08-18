@@ -371,7 +371,7 @@ comboButtons.forEach(btn => {
   /* ==========================================
      5. CALENDARIO & HORARIOS
   ========================================== */
-  const APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxwCMsf_mlqvmVityYG_g17gV0ALP1nvWK2EJqngGOmIcv7NKK2LDx2hOYjw3lqj8AA/exec';
+  const APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzEzRB3B2qbq7FxL1r2eiZq7kAqfPowsfU7o4nPDTXFJKa0SY_xd5xngtLLdG9-k2Az/exec';
   let selectedDate = null;
   let selectedTime = null;
 
@@ -416,7 +416,7 @@ comboButtons.forEach(btn => {
     return false;
   }
 
-  async function renderTimeSlots() {
+  async function renderTimeSlot() {
   if (!timeGrid) return;
 
   timeGrid.innerHTML = '';
@@ -451,8 +451,8 @@ comboButtons.forEach(btn => {
     // CONSULTAR GOOGLE APPS SCRIPT
     // ==========================================
     const response = await fetch(
-      `${APP_SCRIPT_URL}?fecha=${encodeURIComponent(dateString)}`
-    );
+  `${APP_SCRIPT_URL}?action=disponibilidad&fecha=${encodeURIComponent(dateString)}`
+);
 
     if (!response.ok) {
       throw new Error(`Error HTTP: ${response.status}`);
@@ -525,6 +525,10 @@ comboButtons.forEach(btn => {
 
           chip.classList.add('selected');
           selectedTime = timeString;
+          
+          if (typeof selectedTimeSlot !== 'undefined') {
+            selectedTimeSlot = timeString;
+          }
         });
       }
 
@@ -588,12 +592,12 @@ comboButtons.forEach(btn => {
           document.querySelectorAll('.cal-day').forEach(cell => cell.classList.remove('selected'));
           dayCell.classList.add('selected');
           selectedDate = new Date(currentCalYear, currentCalMonth, day);
-          renderTimeSlots();
+          renderTimeSlot();
         });
       }
       calDaysGrid.appendChild(dayCell);
     }
-    renderTimeSlots();
+    renderTimeSlot();
   }
 
   if (prevMonthBtn) {
@@ -812,22 +816,65 @@ comboButtons.forEach(btn => {
     }, 1000);
   }
 
-  function showConfirmationCard() {
+  async function showConfirmationCard() {
     const wizardActions = document.querySelector('.wizard-actions');
     const stepPane4 = document.getElementById('stepPane4');
     const confirmationCard = document.getElementById('confirmationCard');
+    
     if (wizardActions) wizardActions.classList.add('hidden');
     if (stepPane4) stepPane4.classList.add('hidden');
+
+    // 1. Formato YYYY-MM-DD para Google Apps Script
+    const year = selectedDate.getFullYear();
+    const month = String(selectedDate.getMonth() + 1).padStart(2, '0');
+    const day = String(selectedDate.getDate()).padStart(2, '0');
+    const isoDate = `${year}-${month}-${day}`;
+
+    // Formato visible para la tarjeta e interfaz (DD/MM/YYYY)
+    const formattedDate = formatDate(selectedDate);
+    const commentsText = (custNotes && custNotes.value.trim()) ? custNotes.value.trim() : 'Sin comentarios';
+    const serviceSelectedText = selectService.options[selectService.selectedIndex].text || selectService.value;
+
+    // ==========================================
+    // ENVÍO DE DATOS A GOOGLE SHEETS (POST)
+    // ==========================================
+    try {
+      const response = await fetch(APP_SCRIPT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({
+          action: 'crearReserva',
+          fecha: isoDate,                 // Esperado: YYYY-MM-DD
+          hora: selectedTime,             // Esperado: HH:mm
+          tratamiento: serviceSelectedText,// Clave "tratamiento"
+          nombre: custName.value.trim(),  // Clave "nombre"
+          whatsapp: custPhone.value.trim(),// Clave "whatsapp"
+          observaciones: commentsText     // Clave "observaciones"
+        })
+      });
+
+      const data = await response.json();
+      if (data.ok) {
+        console.log('Reserva registrada con éxito:', data);
+      } else {
+        console.warn('Apps Script devolvió un aviso:', data.mensaje || data.error);
+      }
+    } catch (err) {
+      console.error('Error al registrar el turno en Google Sheets:', err);
+    }
+
+    // ==========================================
+    // RENDERIZAR TARJETA Y MENSAJE DE WHATSAPP
+    // ==========================================
     if (confirmationCard) {
       confirmationCard.classList.remove('hidden');
-      const formattedDate = formatDate(selectedDate);
-      const commentsText = (custNotes && custNotes.value.trim()) ? custNotes.value.trim() : 'Sin comentarios';
-      const serviceSelectedText = selectService.options[selectService.selectedIndex].text || selectService.value;
+      
       const resumenServicio = document.getElementById('resumenServicio');
       const resumenFecha = document.getElementById('resumenFecha');
       const resumenHora = document.getElementById('resumenHora');
       const resumenNombre = document.getElementById('resumenNombre');
       const resumenTel = document.getElementById('resumenTel');
+      
       if (resumenServicio) resumenServicio.textContent = serviceSelectedText;
       if (resumenFecha) resumenFecha.textContent = formattedDate;
       if (resumenHora) resumenHora.textContent = selectedTime;
@@ -842,6 +889,7 @@ comboButtons.forEach(btn => {
                       `📱 WhatsApp:\n${custPhone.value.trim()}\n\n` +
                       `📝 Comentarios:\n${commentsText}\n\n` +
                       `💸 Adjunto el comprobante de la seña ($20.000) abonado al Alias: natali1977.`;
+                      
       const btnSendWhatsappBooking = document.getElementById('btnSendWhatsappBooking');
       if (btnSendWhatsappBooking) {
         btnSendWhatsappBooking.href = `${WA_BASE_URL}?text=${encodeURIComponent(message)}`;
@@ -849,23 +897,6 @@ comboButtons.forEach(btn => {
       }
       startTimer();
     }
-  }
-
-  const btnResetBooking = document.getElementById('btnResetBooking');
-  if (btnResetBooking) {
-    btnResetBooking.addEventListener('click', () => {
-      if (timerInterval) clearInterval(timerInterval);
-      const confirmationCard = document.getElementById('confirmationCard');
-      const wizardActions = document.querySelector('.wizard-actions');
-      if (confirmationCard) confirmationCard.classList.add('hidden');
-      if (wizardActions) wizardActions.classList.remove('hidden');
-      selectedDate = null;
-      selectedTime = null;
-      document.querySelectorAll('.cal-day').forEach(cell => cell.classList.remove('selected'));
-      document.querySelectorAll('.time-chip').forEach(chip => chip.classList.remove('selected'));
-      currentStep = 1;
-      updateWizard();
-    });
   }
 
   /* ==========================================
