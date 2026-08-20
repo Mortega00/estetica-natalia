@@ -371,7 +371,7 @@ comboButtons.forEach(btn => {
   /* ==========================================
      5. CALENDARIO & HORARIOS
   ========================================== */
-  const APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzEzRB3B2qbq7FxL1r2eiZq7kAqfPowsfU7o4nPDTXFJKa0SY_xd5xngtLLdG9-k2Az/exec';
+  const APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbydHGUBKZQup_Xg1-D4_DSWgWMtzjLaK0Vp3WrLdlLsgIPCmTJV2DnQd--8_P1BMPS9/exec';
   let selectedDate = null;
   let selectedTime = null;
 
@@ -816,91 +816,246 @@ comboButtons.forEach(btn => {
     }, 1000);
   }
 
-  async function showConfirmationCard() {
+async function showConfirmationCard() {
     const wizardActions = document.querySelector('.wizard-actions');
     const stepPane4 = document.getElementById('stepPane4');
     const confirmationCard = document.getElementById('confirmationCard');
-    
+
     if (wizardActions) wizardActions.classList.add('hidden');
     if (stepPane4) stepPane4.classList.add('hidden');
 
-    // 1. Formato YYYY-MM-DD para Google Apps Script
+    // ==========================================
+    // 1. FORMATO DE FECHA
+    // ==========================================
+
     const year = selectedDate.getFullYear();
     const month = String(selectedDate.getMonth() + 1).padStart(2, '0');
     const day = String(selectedDate.getDate()).padStart(2, '0');
+
     const isoDate = `${year}-${month}-${day}`;
 
-    // Formato visible para la tarjeta e interfaz (DD/MM/YYYY)
+    // Formato visible para la interfaz
     const formattedDate = formatDate(selectedDate);
-    const commentsText = (custNotes && custNotes.value.trim()) ? custNotes.value.trim() : 'Sin comentarios';
-    const serviceSelectedText = selectService.options[selectService.selectedIndex].text || selectService.value;
 
     // ==========================================
-    // ENVÍO DE DATOS A GOOGLE SHEETS (POST)
+    // 2. DATOS DEL FORMULARIO
     // ==========================================
-    try {
-      const response = await fetch(APP_SCRIPT_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify({
-          action: 'crearReserva',
-          fecha: isoDate,                 // Esperado: YYYY-MM-DD
-          hora: selectedTime,             // Esperado: HH:mm
-          tratamiento: serviceSelectedText,// Clave "tratamiento"
-          nombre: custName.value.trim(),  // Clave "nombre"
-          whatsapp: custPhone.value.trim(),// Clave "whatsapp"
-          observaciones: commentsText     // Clave "observaciones"
-        })
-      });
 
-      const data = await response.json();
-      if (data.ok) {
-        console.log('Reserva registrada con éxito:', data);
-      } else {
-        console.warn('Apps Script devolvió un aviso:', data.mensaje || data.error);
-      }
-    } catch (err) {
-      console.error('Error al registrar el turno en Google Sheets:', err);
+    const commentsText =
+      (custNotes && custNotes.value.trim())
+        ? custNotes.value.trim()
+        : 'Sin comentarios';
+
+    const serviceSelectedText =
+      selectService.options[selectService.selectedIndex].text ||
+      selectService.value;
+
+    const reservaData = {
+      action: 'crearReserva',
+      fecha: isoDate,
+      hora: selectedTime,
+      tratamiento: serviceSelectedText,
+      nombre: custName.value.trim(),
+      whatsapp: custPhone.value.trim(),
+      observaciones: commentsText
+    };
+
+    // ==========================================
+    // 3. MOSTRAR EN CONSOLA LO QUE VAMOS A ENVIAR
+    // ==========================================
+
+    console.log('==========================================');
+    console.log('ENVIANDO RESERVA A GOOGLE APPS SCRIPT');
+    console.log('==========================================');
+
+    console.log('URL:', APP_SCRIPT_URL);
+    console.log('DATOS DE LA RESERVA:', reservaData);
+
+    // ==========================================
+    // 3.5. VERIFICACIÓN ANTI-BOT (HONEYPOT)
+    // ==========================================
+
+    const honeypot = document.getElementById('website_hp');
+    if (honeypot && honeypot.value.trim() !== '') {
+      console.warn('🤖 Bot detectado. La reserva no se enviará a Google Sheets.');
+      if (confirmationCard) confirmationCard.classList.remove('hidden');
+      startTimer();
+      return;
     }
 
     // ==========================================
-    // RENDERIZAR TARJETA Y MENSAJE DE WHATSAPP
+    // 4. ENVÍO DE DATOS A GOOGLE SHEETS (POST)
     // ==========================================
-    if (confirmationCard) {
-      confirmationCard.classList.remove('hidden');
-      
-      const resumenServicio = document.getElementById('resumenServicio');
-      const resumenFecha = document.getElementById('resumenFecha');
-      const resumenHora = document.getElementById('resumenHora');
-      const resumenNombre = document.getElementById('resumenNombre');
-      const resumenTel = document.getElementById('resumenTel');
-      
-      if (resumenServicio) resumenServicio.textContent = serviceSelectedText;
-      if (resumenFecha) resumenFecha.textContent = formattedDate;
-      if (resumenHora) resumenHora.textContent = selectedTime;
-      if (resumenNombre) resumenNombre.textContent = custName.value.trim();
-      if (resumenTel) resumenTel.textContent = custPhone.value.trim();
 
-      const message = `Hola Natalia! Quisiera reservar un turno.\n\n` +
-                      `✨ Tratamiento:\n${serviceSelectedText}\n\n` +
-                      `📅 Fecha:\n${formattedDate}\n\n` +
-                      `⏰ Horario:\n${selectedTime} Hs\n\n` +
-                      `👤 Nombre:\n${custName.value.trim()}\n\n` +
-                      `📱 WhatsApp:\n${custPhone.value.trim()}\n\n` +
-                      `📝 Comentarios:\n${commentsText}\n\n` +
-                      `💸 Adjunto el comprobante de la seña ($20.000) abonado al Alias: natali1977.`;
-                      
-      const btnSendWhatsappBooking = document.getElementById('btnSendWhatsappBooking');
-      if (btnSendWhatsappBooking) {
-        btnSendWhatsappBooking.href = `${WA_BASE_URL}?text=${encodeURIComponent(message)}`;
-        btnSendWhatsappBooking.target = '_blank';
+    try {
+
+      const response = await fetch(APP_SCRIPT_URL, {
+        method: 'POST',
+
+        headers: {
+          'Content-Type': 'text/plain;charset=utf-8'
+        },
+
+        body: JSON.stringify(reservaData)
+      });
+
+      // ==========================================
+      // 5. VERIFICAR RESPUESTA HTTP
+      // ==========================================
+
+      console.log('RESPUESTA HTTP DE APPS SCRIPT:', response.status);
+
+      if (!response.ok) {
+        throw new Error(
+          `Error HTTP ${response.status}`
+        );
       }
+
+      // ==========================================
+      // 6. LEER RESPUESTA JSON
+      // ==========================================
+
+      const data = await response.json();
+
+      console.log('==========================================');
+      console.log('RESPUESTA COMPLETA DE GOOGLE APPS SCRIPT');
+      console.log('==========================================');
+
+      console.log(data);
+
+      // ==========================================
+      // 7. ANALIZAR RESPUESTA
+      // ==========================================
+
+      if (data.ok) {
+
+        console.log('✅ RESERVA REGISTRADA CON ÉXITO');
+        console.log('ID GENERADO:', data.id);
+        console.log('FECHA:', data.fecha);
+        console.log('HORA:', data.hora);
+        console.log('ESTADO:', data.estado);
+
+      } else {
+
+        console.error(
+          '❌ APPS SCRIPT RECHAZÓ LA RESERVA'
+        );
+
+        console.error(
+          'Mensaje:',
+          data.mensaje || data.error
+        );
+
+      }
+
+    } catch (err) {
+
+      console.error(
+        '❌ ERROR AL REGISTRAR EL TURNO EN GOOGLE SHEETS'
+      );
+
+      console.error(
+        'Detalle del error:',
+        err
+      );
+
+    }
+
+    // ==========================================
+    // 8. RENDERIZAR TARJETA DE CONFIRMACIÓN
+    // ==========================================
+
+    if (confirmationCard) {
+
+      confirmationCard.classList.remove('hidden');
+
+      const resumenServicio =
+        document.getElementById('resumenServicio');
+
+      const resumenFecha =
+        document.getElementById('resumenFecha');
+
+      const resumenHora =
+        document.getElementById('resumenHora');
+
+      const resumenNombre =
+        document.getElementById('resumenNombre');
+
+      const resumenTel =
+        document.getElementById('resumenTel');
+
+      if (resumenServicio) {
+        resumenServicio.textContent =
+          serviceSelectedText;
+      }
+
+      if (resumenFecha) {
+        resumenFecha.textContent =
+          formattedDate;
+      }
+
+      if (resumenHora) {
+        resumenHora.textContent =
+          selectedTime;
+      }
+
+      if (resumenNombre) {
+        resumenNombre.textContent =
+          custName.value.trim();
+      }
+
+      if (resumenTel) {
+        resumenTel.textContent =
+          custPhone.value.trim();
+      }
+
+      // ==========================================
+      // 9. MENSAJE DE WHATSAPP
+      // ==========================================
+
+      const message =
+        `Hola Natalia! Quisiera reservar un turno.\n\n` +
+
+        `✨ Tratamiento:\n${serviceSelectedText}\n\n` +
+
+        `📅 Fecha:\n${formattedDate}\n\n` +
+
+        `⏰ Horario:\n${selectedTime} Hs\n\n` +
+
+        `👤 Nombre:\n${custName.value.trim()}\n\n` +
+
+        `📱 WhatsApp:\n${custPhone.value.trim()}\n\n` +
+
+        `📝 Comentarios:\n${commentsText}\n\n` +
+
+        `💸 Adjunto el comprobante de la seña ($20.000) abonado al Alias: natali1977.`;
+
+      const btnSendWhatsappBooking =
+        document.getElementById(
+          'btnSendWhatsappBooking'
+        );
+
+      if (btnSendWhatsappBooking) {
+
+        btnSendWhatsappBooking.href =
+          `${WA_BASE_URL}?text=${encodeURIComponent(message)}`;
+
+        btnSendWhatsappBooking.target =
+          '_blank';
+
+      }
+
+      // ==========================================
+      // 10. INICIAR TIMER
+      // ==========================================
+
       startTimer();
+
     }
   }
 
   /* ==========================================
-     9. CARRUSEL DE TESTIMONIOS
+     11. CARRUSEL DE TESTIMONIOS
   ========================================== */
   const testimonialsCarousel = document.getElementById('testimonialsCarousel');
   const prevReviewBtn = document.getElementById('prevReviewBtn');
@@ -915,7 +1070,7 @@ comboButtons.forEach(btn => {
   }
 
   /* ==========================================
-     10. ACORDEÓN DE PREGUNTAS FRECUENTES (FAQ)
+     12. ACORDEÓN DE PREGUNTAS FRECUENTES (FAQ)
   ========================================== */
   const faqItems = document.querySelectorAll('.faq-item');
   faqItems.forEach(item => {
