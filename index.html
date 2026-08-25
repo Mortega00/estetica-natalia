@@ -3,42 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Nativa Estética - Cosmetología y Bienestar en Remedios de Escalada">
-    <title>Nativa Estética | Cosmetología y Estética Profesional</title>
-    <!-- Google Fonts de la Web de Referencia -->
+    
+    <!-- SEO & METADATOS LOCALES -->
+    <title>Nativa Estética | Cosmetología y Bienestar en Remedios de Escalada, Lanús</title>
+    <meta name="description" content="Centro de estética y cosmetología en Remedios de Escalada, Lanús (Zona Sur). Atención personalizada por Natalia Ferrante con más de 25 años de experiencia. Masajes, drenaje linfático, Dermapen y limpieza facial.">
+    <meta name="keywords" content="estetica remedios de escalada, cosmetologia lanus, masajes descontracturantes lanus, drenaje linfatico escalada, dermapen zona sur, limpieza facial profunda, maderoterapia lanus, nativa estetica natalia ferrante">
+    <meta name="author" content="Natalia Ferrante">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://mortega00.github.io/estetica-natalia/">
+
+    <!-- GEOLOCALIZACIÓN LOCAL (LANÚS / ZONA SUR) -->
+    <meta name="geo.region" content="AR-B">
+    <meta name="geo.placename" content="Remedios de Escalada, Partido de Lanús, Buenos Aires">
+    <meta name="geo.position" content="-34.7275;-58.3989">
+    <meta name="ICBM" content="-34.7275, -58.3989">
+
+    <!-- OPEN GRAPH / SOCIAL -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mortega00.github.io/estetica-natalia/">
+    <meta property="og:title" content="Nativa Estética | Salud, Belleza y Bienestar para tu Piel">
+    <meta property="og:description" content="Atención personalizada por Natalia Ferrante (+25 años de trayectoria). Tratamientos faciales, corporales y masajes en Remedios de Escalada.">
+    <meta property="og:image" content="assets/nativa-estetica.png">
+    <meta property="og:locale" content="es_AR">
+
+    <!-- SCHEMA JSON-LD (NEGOCIO LOCAL) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BeautySalon",
+      "name": "Nativa Estética",
+      "image": "assets/nativa-estetica.png",
+      "description": "Centro de cosmetología, estética y bienestar integral atendido por Natalia Ferrante con más de 25 años de experiencia en Remedios de Escalada.",
+      "telephone": "+5491132194320",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Remedios de Escalada",
+        "addressLocality": "Lanús",
+        "addressRegion": "Buenos Aires",
+        "postalCode": "1826",
+        "addressCountry": "AR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -34.7275,
+        "longitude": -58.3989
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "09:00",
+          "closes": "19:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Saturday"],
+          "opens": "09:00",
+          "closes": "16:00"
+        }
+      ],
+      "priceRange": "$$$"
+    }
+    </script>
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <!-- HEADER / NAVBAR OPTIMIZADO -->
+    <!-- 0. BARRA SUPERIOR PROMOCIONAL (CONFIGURABLE) -->
+    <aside class="promo-bar" id="promoBar" aria-label="Aviso promocional">
+        <div class="container promo-bar-content">
+            <span class="promo-badge"><i class="fa-solid fa-sparkles"></i> PROMO VIGENTE</span>
+            <p class="promo-text" id="promoText">
+                ✨ <strong>PROMO TEMPORADA</strong> | 15% OFF en tu primera sesión reservando online
+            </p>
+            <a href="#reserva" class="promo-link">Reservar con Descuento <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+    </aside>
+
+    <!-- HEADER / NAVBAR -->
     <header class="header">
         <div class="container header-content">
-            <a href="#inicio" class="brand-logo">
+            <a href="#inicio" class="brand-logo" aria-label="Ir al inicio de Nativa Estética">
                 <img src="assets/favicon.png" alt="Nativa Estética Logo" class="logo-icon">
                 <div class="brand-text">
                     <span class="brand-name">NATIVA</span>
-                    <span class="brand-tagline">ESTÉTICA</span>
+                    <span class="brand-tagline">ESTÉTICA & BIENESTAR</span>
                 </div>
             </a>
 
-            <button class="mobile-toggle" id="mobileToggle" aria-label="Abrir menú">
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Abrir menú de navegación" aria-expanded="false">
                 <i class="fa-solid fa-bars"></i>
             </button>
 
             <nav class="nav" id="navMenu">
-        <a href="#inicio">Inicio</a>
-        <a href="#tratamientos">Tratamientos</a>
-        <a href="#combos">Combos</a>
-        <a href="#quien-soy">Quién Soy</a>
-        <a href="#faq">Preguntas Frecuentes</a>
-        <a href="#reservar" class="btn-nav">Reservar Turno</a>
-        </nav>
-    </div>
+                <a href="#inicio" class="nav-link">Inicio</a>
+                <a href="#tratamientos" class="nav-link">Tratamientos</a>
+                <a href="#combos" class="nav-link">Planes & Combos</a>
+                <a href="#condiciones-planes" class="nav-link">Condiciones</a>
+                <a href="#quien-soy" class="nav-link">Sobre Nativa</a>
+                <a href="#antes-despues" class="nav-link">Antes y Después</a>
+                <a href="#faq" class="nav-link">FAQ</a>
+                <a href="#reserva" class="btn-nav">Reservar Turno</a>
+
+                <!-- Accesos directos a redes exclusivos para vista mobile -->
+                <div class="nav-mobile-socials">
+                    <p class="mobile-socials-title">Contactate con Natalia:</p>
+                    <div class="mobile-socials-grid">
+                        <a href="https://wa.me/5491132194320?text=Hola%20Natalia,%20quisiera%20recibir%20asesoramiento%20personalizado" target="_blank" rel="noopener noreferrer" class="mobile-social-btn wa">
+                            <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                        </a>
+                        <a href="https://www.instagram.com/drenajelinfatico_escalada?igsh=YjNtMHRyNHNjYXoz" target="_blank" rel="noopener noreferrer" class="mobile-social-btn ig">
+                            <i class="fa-brands fa-instagram"></i> Instagram
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
     </header>
 
     <!-- 1. HERO SECTION -->
@@ -46,753 +134,968 @@
         <div class="container">
             <div class="hero-grid">
                 <div class="hero-content">
-                    <span class="hero-badge">ESTÉTICA & BIENESTAR INTEGRAL</span>
+                    <span class="hero-badge"><i class="fa-solid fa-certificate"></i> ESTÉTICA & BIENESTAR INTEGRAL</span>
                     <h1>Salud, belleza y bienestar para tu piel</h1>
-                    <p>Atención personalizada por Natalia Ferrante, cosmetóloga y esteticista con más de 25 años de trayectoria dedicados al cuidado integral.</p>
+                    <p class="hero-subtitle">
+                        Atención personalizada por <strong>Natalia Ferrante</strong>, cosmetóloga y esteticista con más de 25 años de trayectoria profesional en Remedios de Escalada, Lanús.
+                    </p>
+                    
                     <div class="hero-actions">
-                        <a href="#reservar" class="btn-primary"><i class="fa-regular fa-calendar-check"></i> Reservar Turno</a>
-                        <a href="#tratamientos" class="btn-secondary">Ver Tratamientos</a>
+                        <a href="#reserva" class="btn-primary">
+                            <i class="fa-regular fa-calendar-check"></i> Reservar Turno
+                        </a>
+                        <a href="#quien-soy" class="btn-secondary">
+                            <i class="fa-regular fa-user"></i> Conocer a Natalia
+                        </a>
+                    </div>
+
+                    <!-- Puntos de Confianza / Trust Badges -->
+                    <div class="hero-trust-bar">
+                        <div class="trust-item">
+                            <i class="fa-solid fa-award"></i>
+                            <span><strong>+25 Años</strong> de Experiencia</span>
+                        </div>
+                        <div class="trust-item">
+                            <i class="fa-solid fa-spa"></i>
+                            <span><strong>Gabinete</strong> Privado & Higiénico</span>
+                        </div>
+                        <div class="trust-item">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span><strong>Remedios de Escalada</strong> (Lanús)</span>
+                        </div>
                     </div>
                 </div>
+
                 <div class="hero-image-container">
-            <img src="assets/nativa-estetica.png" alt="Nativa Estética Bienestar" class="hero-image">
-            </div>
+                    <img src="assets/nativa-estetica.png" alt="Nativa Estética Bienestar y Cosmetología" class="hero-image" loading="eager">
+                    <div class="hero-floating-badge">
+                        <i class="fa-solid fa-heart"></i>
+                        <div>
+                            <strong>Atención 1 a 1</strong>
+                            <small>Diagnóstico exclusivo</small>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- 2. TRATAMIENTOS -->
-<section class="services-section" id="tratamientos">
-    <div class="container">
-        
-        <!-- Tarjeta de Autoridad / Trayectoria integrada -->
-        <div class="trayectoria-badge" style="background: var(--color-nude, #fbf7f4); padding: 20px; border-radius: 12px; border: 1px solid var(--color-primario, #d4af37); text-align: center; margin-bottom: 35px;">
-            <h3 style="font-family: var(--fuente-titulo); color: var(--color-oscuro, #2c2c2c); margin-bottom: 8px;">25 Años de Experiencia en Estética Profesional</h3>
-            <p style="font-size: 0.95rem; color: #555; margin: 0; max-width: 800px; margin: 0 auto;">Atención 100% personalizada por Natalia Ferrante. Cada piel y cada cuerpo requieren diagnóstico experto y productos de primera línea para garantizar resultados visibles y seguros.</p>
-        </div>
-
-        <div class="section-title-container">
-            <span class="subtitle">NUESTROS SERVICIOS</span>
-            <h2>Tratamientos Profesionales</h2>
-            <p class="section-desc">Técnicas especializadas diseñadas para sesión individual o planes intensivos x10</p>
-        </div>
-
-        <div class="services-grid">
-            <!-- Dermapen -->
-            <div class="service-card" data-id="dermapen">
-                <div class="card-image-wrapper">
-                    <img src="assets/dermapen.png" alt="Dermapen">
-                </div>
-                <div class="card-info">
-                    <span class="card-badge">Facial • x1 o Plan x10</span>
-                    <h3>Dermapen & Nutrición</h3>
-                    <p class="card-problem">Microagujas que estimulan la producción natural de colágeno, atenuando líneas de expresión, manchas y cicatrices.</p>
-                    <span class="btn-card-more">Ver detalles y beneficios &rarr;</span>
-                </div>
-            </div>
-
-            <!-- Drenaje Linfático -->
-            <div class="service-card" data-id="drenaje-linfatico">
-                <div class="card-image-wrapper">
-                    <img src="assets/drenaje-linfatico.png" alt="Drenaje Linfático Manual">
-                </div>
-                <div class="card-info">
-                    <span class="card-badge">Corporal • x1 o Plan x10</span>
-                    <h3>Drenaje Linfático Manual</h3>
-                    <p class="card-problem">Técnica suave de masajes para reducir la retención de líquidos, desinflamar y favorecer la eliminación de toxinas.</p>
-                    <span class="btn-card-more">Ver detalles y beneficios &rarr;</span>
-                </div>
-            </div>
-
-            <!-- Masaje Descontracturante -->
-            <div class="service-card" data-id="masaje-descontracturante">
-                <div class="card-image-wrapper">
-                    <img src="assets/masajes-descontracturantes1.png" alt="Masaje Descontracturante">
-                </div>
-                <div class="card-info">
-                    <span class="card-badge">Corporal • x1 o Plan x10</span>
-                    <h3>Masaje Descontracturante</h3>
-                    <p class="card-problem">Terapia física profunda focalizada en liberar tensiones musculares acumuladas, contracturas y fatiga diaria.</p>
-                    <span class="btn-card-more">Ver detalles y beneficios &rarr;</span>
-                </div>
-            </div>
-
-            <!-- Piedras Calientes -->
-            <div class="service-card" data-id="piedras-calientes">
-                <div class="card-image-wrapper">
-                    <img src="assets/piedras-calientes.png" alt="Masaje con Piedras Calientes">
-                </div>
-                <div class="card-info">
-                    <span class="card-badge">Corporal / Relax • x1 o Plan x10</span>
-                    <h3>Masaje con Piedras Calientes</h3>
-                    <p class="card-problem">Terapia relajante corporal que aliviana tensiones musculares y estimula la circulación con calor terapéutico.</p>
-                    <span class="btn-card-more">Ver detalles y beneficios &rarr;</span>
-                </div>
-            </div>
-
-            <!-- Limpieza Facial -->
-            <div class="service-card" data-id="limpieza-profunda">
-                <div class="card-image-wrapper">
-                    <img src="assets/salud-bienestar.png" alt="Limpieza Facial">
-                </div>
-                <div class="card-info">
-                    <span class="card-badge">Facial • x1 o Plan x10</span>
-                    <h3>Limpieza Facial Profunda</h3>
-                    <p class="card-problem">Higienización, extracción de impurezas, exfoliación y máscaras nutritivas para devolver la vitalidad a tu rostro.</p>
-                    <span class="btn-card-more">Ver detalles y beneficios &rarr;</span>
-                </div>
-            </div>
-
-            <!-- Maderoterapia -->
-            <div class="service-card" data-id="maderoterapia">
-                <div class="card-image-wrapper">
-                    <img src="assets/maderoterapia.png" alt="Maderoterapia">
-                </div>
-                <div class="card-info">
-                    <span class="card-badge">Corporal • x1 o Plan x10</span>
-                    <h3>Maderoterapia Corporal</h3>
-                    <p class="card-problem">Técnica holística de remodelación mediante utensilios de madera para tonificar y activar la circulación.</p>
-                    <span class="btn-card-more">Ver detalles y beneficios &rarr;</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- 3. COMBOS EXCLUSIVOS -->
-<section class="services-section" id="combos">
-    <div class="container">
-        <div class="section-title-container">
-            <span class="subtitle">OPCIONES COMBINADAS Y PACKS</span>
-            <h2>Combos Exclusivos & Packs x10</h2>
-            <p class="section-desc">Deslizá para conocer nuestros planes de transformación con tarifa preferencial</p>
-        </div>
-        
-        <!-- Carrusel / Slider Horizontal -->
-        <div class="combos-grid">
+    <!-- 2. TRATAMIENTOS (CATÁLOGO CON PRECIOS REALES) -->
+    <section class="services-section" id="tratamientos">
+        <div class="container">
             
-            <!-- Combo 1 -->
-            <div class="combo-card" data-id="combo-1">
-                <div class="combo-badge">Pack x10 Sesiones</div>
-                <h3 class="combo-title">Masaje Descontracturante + Piedras Calientes</h3>
-                <div class="combo-price">$40.000 <small style="font-size: 0.8rem; font-weight: normal; display: block; color: #666;">por sesión abonando el plan</small></div>
-                <p class="combo-desc">Tratamiento integral enfocado en la relajación profunda del tono muscular y la descontractura profunda.</p>
-                <div class="card-actions">
-                    <button class="btn-primary select-combo-btn" data-service="Combo: Masaje Descontracturante + Piedras Calientes ($40.000)">Reservar Combo</button>
+            <!-- Banner de Autoridad y Diagnóstico Experto -->
+            <div class="trayectoria-badge">
+                <div class="trayectoria-icon">
+                    <i class="fa-solid fa-gem"></i>
+                </div>
+                <div class="trayectoria-info">
+                    <h3>25 Años de Experiencia en Estética Profesional</h3>
+                    <p>Atención 100% personalizada por Natalia Ferrante. Cada piel y cada cuerpo requieren diagnóstico experto y productos cosmecéuticos de primera línea para garantizar resultados visibles, seguros y duraderos.</p>
                 </div>
             </div>
 
-            <!-- Combo 2 -->
-            <div class="combo-card" data-id="combo-2">
-                <div class="combo-badge">Pack x10 Sesiones</div>
-                <h3 class="combo-title">Drenaje Linfático Manual</h3>
-                <div class="combo-price">$40.000 <small style="font-size: 0.8rem; font-weight: normal; display: block; color: #666;">por sesión abonando el plan</small></div>
-                <p class="combo-desc">Ciclo completo para la estimulación de la circulación linfática, reducción de retención de líquidos y toxinas.</p>
-                <div class="card-actions">
-                    <button class="btn-primary select-combo-btn" data-service="Combo: Drenaje Linfático ($40.000)">Reservar Combo</button>
-                </div>
+            <div class="section-title-container">
+                <span class="subtitle">NUESTROS SERVICIOS</span>
+                <h2>Tratamientos Profesionales</h2>
+                <p class="section-desc">Técnicas avanzadas disponibles en sesiones individuales o planes de ahorro intensivos</p>
             </div>
 
-            <!-- Combo 3 -->
-            <div class="combo-card" data-id="combo-3">
-                <div class="combo-badge">Pack x10 Sesiones</div>
-                <h3 class="combo-title">Drenaje + Masaje Descontracturante</h3>
-                <div class="combo-price">$50.000 <small style="font-size: 0.8rem; font-weight: normal; display: block; color: #666;">por sesión abonando el plan</small></div>
-                <p class="combo-desc">Combinación intensiva de alivio muscular y desinflamación corporal distribuida en 10 sesiones.</p>
-                <div class="card-actions">
-                    <button class="btn-primary select-combo-btn" data-service="Combo: Drenaje + Masaje Descontracturante ($50.000)">Reservar Combo</button>
-                </div>
-            </div>
-
-            <!-- Combo 4 (NUEVO) -->
-            <div class="combo-card" data-id="combo-4">
-                <div class="combo-badge">Pack Modelador x10</div>
-                <h3 class="combo-title">Maderoterapia + Drenaje Linfático</h3>
-                <div class="combo-price">$48.000 <small style="font-size: 0.8rem; font-weight: normal; display: block; color: #666;">por sesión abonando el plan</small></div>
-                <p class="combo-desc">Técnica combinada para tonificar tejidos, remodelar el contorno corporal y favorecer la eliminación de adiposidad.</p>
-                <div class="card-actions">
-                    <button class="btn-primary select-combo-btn" data-service="Combo: Maderoterapia + Drenaje ($48.000)">Reservar Combo</button>
-                </div>
-            </div>
-
-            <!-- Combo 5 (DESTACADO / FACIAL) -->
-            <div class="combo-card combo-featured" data-id="combo-5">
-                <div class="combo-badge">Protocolo VIP Renovador</div>
-                <h3 class="combo-title">Combo Facial Completo</h3>
-                <div class="combo-price">$68.000 <small style="font-size: 0.8rem; font-weight: normal; display: block; color: #666;">sesión única intensiva</small></div>
-                <p class="combo-desc">Protocolo integral renovador que combina Limpieza Facial Hidratante, Radiofrecuencia y Punta de Diamante.</p>
-                <div class="card-actions">
-                    <button class="btn-primary select-combo-btn" data-service="Combo Facial Completo ($68.000)">Reservar Combo</button>
-                </div>
-            </div>
-
-            <!-- Combo 6 (NUEVO / SPA DAY) -->
-            <div class="combo-card" data-id="combo-6">
-                <div class="combo-badge">Experiencia Relax</div>
-                <h3 class="combo-title">Glow Facial + Masaje Relax</h3>
-                <div class="combo-price">$58.000 <small style="font-size: 0.8rem; font-weight: normal; display: block; color: #666;">sesión doble combinada</small></div>
-                <p class="combo-desc">Sesión intensiva de 90 minutos que combina higienización facial iluminadora con masaje corporal relajante.</p>
-                <div class="card-actions">
-                    <button class="btn-primary select-combo-btn" data-service="Combo: Glow Facial + Masaje Relax ($58.000)">Reservar Combo</button>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- Indicador visual de deslizar para móviles -->
-        <div style="text-align: center; margin-top: 10px; font-size: 0.85rem; color: #888;">
-            <span>&larr; Deslizá para ver más combos &rarr;</span>
-        </div>
-
-        <!-- Claridad comercial sobre el pago -->
-        <p style="text-align: center; font-size: 0.85rem; color: #777; margin-top: 25px; font-style: italic;">
-            * Los valores preferenciales en packs de 10 sesiones aplican abonando el 50% en la 1° sesión y el 50% restante en la 5° sesión.
-        </p>
-    </div>
-</section>
-
-    <!-- 4. SECCIÓN AGENDA DE TURNOS -->
-<section id="reserva" class="booking-section">
-    <div class="container">
-        <div class="section-title-container">
-            <span class="subtitle">Agenda de Turnos</span>
-            <h2>Reservá tu Espacio</h2>
-            <p class="section-desc">Seleccioná tu tratamiento, elegí la fecha ideal y asegurá tu turno</p>
-        </div>
-
-        <div class="booking-wrapper">
-            <!-- INDICADOR DE PASOS DEL WIZARD -->
-            <div class="wizard-steps-indicator">
-                <div class="step-item active">1. Tratamiento</div>
-                <div class="step-item">2. Fecha y Horario</div>
-                <div class="step-item">3. Sus Datos</div>
-                <div class="step-item">4. Confirmación</div>
-            </div>
-
-            <!-- PASO 1: Selección de Servicio -->
-            <div class="wizard-pane" id="stepPane1">
-                <h3 class="step-pane-title">1. Tratamiento o Combo seleccionado</h3>
-                <div class="form-group">
-                    <select id="selectService" class="form-control">
-                        <option value="" disabled>-- Seleccioná una opción --</option>
-                        
-                        <!-- TRATAMIENTOS INDIVIDUALES Y PACKS -->
-                        <optgroup label="Dermapen & Nutrición">
-                            <option value="Dermapen & Nutrición (1 Sesión - 60 min)">Dermapen & Nutrición — 1 Sesión (60 min)</option>
-                            <option value="Dermapen & Nutrición (Plan x10)">Dermapen & Nutrición — Plan x10</option>
-                        </optgroup>
-
-                        <optgroup label="Drenaje Linfático Manual">
-                            <option value="Drenaje Linfático Manual (1 Sesión - 60 min)">Drenaje Linfático Manual — 1 Sesión (60 min)</option>
-                            <option value="Drenaje Linfático Manual (Plan x10)">Drenaje Linfático Manual — Plan x10</option>
-                        </optgroup>
-
-                        <optgroup label="Masaje Descontracturante">
-                            <option value="Masaje Descontracturante (1 Sesión - 60 min)">Masaje Descontracturante — 1 Sesión (60 min)</option>
-                            <option value="Masaje Descontracturante (Plan x10)">Masaje Descontracturante — Plan x10</option>
-                        </optgroup>
-
-                        <optgroup label="Masaje con Piedras Calientes">
-                            <option value="Masaje con Piedras Calientes (1 Sesión - 60 min)">Masaje con Piedras Calientes — 1 Sesión (60 min)</option>
-                            <option value="Masaje con Piedras Calientes (Plan x10)">Masaje con Piedras Calientes — Plan x10</option>
-                        </optgroup>
-
-                        <optgroup label="Limpieza Facial Profunda">
-                            <option value="Limpieza Facial Profunda (1 Sesión - 60 min)" selected>Limpieza Facial Profunda — 1 Sesión (60 min)</option>
-                            <option value="Limpieza Facial Profunda (Plan x10)">Limpieza Facial Profunda — Plan x10</option>
-                        </optgroup>
-
-                        <optgroup label="Maderoterapia Corporal">
-                            <option value="Maderoterapia Corporal (1 Sesión - 60 min)">Maderoterapia Corporal — 1 Sesión (60 min)</option>
-                            <option value="Maderoterapia Corporal (Plan x10)">Maderoterapia Corporal — Plan x10</option>
-                        </optgroup>
-
-                        <!-- COMBOS EXCLUSIVOS -->
-                        <optgroup label="Combos Exclusivos & Packs">
-                            <option value="Combo: Masaje Descontracturante + Piedras Calientes ($40.000)">Combo: Descontracturante + Piedras Calientes ($40.000/sesión)</option>
-                            <option value="Combo: Drenaje Linfático ($40.000)">Combo: Drenaje Linfático ($40.000/sesión)</option>
-                            <option value="Combo: Drenaje + Masaje Descontracturante ($50.000)">Combo: Drenaje + Descontracturante ($50.000/sesión)</option>
-                            <option value="Combo: Maderoterapia + Drenaje ($48.000)">Combo: Maderoterapia + Drenaje ($48.000/sesión)</option>
-                            <option value="Combo Facial Completo ($68.000)">Combo Facial Completo ($68.000)</option>
-                            <option value="Combo: Glow Facial + Masaje Relax ($58.000)">Combo: Glow Facial + Masaje Relax ($58.000)</option>
-                        </optgroup>
-                    </select>
-                </div>
-            </div>
-
-            <!-- PASO 2: Calendario y Horarios -->
-            <div class="wizard-pane hidden" id="stepPane2">
-                <h3 class="step-pane-title">2. Selección de Fecha y Horario</h3>
-                <div class="calendar-layout">
-                    <!-- Calendario Visual -->
-                    <div class="cal-box">
-                        <div class="cal-header">
-                            <button class="cal-nav-btn" id="prevMonthBtn" type="button" aria-label="Mes anterior"><i class="fa-solid fa-chevron-left"></i></button>
-                            <h4 id="calMonthTitle">Agosto 2026</h4>
-                            <button class="cal-nav-btn" id="nextMonthBtn" type="button" aria-label="Mes siguiente"><i class="fa-solid fa-chevron-right"></i></button>
-                        </div>
-                        <div class="cal-grid" id="calDaysGrid">
-                            <!-- Generado dinámicamente por JS -->
-                        </div>
-                    </div>
-
-                    <!-- Horarios Disponibles -->
-                    <details class="time-box time-box-collapsible" open>
-                        <summary>
-                            <div>
-                                <h4 class="time-box-title" style="margin: 0; display: inline-block;">Horarios Disponibles</h4>
-                                <p class="time-box-subtitle" style="margin: 2px 0 0 0;">Atención: Lunes a Sábado (08:00 a 20:00 Hs)</p>
-                            </div>
-                        </summary>
-                        <div class="time-grid" id="timeGrid">
-                            <!-- Los chips de horarios se inyectarán desde el JS dinámicamente -->
-                        </div>
-                    </details>
-                </div> <!-- /.calendar-layout -->
-            </div> <!-- /#stepPane2 -->
-
-            <!-- PASO 3: Formulario de Contacto -->
-            <div class="wizard-pane hidden" id="stepPane3">
-                <h3 class="step-pane-title">3. Completa tus datos de contacto:</h3>
+            <div class="services-grid">
                 
-                <!-- TRAMPA ANTI-BOT (HONEYPOT) INVISIBLE -->
-                <div style="display:none !important; visibility:hidden !important;" aria-hidden="true">
-                    <input type="text" id="website_hp" name="website_hp" tabindex="-1" autocomplete="off">
-                </div>
-
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="custName">Nombre y Apellido *</label>
-                        <input type="text" id="custName" class="form-control" placeholder="Ej: María García">
+                <!-- 1. Dermapen + Skincare / Glow -->
+                <div class="service-card" data-id="dermapen">
+                    <div class="card-image-wrapper">
+                        <img src="assets/dermapen.png" alt="Dermapen y Skincare Glow" loading="lazy">
                     </div>
-                    <div class="form-group">
-                        <label for="custPhone">WhatsApp / Teléfono *</label>
-                        <input type="tel" id="custPhone" class="form-control" placeholder="Ej: 11 2233 4455">
-                    </div>
-                    <div class="form-group full">
-                        <label for="custNotes">Comentarios Opcionales</label>
-                        <textarea id="custNotes" class="form-control" rows="3" placeholder="Aclaraciones, dolencias o inquietudes..."></textarea>
-                    </div>
-                </div>
-            </div>
-
-            <!-- PASO 4: Resumen y Confirmación -->
-            <div class="wizard-pane hidden" id="stepPane4">
-                <h3 class="step-pane-title">4. Resumen y Datos de Pago</h3>
-                <div class="summary-box">
-                    <div class="summary-item">
-                        <span>Tratamiento:</span>
-                        <strong id="sumService">Limpieza Facial Profunda</strong>
-                    </div>
-                    <div class="summary-item">
-                        <span>Duración estimada:</span>
-                        <strong>60 min por sesión</strong>
-                    </div>
-                    <div class="summary-item">
-                        <span>Fecha seleccionada:</span>
-                        <strong id="sumDate">-</strong>
-                    </div>
-                    <div class="summary-item">
-                        <span>Horario:</span>
-                        <strong id="sumTime">09:00 Hs</strong>
-                    </div>
-                    <div class="summary-item">
-                        <span>Nombre:</span>
-                        <strong id="sumName">-</strong>
-                    </div>
-                    <div class="summary-item">
-                        <span>WhatsApp:</span>
-                        <strong id="sumPhone">-</strong>
-                    </div>
-                </div>
-
-                <!-- TARJETA DE DATOS BANCARIOS DE TRANSFERENCIA -->
-                <div class="bank-card">
-                    <div class="bank-card-header">
-                        <i class="fa-solid fa-building-columns"></i>
-                        <strong>Datos para transferir la seña ($20.000)</strong>
-                    </div>
-                    <div class="bank-card-body">
-                        <div class="bank-item">
-                            <span>Alias:</span>
-                            <div class="alias-container">
-                                <strong id="aliasText">natali1977</strong>
-                                <button type="button" class="btn-copy" id="btnCopyAlias" aria-label="Copiar Alias">
-                                    <i class="fa-regular fa-copy"></i> Copiar
-                                </button>
-                            </div>
+                    <div class="card-info">
+                        <span class="card-badge">Facial • Sesión o Plan x5</span>
+                        <h3>Dermapen + Rutina Glow</h3>
+                        <p class="card-problem">Microagujas que estimulan colágeno, atenuando líneas, manchas y cicatrices. Con Vitamina C, ácido hialurónico y sérum. (1 vez/mes).</p>
+                        <div class="card-price-row">
+                            <span class="price-single">Sesión: $75.000</span>
+                            <span class="price-pack">Plan x5: $60.000/ses</span>
                         </div>
-                        <div class="bank-item">
-                            <span>Titular:</span>
-                            <strong>Natalia Ferrante</strong>
+                        <span class="btn-card-more">Ver detalles y reservar &rarr;</span>
+                    </div>
+                </div>
+
+                <!-- 2. Drenaje Linfático Manual -->
+                <div class="service-card" data-id="drenaje-linfatico">
+                    <div class="card-image-wrapper">
+                        <img src="assets/drenaje-linfatico.png" alt="Drenaje Linfático Manual" loading="lazy">
+                    </div>
+                    <div class="card-info">
+                        <span class="card-badge">Corporal • Sesión o Plan x10</span>
+                        <h3>Drenaje Linfático Manual</h3>
+                        <p class="card-problem">Masaje rítmico suave para eliminar toxinas, desinflamar y reducir retención de líquidos. Ideal para edemas, celulitis y post-op.</p>
+                        <div class="card-price-row">
+                            <span class="price-single">Sesión: $55.000</span>
+                            <span class="price-pack">Plan x10: $45.000/ses</span>
+                        </div>
+                        <span class="btn-card-more">Ver detalles y reservar &rarr;</span>
+                    </div>
+                </div>
+
+                <!-- 3. Drenaje Linfático Embarazo -->
+                <div class="service-card" data-id="drenaje-embarazo">
+                    <div class="card-image-wrapper">
+                        <img src="assets/drenaje-linfatico.png" alt="Drenaje Linfático para Embarazadas" loading="lazy">
+                    </div>
+                    <div class="card-info">
+                        <span class="card-badge highlight-badge">Especial Embarazo • Plan x10</span>
+                        <h3>Drenaje Linfático (Embarazo)</h3>
+                        <p class="card-problem">Protocolo seguro y suave para etapas pre y post embarazo. Alivia la pesadez en piernas, deshincha tobillos y mejora el retorno venoso.</p>
+                        <div class="card-price-row">
+                            <span class="price-pack solo-pack">Plan x10: $45.000/ses</span>
+                        </div>
+                        <span class="btn-card-more">Ver detalles y reservar &rarr;</span>
+                    </div>
+                </div>
+
+                <!-- 4. Masaje Descontracturante -->
+                <div class="service-card" data-id="masaje-descontracturante">
+                    <div class="card-image-wrapper">
+                        <img src="assets/masajes-descontracturantes1.png" alt="Masaje Descontracturante" loading="lazy">
+                    </div>
+                    <div class="card-info">
+                        <span class="card-badge">Corporal • Sesión o Plan x10</span>
+                        <h3>Masaje Descontracturante</h3>
+                        <p class="card-problem">Terapia profunda focalizada en desarticular contracturas, aliviar tensiones en espalda, cuello y fatiga muscular diaria.</p>
+                        <div class="card-price-row">
+                            <span class="price-single">Sesión: $50.000</span>
+                            <span class="price-pack">Plan x10: $40.000/ses</span>
+                        </div>
+                        <span class="btn-card-more">Ver detalles y reservar &rarr;</span>
+                    </div>
+                </div>
+
+                <!-- 5. Piedras Calientes -->
+                <div class="service-card" data-id="piedras-calientes">
+                    <div class="card-image-wrapper">
+                        <img src="assets/piedras-calientes.png" alt="Masaje con Piedras Calientes" loading="lazy">
+                    </div>
+                    <div class="card-info">
+                        <span class="card-badge">Corporal & Relax • Sesión o Plan x10</span>
+                        <h3>Masaje con Piedras Calientes</h3>
+                        <p class="card-problem">Termoterapia volcánica combinada con maniobras relajantes para aliviar dolores profundos, estrés y restablecer el balance bioenergético.</p>
+                        <div class="card-price-row">
+                            <span class="price-single">Sesión: $50.000</span>
+                            <span class="price-pack">Plan x10: $40.000/ses</span>
+                        </div>
+                        <span class="btn-card-more">Ver detalles y reservar &rarr;</span>
+                    </div>
+                </div>
+
+                <!-- 6. Limpieza Facial Profunda -->
+                <div class="service-card" data-id="limpieza-profunda">
+                    <div class="card-image-wrapper">
+                        <img src="assets/salud-bienestar.png" alt="Limpieza Facial Profunda" loading="lazy">
+                    </div>
+                    <div class="card-info">
+                        <span class="card-badge">Facial • Sesión Individual</span>
+                        <h3>Limpieza Facial Profunda</h3>
+                        <p class="card-problem">Higienización completa, extracción de impurezas, exfoliación y máscaras descongestivas nutritivas según tu biotipo. (1 vez/mes).</p>
+                        <div class="card-price-row">
+                            <span class="price-single solo-single">Sesión única: $45.000</span>
+                        </div>
+                        <span class="btn-card-more">Ver detalles y reservar &rarr;</span>
+                    </div>
+                </div>
+
+                <!-- 7. Maderoterapia Corporal -->
+                <div class="service-card" data-id="maderoterapia">
+                    <div class="card-image-wrapper">
+                        <img src="assets/maderoterapia.png" alt="Maderoterapia Corporal" loading="lazy">
+                    </div>
+                    <div class="card-info">
+                        <span class="card-badge highlight-badge">Modelador • En Combo con Drenaje</span>
+                        <h3>Maderoterapia Corporal</h3>
+                        <p class="card-problem">Técnica holística de modelado con utensilios de madera. *Sin sesión individual: se realiza en combo con Drenaje x10 (2 veces/sem).*</p>
+                        <div class="card-price-row">
+                            <span class="price-pack solo-pack">En Plan x10: $60.000/ses</span>
+                        </div>
+                        <span class="btn-card-more">Ver combo y reservar &rarr;</span>
+                    </div>
+                </div>
+
+                <!-- 8. Tarjeta Estacional: Depilación Definitiva -->
+                <div class="service-card seasonal-card" data-id="depilacion-definitiva">
+                    <div class="card-image-wrapper">
+                        <img src="assets/spa.png" alt="Depilación Definitiva Láser" loading="lazy">
+                    </div>
+                    <div class="card-info">
+                        <span class="card-badge seasonal-badge"><i class="fa-regular fa-clock"></i> Disponible por Temporada</span>
+                        <h3>Depilación Definitiva</h3>
+                        <p class="card-problem">Jornadas exclusivas con aparatología láser de última generación. Consultá las próximas fechas disponibles de atención.</p>
+                        <div class="card-price-row">
+                            <span class="price-seasonal">Consultar fechas y zonas</span>
+                        </div>
+                        <span class="btn-card-more">Consultar por WhatsApp &rarr;</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. COMBOS EXCLUSIVOS & PACKS -->
+    <section class="services-section combos-section" id="combos">
+        <div class="container">
+            <div class="section-title-container">
+                <span class="subtitle">OPCIONES COMBINADAS Y PACKS</span>
+                <h2>Combos Exclusivos & Planes de Ahorro</h2>
+                <p class="section-desc">Deslizá para conocer nuestros programas intensivos de transformación con tarifa preferencial</p>
+            </div>
+            
+            <!-- Carrusel / Slider Horizontal de Combos -->
+            <div class="combos-grid">
+                
+                <!-- Combo 1: Descontracturante + Piedras + Reiki -->
+                <div class="combo-card" data-id="combo-descontracturante-piedras-reiki">
+                    <div class="combo-badge">Pack x10 Sesiones</div>
+                    <h3 class="combo-title">Descontracturante + Piedras + Reiki</h3>
+                    <div class="combo-price">$45.000 <small>por sesión abonando el plan</small></div>
+                    <p class="combo-desc">Triple acción integral: relajación muscular profunda, termoterapia volcánica y alineación energética holística.</p>
+                    <div class="card-actions">
+                        <button class="btn-primary select-combo-btn" data-service="Combo: Descontracturante + Piedras + Reiki x10 ($45.000)">Reservar Combo</button>
+                    </div>
+                </div>
+
+                <!-- Combo 2: Drenaje + Ultrasonido -->
+                <div class="combo-card combo-featured" data-id="combo-drenaje-ultrasonido">
+                    <div class="combo-badge">Pack x10 Post-Op / Reducción</div>
+                    <h3 class="combo-title">Drenaje + Ultrasonido</h3>
+                    <div class="combo-price">$45.000 <small>por sesión abonando el plan</small></div>
+                    <p class="combo-desc">Especial para post-operatorios, cirugías plásticas o celulitis rebelde. Acelera la desinflamación y previene fibrosis.</p>
+                    <div class="card-actions">
+                        <button class="btn-primary select-combo-btn" data-service="Combo: Drenaje + Ultrasonido x10 ($45.000)">Reservar Combo</button>
+                    </div>
+                </div>
+
+                <!-- Combo 3: Drenaje + Descontracturante -->
+                <div class="combo-card" data-id="combo-drenaje-descontracturante">
+                    <div class="combo-badge">Pack x10 Sesiones</div>
+                    <h3 class="combo-title">Drenaje + Descontracturante</h3>
+                    <div class="combo-price">$50.000 <small>por sesión abonando el plan</small></div>
+                    <p class="combo-desc">Combinación perfecta de alivio muscular y desintoxicación corporal distribuida en 10 encuentros.</p>
+                    <div class="card-actions">
+                        <button class="btn-primary select-combo-btn" data-service="Combo: Drenaje + Descontracturante x10 ($50.000)">Reservar Combo</button>
+                    </div>
+                </div>
+
+                <!-- Combo 4: Maderoterapia + Drenaje -->
+                <div class="combo-card" data-id="combo-maderoterapia-drenaje">
+                    <div class="combo-badge">Pack Modelador x10 (2 veces/sem)</div>
+                    <h3 class="combo-title">Maderoterapia + Drenaje</h3>
+                    <div class="combo-price">$60.000 <small>por sesión abonando el plan</small></div>
+                    <p class="combo-desc">Protocolo intensivo reductor para tonificar tejidos, remodelar el contorno y eliminar adiposidad localizada.</p>
+                    <div class="card-actions">
+                        <button class="btn-primary select-combo-btn" data-service="Combo: Maderoterapia + Drenaje x10 ($60.000)">Reservar Combo</button>
+                    </div>
+                </div>
+
+                <!-- Combo 5: Reflexología Manos + Pies -->
+                <div class="combo-card" data-id="combo-reflexologia">
+                    <div class="combo-badge">Pack x5 Sesiones (1 Hora)</div>
+                    <h3 class="combo-title">Reflexología Manos + Pies</h3>
+                    <div class="combo-price">$30.000 <small>por sesión abonando el plan x5</small></div>
+                    <p class="combo-desc">Sesión completa de 60 minutos de estímulo en puntos reflejos para reducir estrés, fatiga y activar la circulación.</p>
+                    <div class="card-actions">
+                        <button class="btn-primary select-combo-btn" data-service="Combo: Reflexología Manos + Pies x5 ($30.000)">Reservar Combo</button>
+                    </div>
+                </div>
+
+                <!-- Combo 6: Masajes Deportivos (Apto Obra Social) -->
+                <div class="combo-card" data-id="combo-deportivos">
+                    <div class="combo-badge highlight-badge"><i class="fa-solid fa-file-medical"></i> Apto Reintegro Obra Social</div>
+                    <h3 class="combo-title">Masajes Deportivos</h3>
+                    <div class="combo-price">$40.000 <small>por sesión abonando el plan x10</small></div>
+                    <p class="combo-desc">Descarga y recuperación física intensiva. *Único servicio con opción de consulta y factura para reintegro de obra social.*</p>
+                    <div class="card-actions">
+                        <button class="btn-primary select-combo-btn" data-service="Combo: Masajes Deportivos x10 ($40.000)">Reservar Combo</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Indicador visual de swipe en móviles -->
+            <div class="swipe-hint">
+                <span>&larr; Deslizá para ver todos los planes &rarr;</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. CONDICIONES DE LOS PLANES (TRANSPARENCIA COMERCIAL) -->
+    <section class="plan-conditions-section" id="condiciones-planes">
+        <div class="container">
+            <div class="plan-conditions-card">
+                <div class="conditions-header">
+                    <i class="fa-solid fa-shield-check"></i>
+                    <div>
+                        <h3>Condiciones y Modalidad de los Planes (x5 / x10)</h3>
+                        <p>Transparencia y claridad para que disfrutes de tu programa con total confianza</p>
+                    </div>
+                </div>
+                
+                <div class="conditions-grid">
+                    <div class="condition-item">
+                        <i class="fa-solid fa-handshake"></i>
+                        <div>
+                            <strong>Compromiso del Programa:</strong>
+                            <p>Los packs se adquieren como un tratamiento integral y continuo para asegurar resultados progresivos y reales.</p>
+                        </div>
+                    </div>
+                    <div class="condition-item">
+                        <i class="fa-solid fa-credit-card"></i>
+                        <div>
+                            <strong>Facilidades de Pago (50/50):</strong>
+                            <p>En planes de 10 sesiones podés abonar el 50% en la 1° sesión y el 50% restante en la 5° sesión, o el total anticipado.</p>
+                        </div>
+                    </div>
+                    <div class="condition-item">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        <div>
+                            <strong>Coordinación y Frecuencia:</strong>
+                            <p>Los turnos se coordinan según disponibilidad de agenda. Se sugiere reservar un día y horario fijo semanal.</p>
+                        </div>
+                    </div>
+                    <div class="condition-item">
+                        <i class="fa-solid fa-hourglass-half"></i>
+                        <div>
+                            <strong>Vigencia del Paquete:</strong>
+                            <p>Los planes x10 tienen una validez de 4 meses desde el inicio; los planes x5 cuentan con 2 meses de vigencia.</p>
+                        </div>
+                    </div>
+                    <div class="condition-item full-width">
+                        <i class="fa-solid fa-bell"></i>
+                        <div>
+                            <strong>Políticas de Reprogramación:</strong>
+                            <p>Los turnos pueden reprogramarse con al menos <strong>24 horas de anticipación</strong> sin perder la sesión. Cancelaciones fuera de término o inasistencias se computarán como realizadas.</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="deposit-notice" style="margin-top: 15px;">
-                    <i class="fa-solid fa-shield-halved"></i>
-                    Para confirmar la reserva se requiere una <strong>seña obligatoria de $20.000</strong>.
-                    <p>Al hacer clic en "Confirmar Reserva", tu turno quedará reservado temporalmente y se abrirá WhatsApp para enviar el comprobante de transferencia a Natalia.</p>
-                    <p class="notice-warning"><i class="fa-solid fa-triangle-exclamation"></i> <strong>Política de cancelación:</strong> Los turnos pueden reprogramarse con un mínimo de <strong>24 horas de anticipación</strong>. Caso contrario, o en caso de inasistencia, la seña no será reembolsada.</p>
-                </div>
-            </div>
-
-            <!-- BOTONES DE NAVEGACIÓN DEL WIZARD -->
-            <div class="wizard-actions">
-                <button class="btn btn-secondary hidden" id="btnBackStep" type="button">Anterior</button>
-                <button class="btn btn-primary" id="btnNextStep" type="button">Siguiente paso</button>
-            </div>
-
-            <!-- RESUMEN / TARJETA DE CONFIRMACIÓN FINAL -->
-            <div class="confirmation-card hidden" id="confirmationCard">
-                <span class="status-badge" style="background: var(--color-verde-soft); color: var(--color-verde-texto);">
-                    <i class="fa-solid fa-circle-check"></i> TURNO SOLICITADO
-                </span>
-                <div class="confirmation-header">
-                    <h3>¡Tu turno ha sido pre-reservado!</h3>
-                    <p>Tenés un tiempo estimado de <span class="timer-highlight" id="timerCount">20:00</span> para transferir los $20.000 de seña al Alias <strong>natali1977</strong> y enviar el comprobante por WhatsApp.</p>
-                </div>
-                <div class="resumen-box">
-                    <p><strong>Tratamiento:</strong> <span id="resumenServicio">-</span></p>
-                    <p><strong>Duración:</strong> 60 minutos</p>
-                    <p><strong>Fecha:</strong> <span id="resumenFecha">-</span></p>
-                    <p><strong>Horario:</strong> <span id="resumenHora">-</span></p>
-                    <p><strong>A nombre de:</strong> <span id="resumenNombre">-</span></p>
-                    <p><strong>Contacto:</strong> <span id="resumenTel">-</span></p>
-                </div>
-                <div class="actions-container">
-                    <a href="#" id="btnSendWhatsappBooking" target="_blank" class="btn-whatsapp-action">
-                        <i class="fa-brands fa-whatsapp" style="margin-right: 8px;"></i> Enviar Comprobante / Turno por WhatsApp
+                <div class="conditions-footer">
+                    <a href="#combos" class="btn-secondary">
+                        <i class="fa-solid fa-check"></i> Conozco y Acepto las Condiciones
                     </a>
-                    <button type="button" class="btn-secondary-action" id="btnResetBooking">Modificar Datos o Sacar Otro Turno</button>
                 </div>
             </div>
-
-        </div> <!-- /.booking-wrapper -->
-    </div> <!-- /.container -->
-</section>
-
-<!-- 5. RESEÑAS -->
-<section class="testimonials-section" id="reseñas">
-    <div class="container">
-        <div class="section-title-container">
-            <span class="subtitle">TESTIMONIOS REALES</span>
-            <h2>Lo que dicen nuestros clientes</h2>
         </div>
+    </section>
 
-        <div class="testimonials-wrapper">
-            <button class="carousel-arrow left-arrow" id="prevReviewBtn" aria-label="Anterior reseña"><i class="fa-solid fa-chevron-left"></i></button>
-            <div class="testimonials-grid" id="testimonialsCarousel">
+    <!-- 5. ANTES Y DESPUÉS (GALERÍA DE RESULTADOS) -->
+    <section class="before-after-section" id="antes-despues">
+        <div class="container">
+            <div class="section-title-container">
+                <span class="subtitle">RESULTADOS COMPROBADOS</span>
+                <h2>Evolución & Casos Reales</h2>
+                <p class="section-desc">Testimonios visuales de la constancia, el diagnóstico adecuado y la dedicación profesional</p>
+            </div>
+
+            <div class="before-after-grid">
                 
-                <div class="testimonial-card">
-                    <div class="stars">★★★★★</div>
-                    <p>"La atención de Natalia es impecable. Me hice una limpieza facial profunda y la piel me quedó radiante desde el primer momento."</p>
-                    <div class="testimonial-author"><strong>Patricia L.</strong><span>Cliente satisfecha</span></div>
-                </div>
-
-                <div class="testimonial-card">
-                    <div class="stars">★★★★★</div>
-                    <p>"Excelente sesión de masajes descontracturantes. Tenía mucha tensión en la espalda por el trabajo y salí renovado."</p>
-                    <div class="testimonial-author"><strong>Fernando M.</strong><span>Cliente satisfecho</span></div>
-                </div>
-
-                <div class="testimonial-card">
-                    <div class="stars">★★★★★</div>
-                    <p>"El ambiente es super limpio, ordenado y tranquilo. Las sesiones de drenaje linfático son súper relajantes."</p>
-                    <div class="testimonial-author"><strong>Nancy G.</strong><span>Cliente satisfecha</span></div>
-                </div>
-
-                <div class="testimonial-card">
-                    <div class="stars">★★★★★</div>
-                    <p>"Excelente profesionalismo. Me traté una dolencia muscular y noté una mejoría gigante. Muy recomendable para hombres también."</p>
-                    <div class="testimonial-author"><strong>Abel R.</strong><span>Cliente satisfecho</span></div>
-                </div>
-
-                <div class="testimonial-card">
-                    <div class="stars">★★★★★</div>
-                    <p>"Hice el tratamiento de Dermapen para atenuar marcas y los resultados son increíbles. Natalia explica todo con mucho detalle."</p>
-                    <div class="testimonial-author"><strong>Romina S.</strong><span>Cliente satisfecha</span></div>
-                </div>
-
-                <div class="testimonial-card">
-                    <div class="stars">★★★★★</div>
-                    <p>"Fui por recomendación y superó mis expectativas. La puntualidad y la calidez en la atención se destacan totalmente."</p>
-                    <div class="testimonial-author"><strong>Daniel B.</strong><span>Cliente satisfecho</span></div>
-                </div>
-
-                <div class="testimonial-card">
-                    <div class="stars">★★★★★</div>
-                    <p>"Me encantó el servicio. Te hace sentir super cómoda desde que entrás y los productos que usa son de primera calidad."</p>
-                    <div class="testimonial-author"><strong>Florencia P.</strong><span>Cliente satisfecha</span></div>
-                </div>
-
-                <div class="testimonial-card">
-                    <div class="stars">★★★★★</div>
-                    <p>"El combo de higiene facial e hidratación me dejó la cara suave y descansada. Un 10 la atención de Nati."</p>
-                    <div class="testimonial-author"><strong>Paola V.</strong><span>Cliente satisfecha</span></div>
-                </div>
-
-                <div class="testimonial-card">
-                    <div class="stars">★★★★★</div>
-                    <p>"Atención personalizada y técnica excelente. Hacía tiempo no encontraba un lugar donde me atendieran con tanta dedicación."</p>
-                    <div class="testimonial-author"><strong>Guillermo T.</strong><span>Cliente satisfecho</span></div>
-                </div>
-
-                <div class="testimonial-card">
-                    <div class="stars">★★★★★</div>
-                    <p>"Atención de lujo. El lugar está ambientado hermoso para desconectar del día y relajarse de verdad."</p>
-                    <div class="testimonial-author"><strong>Paula K.</strong><span>Cliente satisfecha</span></div>
-                </div>
-
-                <div class="testimonial-card">
-                    <div class="stars">★★★★★</div>
-                    <p>"Los masajes relajantes son de otro nivel. Súper profesional en el trato y el lugar es hiper limpio."</p>
-                    <div class="testimonial-author"><strong>Gustavo C.</strong><span>Cliente satisfecho</span></div>
-                </div>
-
-                <div class="testimonial-card">
-                    <div class="stars">★★★★★</div>
-                    <p>"Súper puntual con los turnos y la calidad de atención no cambia jamás. Vuelvo todos los meses."</p>
-                    <div class="testimonial-author"><strong>Verónica M.</strong><span>Cliente satisfecha</span></div>
-                </div>
-
-                <div class="testimonial-card">
-                    <div class="stars">★★★★★</div>
-                    <p>"Me realicé una limpieza facial antes de un evento y el resultado fue espectacular. Piel luminosa sin rojeces."</p>
-                    <div class="testimonial-author"><strong>Alejandra F.</strong><span>Cliente satisfecha</span></div>
-                </div>
-
-                <div class="testimonial-card">
-                    <div class="stars">★★★★★</div>
-                    <p>"Fui a hacerme un tratamiento descontracturante por recomendación de mi pareja y la verdad quedé excelente."</p>
-
-                    <div class="testimonial-author"><strong>Daniela A.</strong><span>Cliente satisfecha</span></div>
-                </div>
-
-                <div class="testimonial-card">
-                    <div class="stars">★★★★★</div>
-                    <p>"Instalaciones impecables y una calidez única. Se nota la pasión y la experiencia que tiene Natalia."</p>
-                    <div class="testimonial-author"><strong>Laura D.</strong><span>Cliente satisfecha</span></div>
-                </div>
-
-                <div class="testimonial-card">
-                    <div class="stars">★★★★★</div>
-                    <p>"Un espacio ideal para despejar la cabeza. Salí de la sesión de piedras calientes sintiéndome renovada."</p>
-                    <div class="testimonial-author"><strong>Sandra B.</strong><span>Cliente satisfecha</span></div>
-                </div>
-
-                <div class="testimonial-card">
-                    <div class="stars">★★★★★</div>
-                    <p>"Excelente opción para quienes hacemos deporte y necesitamos masajes de recuperación muscular. Súper efectivo."</p>
-                    <div class="testimonial-author"><strong>Tamara L.</strong><span>Cliente satisfecha</span></div>
-                </div>
-
-                <div class="testimonial-card">
-                    <div class="stars">★★★★★</div>
-                    <p>"El asesoramiento sobre qué tratamiento me convenía según mi piel fue impecable. Muy honesta y profesional."</p>
-                    <div class="testimonial-author"><strong>Rosario M.</strong><span>Cliente satisfecha</span></div>
-                </div>
-
-                <div class="testimonial-card">
-                    <div class="stars">★★★★★</div>
-                    <p>"Un ambiente super pacífico. Natalia te explica cada paso que va realizando en tu rostro, te da muchísima tranquilidad."</p>
-                    <div class="testimonial-author"><strong>Delfina R.</strong><span>Cliente satisfecha</span></div>
-                </div>
-
-                <div class="testimonial-card">
-                    <div class="stars">★★★★★</div>
-                    <p>"Hermosa experiencia en cada visita. Los productos que utiliza se notan de excelente gama desde el primer contacto."</p>
-                    <div class="testimonial-author"><strong>Julieta N.</strong><span>Cliente satisfecha</span></div>
-                </div>
-
-                <div class="testimonial-card">
-                    <div class="stars">★★★★★</div>
-                    <p>"Se nota el profesionalismo y el cuidado en la higiene de todo el lugar. Recomiendo sacar turno con tiempo."</p>
-                    <div class="testimonial-author"><strong>Juliana E.</strong><span>Cliente satisfecha</span></div>
-                </div>
-
-            </div>
-            <button class="carousel-arrow right-arrow" id="nextReviewBtn" aria-label="Siguiente reseña"><i class="fa-solid fa-chevron-right"></i></button>
-        </div>
-    </div>
-</section>
-
-    <!-- 6. PREGUNTAS FRECUENTES -->
-<section id="faq" class="faq-section">
-    <div class="container">
-        <div class="section-title-container">
-            <span class="subtitle">Resolve tus dudas</span>
-            <h2>Preguntas Frecuentes</h2>
-        </div>
-
-        <div class="faq-list">
-            <!-- FAQ 1 -->
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>¿Cómo realizo la reserva y confirmación de mi turno?</span>
-                    <span class="faq-icon">+</span>
-                </div>
-                <div class="faq-answer-wrapper">
-                    <div class="faq-answer">
-                        Seleccionás el tratamiento, la fecha y el horario que desees en nuestro sistema. Al confirmar, se generará una solicitud vía WhatsApp donde te enviaremos los datos para abonar la seña del turno.
+                <!-- Caso 1: Facial Glow -->
+                <div class="ba-card">
+                    <div class="ba-image-container">
+                        <img src="assets/salud-bienestar.png" alt="Tratamiento Facial Glow Antes y Después" loading="lazy">
+                        <span class="ba-tag">Tratamiento Facial</span>
+                    </div>
+                    <div class="ba-content">
+                        <h4>Limpieza Profunda & Efecto Glow</h4>
+                        <p>Piel renovada, descongestionada y libre de impurezas tras un protocolo personalizado de exfoliación y nutrición.</p>
+                        <div class="ba-pill">1 Sesión Mensual</div>
                     </div>
                 </div>
-            </div>
 
-            <!-- FAQ 2 -->
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>¿Cuáles son los medios de pago aceptados?</span>
-                    <span class="faq-icon">+</span>
-                </div>
-                <div class="faq-answer-wrapper">
-                    <div class="faq-answer">
-                        Aceptamos transferencias bancarias o billeteras virtuales (Mercado Pago) para la seña previa. El resto de la sesión se puede abonar en efectivo, transferencia o Mercado Pago el día de la atención.
+                <!-- Caso 2: Dermapen -->
+                <div class="ba-card">
+                    <div class="ba-image-container">
+                        <img src="assets/dermapen.png" alt="Dermapen Regeneración de Colágeno" loading="lazy">
+                        <span class="ba-tag">Regeneración Cutánea</span>
+                    </div>
+                    <div class="ba-content">
+                        <h4>Dermapen + Rutina Skincare</h4>
+                        <p>Atenuación visible de líneas de expresión y marcas de acné, estimulando la síntesis natural de colágeno y elastina.</p>
+                        <div class="ba-pill">Plan x5 Sesiones</div>
                     </div>
                 </div>
-            </div>
 
-            <!-- FAQ 3 -->
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>¿Qué cuidados debo tener antes de una sesión facial?</span>
-                    <span class="faq-icon">+</span>
-                </div>
-                <div class="faq-answer-wrapper">
-                    <div class="faq-answer">
-                        Se recomienda no exponerse al sol de forma prolongada 48 horas antes, suspender el uso de ácidos o exfoliantes fuertes 3 días antes y acudir con el rostro preferentemente limpio y sin maquillaje.
+                <!-- Caso 3: Drenaje Linfático -->
+                <div class="ba-card">
+                    <div class="ba-image-container">
+                        <img src="assets/drenaje-linfatico.png" alt="Drenaje Linfático y Desinflamación" loading="lazy">
+                        <span class="ba-tag">Corporal & Circulatorio</span>
+                    </div>
+                    <div class="ba-content">
+                        <h4>Drenaje Linfático Post-Op / Edemas</h4>
+                        <p>Notable reducción de retención hídrica, alivio en pesadez de miembros inferiores y desinflamación progresiva.</p>
+                        <div class="ba-pill">Plan x10 Sesiones</div>
                     </div>
                 </div>
-            </div>
 
-            <!-- FAQ 4 -->
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>¿Los tratamientos corporales o masajes tienen contraindicaciones?</span>
-                    <span class="faq-icon">+</span>
-                </div>
-                <div class="faq-answer-wrapper">
-                    <div class="faq-answer">
-                        Sí, algunos tratamientos no se recomiendan en embarazadas, personas con infecciones cutáneas activas, fiebre o procesos oncológicos sin autorización médica. Podés consultarnos por WhatsApp antes de reservar si tenés dudas específicas.
+                <!-- Caso 4: Maderoterapia -->
+                <div class="ba-card">
+                    <div class="ba-image-container">
+                        <img src="assets/maderoterapia.png" alt="Maderoterapia y Modelado Corporal" loading="lazy">
+                        <span class="ba-tag">Modelado Corporal</span>
+                    </div>
+                    <div class="ba-content">
+                        <h4>Maderoterapia + Drenaje</h4>
+                        <p>Remodelación del contorno corporal, mejora evidente en la tonicidad de la piel y reducción del aspecto de celulitis.</p>
+                        <div class="ba-pill">Plan x10 (2 veces/sem)</div>
                     </div>
                 </div>
-            </div>
 
-            <!-- FAQ 5 -->
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>¿Puedo reprogramar o cancelar mi turno?</span>
-                    <span class="faq-icon">+</span>
-                </div>
-                <div class="faq-answer-wrapper">
-                    <div class="faq-answer">
-                        Podés reprogramar tu turno con al menos 24 horas de anticipación para conservar la seña. Pasado ese lapso o en caso de inasistencia, la seña no será reembolsable.
-                    </div>
-                </div>
-            </div>
-
-            <!-- FAQ 6 -->
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>¿Cuánto dura cada sesión en el gabinete?</span>
-                    <span class="faq-icon">+</span>
-                </div>
-                <div class="faq-answer-wrapper">
-                    <div class="faq-answer">
-                        La duración varía según el servicio o combo elegido, rondando entre 45 minutos y 1 hora y media. En el resumen de tu reserva verás el tiempo estimado asignado.
-                    </div>
-                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-    <!-- 7. QUIÉN SOY -->
+    <!-- 6. QUIÉN SOY (AUTORIDAD & CONFIANZA) -->
     <section class="experience-section" id="quien-soy">
         <div class="container">
             <div class="experience-grid">
                 <div class="experience-image-wrapper">
-                    <img src="assets/natalia-ferrante.png" alt="Natalia Ferrante - Nativa Estética">
+                    <img src="assets/natalia-ferrante.png" alt="Natalia Ferrante - Cosmetóloga y Esteticista Profesional" loading="lazy">
+                    <div class="experience-badge-float">
+                        <span class="exp-years">+25</span>
+                        <span class="exp-text">Años de Trayectoria</span>
+                    </div>
                 </div>
+                
                 <div class="experience-content">
                     <span class="subtitle">SOBRE MÍ</span>
                     <h2>Natalia Ferrante</h2>
-                    <p class="highlight-text">Cosmetóloga y Esteticista Profesional con más de 25 años de trayectoria dedicados a la belleza y salud integral de la piel.</p>
-                    <p class="section-desc" style="text-align: left;">Mi compromiso es brindar una atención cálida, dedicada y personalizada para lograr resultados reales, seguros y duraderos.</p>
+                    <p class="highlight-text">Cosmetóloga y Esteticista Profesional con más de 25 años dedicados a la salud, belleza y cuidado integral de la piel.</p>
+                    <p class="section-desc" style="text-align: left;">
+                        Mi compromiso en Nativa Estética es brindar una experiencia cálida, respetuosa y 100% personalizada. Cada persona tiene una piel y necesidades únicas; por eso, cada sesión comienza con un diagnóstico profesional exhaustivo para aplicar las técnicas y cosmecéuticos más adecuados.
+                    </p>
+                    
+                    <div class="experience-points">
+                        <div class="exp-point">
+                            <i class="fa-solid fa-check"></i>
+                            <span>Gabinete propio, privado y climatizado en Remedios de Escalada.</span>
+                        </div>
+                        <div class="exp-point">
+                            <i class="fa-solid fa-check"></i>
+                            <span>Productos de primera línea dermatológica y aparatología de vanguardia.</span>
+                        </div>
+                        <div class="exp-point">
+                            <i class="fa-solid fa-check"></i>
+                            <span>Puntualidad, higiene clínica estricta y atención sin apuros.</span>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 25px;">
+                        <a href="#reserva" class="btn-primary" style="width: auto; display: inline-block;">
+                            <i class="fa-regular fa-calendar-check"></i> Agendar Turno con Natalia
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- MODAL DE TRATAMIENTO -->
-<div class="modal-overlay" id="treatmentModal">
-    <div class="modal-content">
-        <button class="modal-close" id="modalCloseBtn">&times;</button>
-        <h3 id="modalTitle">Título Tratamiento</h3>
-        <span class="card-badge" style="display: inline-block; margin-bottom: 15px;">Duración: 60 minutos</span>
-        <div class="modal-body">
-            <div style="margin-bottom: 15px;">
-                <strong>Descripción:</strong>
-                <p id="modalDesc" style="color: var(--color-gris); font-size: 0.88rem; margin-top: 4px;"></p>
+    <!-- 7. RESEÑAS & TESTIMONIOS REALES -->
+    <section class="testimonials-section" id="reseñas">
+        <div class="container">
+            <div class="section-title-container">
+                <span class="subtitle">TESTIMONIOS REALES</span>
+                <h2>Lo que dicen nuestras clientas</h2>
+                <p class="section-desc">Experiencias de quienes confían su bienestar en Nativa Estética</p>
             </div>
-            <div class="modal-info-box">
-                <strong>Ideal para:</strong>
-                <ul id="modalNeeds" style="list-style: none; margin-top: 5px;"></ul>
-            </div>
-            <div class="modal-info-box" style="background: var(--color-verde-soft);">
-                <strong style="color: var(--color-verde-texto);">Beneficios:</strong>
-                <ul id="modalBenefits" style="list-style: none; margin-top: 5px; color: var(--color-verde-texto);"></ul>
-            </div>
-            
-            <!-- Reemplazo de los botones respetando tus clases CSS -->
-            <div class="modal-actions-grid" style="display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap;">
-                <button type="button" class="btn-secondary" id="modalReserveSingleBtn" style="flex: 1; min-width: 140px; padding: 12px; font-size: 0.88rem;">
-                    Reservar 1 Sesión
-                </button>
-                <button type="button" class="btn-primary" id="modalReservePackBtn" style="flex: 1.2; min-width: 160px; padding: 12px; font-size: 0.88rem;">
-                    Reservar Plan x10 (Ahorro)
-                </button>
+
+            <div class="testimonials-wrapper">
+                <button class="carousel-arrow left-arrow" id="prevReviewBtn" aria-label="Anterior reseña"><i class="fa-solid fa-chevron-left"></i></button>
+                
+                <div class="testimonials-grid" id="testimonialsCarousel">
+                    
+                    <div class="testimonial-card">
+                        <div class="stars">★★★★★</div>
+                        <p>"La atención de Natalia es impecable. Me hice una limpieza facial profunda y la piel me quedó radiante y suave desde el primer minuto."</p>
+                        <div class="testimonial-author"><strong>Patricia L.</strong><span>Cliente satisfecha • Remedios de Escalada</span></div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="stars">★★★★★</div>
+                        <p>"Excelente sesión de masajes descontracturantes. Tenía mucha tensión acumulada en la espalda y salí completamente renovado."</p>
+                        <div class="testimonial-author"><strong>Fernando M.</strong><span>Cliente satisfecho • Lanús</span></div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="stars">★★★★★</div>
+                        <p>"El ambiente es súper limpio, ordenado y tranquilo. Las sesiones de drenaje linfático son un antes y un después para mis piernas."</p>
+                        <div class="testimonial-author"><strong>Nancy G.</strong><span>Cliente satisfecha • Banfield</span></div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="stars">★★★★★</div>
+                        <p>"Hice el plan de Dermapen para atenuar marquitas y los resultados son increíbles. Natalia te explica cada paso con mucha dedicación."</p>
+                        <div class="testimonial-author"><strong>Romina S.</strong><span>Cliente satisfecha • Lomas de Zamora</span></div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="stars">★★★★★</div>
+                        <p>"Un espacio ideal para desconectar del estrés. Salí de la sesión de piedras calientes sintiéndome como nueva. ¡Súper recomendable!"</p>
+                        <div class="testimonial-author"><strong>Sandra B.</strong><span>Cliente satisfecha • Escalada</span></div>
+                    </div>
+
+                </div>
+
+                <button class="carousel-arrow right-arrow" id="nextReviewBtn" aria-label="Siguiente reseña"><i class="fa-solid fa-chevron-right"></i></button>
             </div>
         </div>
-    </div>
-</div>
+    </section>
 
-    <!-- BOTÓN FLOTANTE WHATSAPP -->
-    <a href="https://wa.me/5491132194320?text=Hola%20Natalia,%20quisiera%20recibir%20asesoramiento%20personalizado" class="whatsapp-float" id="whatsappFloat" target="_blank" aria-label="Contactar por WhatsApp">
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
-
-    <!-- FOOTER -->
-    <footer class="footer" id="contacto">
+    <!-- 8. PREGUNTAS FRECUENTES (FAQ ACTUALIZADO) -->
+    <section id="faq" class="faq-section">
         <div class="container">
-            <div class="footer-brand">
-                <h3>NATIVA ESTÉTICA</h3>
-                <p>Natalia Ferrante — Cosmetología y Estética Profesional</p>
+            <div class="section-title-container">
+                <span class="subtitle">RESOLVÉ TUS DUDAS</span>
+                <h2>Preguntas Frecuentes</h2>
+                <p class="section-desc">Todo lo que necesitás saber antes de tu visita o reserva</p>
             </div>
-            <div class="footer-info">
-                <p><a href="https://share.google/nbRCY0ZRLrOKKaK79" target="_blank" rel="noopener noreferrer" class="footer-map-link"><i class="fa-solid fa-location-dot"></i> Remedios de Escalada, Buenos Aires, Argentina</a></p>
-                <p>Atención con turno previo</p>
+
+            <div class="faq-list">
+                
+                <!-- FAQ 1: Reserva y seña -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿Cómo realizo la reserva y confirmación de mi turno?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer-wrapper">
+                        <div class="faq-answer">
+                            Seleccionás tu tratamiento, la fecha y el horario deseado en nuestra sección de turnos. Para asegurar el espacio de atención se abona una seña previa de $20.000 vía transferencia (Alias: <strong>natali1977</strong>). Luego, enviás el comprobante por WhatsApp para la confirmación instantánea.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 2: Cuidados pre-facial -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿Qué cuidados debo tener antes de una sesión facial (Dermapen o Limpieza)?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer-wrapper">
+                        <div class="faq-answer">
+                            Recomendamos utilizar protección solar diaria FPS 50, suspender el uso de ácidos, peelings o exfoliantes intensos 3 días antes del turno y acudir con el rostro preferentemente limpio y sin maquillaje.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 3: Hidratación -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿Por qué es importante la hidratación previa y posterior a los masajes o drenajes?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer-wrapper">
+                        <div class="faq-answer">
+                            Se aconseja beber al menos <strong>2 litros de agua por día</strong>. La buena hidratación facilita la eliminación fisiológica de toxinas estimulada por el drenaje linfático, mejora el tono muscular y optimiza la elasticidad cutánea.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 4: Obras Sociales -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿Atienden por Obra Social o Medicina Prepaga?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer-wrapper">
+                        <div class="faq-answer">
+                            La atención es particular y personalizada. Únicamente en el servicio de <strong>Masajes Deportivos</strong> se brinda la opción de consulta y emisión de comprobante para gestionar el reintegro ante tu obra social o prepaga (según la cobertura de tu plan).
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 5: Atención a Domicilio -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿Realizan atención o masajes a domicilio?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer-wrapper">
+                        <div class="faq-answer">
+                            Sí, se coordinan servicios a domicilio con costo adicional en Zona Sur. <strong>Requisito indispensable:</strong> la clienta debe contar con camilla propia en el domicilio para garantizar la correcta ergonomía y bioseguridad del tratamiento.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 6: Reprogramaciones -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿Puedo reprogramar o cancelar mi turno?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer-wrapper">
+                        <div class="faq-answer">
+                            Podés reprogramar tu turno con al menos <strong>24 horas de anticipación</strong> para conservar la seña. Pasado ese lapso o en caso de inasistencia, la seña no será reembolsada para cubrir el costo operativo del espacio reservado.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 7: Medios de pago -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>¿Cuáles son los medios de pago aceptados?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer-wrapper">
+                        <div class="faq-answer">
+                            Aceptamos transferencias bancarias o billeteras virtuales (Mercado Pago) para la seña previa. El saldo restante se puede abonar en efectivo, transferencia o Mercado Pago el día de la sesión en el gabinete.
+                        </div>
+                    </div>
+                </div>
+
             </div>
+        </div>
+    </section>
+
+    <!-- 9. SECCIÓN AGENDA DE TURNOS -->
+    <section id="reserva" class="booking-section">
+        <div class="container">
+            <div class="section-title-container">
+                <span class="subtitle">AGENDA DE TURNOS</span>
+                <h2>Reservá tu Espacio</h2>
+                <p class="section-desc">Seleccioná tu tratamiento, elegí la fecha ideal y asegurá tu turno de forma ágil</p>
+            </div>
+
+            <div class="booking-wrapper">
+                
+                <!-- INDICADOR DE PASOS DEL WIZARD -->
+                <div class="wizard-steps-indicator">
+                    <div class="step-item active">1. Tratamiento</div>
+                    <div class="step-item">2. Fecha y Horario</div>
+                    <div class="step-item">3. Tus Datos</div>
+                    <div class="step-item">4. Confirmación</div>
+                </div>
+
+                <!-- PASO 1: Selección de Servicio con Precios Actualizados -->
+                <div class="wizard-pane" id="stepPane1">
+                    <h3 class="step-pane-title">1. Tratamiento o Combo seleccionado</h3>
+                    <div class="form-group">
+                        <select id="selectService" class="form-control">
+                            <option value="" disabled>-- Seleccioná una opción --</option>
+                            
+                            <!-- TRATAMIENTOS INDIVIDUALES Y PLANES -->
+                            <optgroup label="Dermapen + Rutina Glow">
+                                <option value="Dermapen & Rutina Skincare Glow (1 Sesión)">Dermapen + Rutina Skincare Glow — 1 Sesión ($75.000)</option>
+                                <option value="Dermapen & Rutina Skincare Glow (Plan x5)">Dermapen + Rutina Skincare Glow — Plan x5 ($60.000/ses)</option>
+                            </optgroup>
+
+                            <optgroup label="Drenaje Linfático Manual">
+                                <option value="Drenaje Linfático Manual (1 Sesión)">Drenaje Linfático Manual — 1 Sesión ($55.000)</option>
+                                <option value="Drenaje Linfático Manual (Plan x10)">Drenaje Linfático Manual — Plan x10 ($45.000/ses)</option>
+                                <option value="Drenaje Linfático Embarazo (Plan x10)">Drenaje Linfático Embarazo — Plan x10 ($45.000/ses)</option>
+                            </optgroup>
+
+                            <optgroup label="Masaje Descontracturante">
+                                <option value="Masaje Descontracturante (1 Sesión)">Masaje Descontracturante — 1 Sesión ($50.000)</option>
+                                <option value="Masaje Descontracturante (Plan x10)">Masaje Descontracturante — Plan x10 ($40.000/ses)</option>
+                            </optgroup>
+
+                            <optgroup label="Masaje con Piedras Calientes">
+                                <option value="Masaje con Piedras Calientes (1 Sesión)">Masaje con Piedras Calientes — 1 Sesión ($50.000)</option>
+                                <option value="Masaje con Piedras Calientes (Plan x10)">Masaje con Piedras Calientes — Plan x10 ($40.000/ses)</option>
+                            </optgroup>
+
+                            <optgroup label="Limpieza Facial Profunda">
+                                <option value="Limpieza Facial Profunda (1 Sesión)" selected>Limpieza Facial Profunda — 1 Sesión ($45.000)</option>
+                            </optgroup>
+
+                            <optgroup label="Maderoterapia Corporal (Solo en Combo)">
+                                <option value="Combo: Maderoterapia + Drenaje x10 ($60.000)">Maderoterapia + Drenaje — Plan x10 ($60.000/ses)</option>
+                            </optgroup>
+
+                            <!-- COMBOS EXCLUSIVOS -->
+                            <optgroup label="Combos Exclusivos & Packs">
+                                <option value="Combo: Descontracturante + Piedras + Reiki x10 ($45.000)">Combo: Descontracturante + Piedras + Reiki x10 ($45.000/ses)</option>
+                                <option value="Combo: Drenaje + Ultrasonido x10 ($45.000)">Combo: Drenaje + Ultrasonido x10 ($45.000/ses)</option>
+                                <option value="Combo: Drenaje + Descontracturante x10 ($50.000)">Combo: Drenaje + Descontracturante x10 ($50.000/ses)</option>
+                                <option value="Combo: Maderoterapia + Drenaje x10 ($60.000)">Combo: Maderoterapia + Drenaje x10 ($60.000/ses)</option>
+                                <option value="Combo: Reflexología Manos + Pies x5 ($30.000)">Combo: Reflexología Manos + Pies x5 ($30.000/ses)</option>
+                                <option value="Combo: Masajes Deportivos x10 ($40.000)">Combo: Masajes Deportivos x10 ($40.000/ses • Obra Social)</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- PASO 2: Calendario y Horarios Oficiales -->
+                <div class="wizard-pane hidden" id="stepPane2">
+                    <h3 class="step-pane-title">2. Selección de Fecha y Horario</h3>
+                    <div class="calendar-layout">
+                        <!-- Calendario Visual -->
+                        <div class="cal-box">
+                            <div class="cal-header">
+                                <button class="cal-nav-btn" id="prevMonthBtn" type="button" aria-label="Mes anterior"><i class="fa-solid fa-chevron-left"></i></button>
+                                <h4 id="calMonthTitle">Mes Año</h4>
+                                <button class="cal-nav-btn" id="nextMonthBtn" type="button" aria-label="Mes siguiente"><i class="fa-solid fa-chevron-right"></i></button>
+                            </div>
+                            <div class="cal-grid" id="calDaysGrid">
+                                <!-- Generado dinámicamente -->
+                            </div>
+                        </div>
+
+                        <!-- Horarios Disponibles -->
+                        <details class="time-box time-box-collapsible" open>
+                            <summary>
+                                <div>
+                                    <h4 class="time-box-title">Horarios de Atención</h4>
+                                    <p class="time-box-subtitle">Lun a Vie (09:00 a 19:00 hs) | Sáb (09:00 a 16:00 hs)</p>
+                                </div>
+                            </summary>
+                            <div class="time-grid" id="timeGrid">
+                                <!-- Los chips de horarios se inyectarán dinámicamente -->
+                            </div>
+                        </details>
+                    </div>
+                </div>
+
+                <!-- PASO 3: Formulario de Contacto -->
+                <div class="wizard-pane hidden" id="stepPane3">
+                    <h3 class="step-pane-title">3. Completá tus datos de contacto:</h3>
+                    
+                    <!-- Honeypot anti-bot -->
+                    <div style="display:none !important; visibility:hidden !important;" aria-hidden="true">
+                        <input type="text" id="website_hp" name="website_hp" tabindex="-1" autocomplete="off">
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="custName">Nombre y Apellido *</label>
+                            <input type="text" id="custName" class="form-control" placeholder="Ej: María Gómez">
+                        </div>
+                        <div class="form-group">
+                            <label for="custPhone">WhatsApp / Teléfono *</label>
+                            <input type="tel" id="custPhone" class="form-control" placeholder="Ej: 11 2233 4455">
+                        </div>
+                        <div class="form-group full">
+                            <label for="custNotes">Comentarios Opcionales</label>
+                            <textarea id="custNotes" class="form-control" rows="3" placeholder="Aclaraciones, dolencias específicas o inquietudes..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PASO 4: Resumen y Datos de Transferencia -->
+                <div class="wizard-pane hidden" id="stepPane4">
+                    <h3 class="step-pane-title">4. Resumen y Datos de Pago</h3>
+                    <div class="summary-box">
+                        <div class="summary-item">
+                            <span>Tratamiento:</span>
+                            <strong id="sumService">Limpieza Facial Profunda</strong>
+                        </div>
+                        <div class="summary-item">
+                            <span>Fecha seleccionada:</span>
+                            <strong id="sumDate">-</strong>
+                        </div>
+                        <div class="summary-item">
+                            <span>Horario:</span>
+                            <strong id="sumTime">-</strong>
+                        </div>
+                        <div class="summary-item">
+                            <span>Nombre:</span>
+                            <strong id="sumName">-</strong>
+                        </div>
+                        <div class="summary-item">
+                            <span>WhatsApp:</span>
+                            <strong id="sumPhone">-</strong>
+                        </div>
+                    </div>
+
+                    <!-- Datos Bancarios de la Seña -->
+                    <div class="bank-card">
+                        <div class="bank-card-header">
+                            <i class="fa-solid fa-building-columns"></i>
+                            <strong>Datos para transferir la seña ($20.000)</strong>
+                        </div>
+                        <div class="bank-card-body">
+                            <div class="bank-item">
+                                <span>Alias:</span>
+                                <div class="alias-container">
+                                    <strong id="aliasText">natali1977</strong>
+                                    <button type="button" class="btn-copy" id="btnCopyAlias" aria-label="Copiar Alias">
+                                        <i class="fa-regular fa-copy"></i> Copiar
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="bank-item">
+                                <span>Titular:</span>
+                                <strong>Natalia Ferrante</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="deposit-notice" style="margin-top: 15px;">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        Para confirmar la reserva se requiere una <strong>seña de $20.000</strong>.
+                        <p>Al hacer clic en "Confirmar Reserva", tu turno quedará agendado y se abrirá WhatsApp para enviar el comprobante de transferencia a Natalia.</p>
+                        <p class="notice-warning"><i class="fa-solid fa-triangle-exclamation"></i> <strong>Política de cancelación:</strong> Los turnos pueden reprogramarse con al menos <strong>24 horas de anticipación</strong>. Caso contrario, la seña no será reembolsada.</p>
+                    </div>
+                </div>
+
+                <!-- Botones de Navegación del Wizard -->
+                <div class="wizard-actions">
+                    <button class="btn btn-secondary hidden" id="btnBackStep" type="button">Anterior</button>
+                    <button class="btn btn-primary" id="btnNextStep" type="button">Siguiente paso</button>
+                </div>
+
+                <!-- Resumen / Tarjeta de Confirmación Final -->
+                <div class="confirmation-card hidden" id="confirmationCard">
+                    <span class="status-badge" style="background: var(--color-verde-soft); color: var(--color-verde-texto);">
+                        <i class="fa-solid fa-circle-check"></i> TURNO PRE-RESERVADO
+                    </span>
+                    <div class="confirmation-header">
+                        <h3>¡Tu turno ha sido solicitado!</h3>
+                        <p>Tenés un tiempo estimado de <span class="timer-highlight" id="timerCount">15:00</span> para transferir los $20.000 de seña al Alias <strong>natali1977</strong> y enviar el comprobante por WhatsApp a Natalia.</p>
+                    </div>
+                    <div class="resumen-box">
+                        <p><strong>Tratamiento:</strong> <span id="resumenServicio">-</span></p>
+                        <p><strong>Fecha:</strong> <span id="resumenFecha">-</span></p>
+                        <p><strong>Horario:</strong> <span id="resumenHora">-</span></p>
+                        <p><strong>A nombre de:</strong> <span id="resumenNombre">-</span></p>
+                        <p><strong>Contacto:</strong> <span id="resumenTel">-</span></p>
+                    </div>
+                    <div class="actions-container">
+                        <a href="#" id="btnSendWhatsappBooking" target="_blank" class="btn-whatsapp-action">
+                            <i class="fa-brands fa-whatsapp" style="margin-right: 8px;"></i> Enviar Comprobante / Turno por WhatsApp
+                        </a>
+                        <button type="button" class="btn-secondary-action" id="btnResetBooking">Modificar Datos o Sacar Otro Turno</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- MODAL INTERACTIVO DE TRATAMIENTO -->
+    <div class="modal-overlay" id="treatmentModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-content">
+            <button class="modal-close" id="modalCloseBtn" aria-label="Cerrar modal">&times;</button>
+            <h3 id="modalTitle">Título Tratamiento</h3>
             
-            <div class="footer-channels">
-                <p class="channels-title">Sumate a nuestros canales para ver promociones y novedades:</p>
-                <div class="footer-socials">
-                    <a href="https://www.instagram.com/drenajelinfatico_escalada?igsh=YjNtMHRyNHNjYXoz" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                        <i class="fa-brands fa-instagram"></i>
-                    </a>
-                    <!-- Reemplazar "LINK_DE_TU_CANAL" cuando abran el canal oficial -->
-                    <a href="https://whatsapp.com/channel/LINK_DE_TU_CANAL" target="_blank" rel="noopener noreferrer" aria-label="Canal de WhatsApp">
-                        <i class="fa-brands fa-whatsapp"></i>
+            <div class="modal-pricing-badge" id="modalPricingBadge">
+                <span class="modal-tag" id="modalCategoryTag">Facial / Corporal</span>
+                <span class="modal-price-tag" id="modalPriceText">Precios oficiales</span>
+            </div>
+
+            <div class="modal-body">
+                <div class="modal-section-box">
+                    <strong>Descripción del tratamiento:</strong>
+                    <p id="modalDesc"></p>
+                </div>
+                
+                <div class="modal-info-box">
+                    <strong><i class="fa-regular fa-circle-check"></i> Ideal para:</strong>
+                    <p id="modalNeeds"></p>
+                </div>
+
+                <div class="modal-info-box benefits-box">
+                    <strong><i class="fa-solid fa-sparkles"></i> Beneficios principales:</strong>
+                    <ul id="modalBenefits"></ul>
+                </div>
+
+                <div class="modal-info-box care-box" id="modalCareBox" style="display:none;">
+                    <strong><i class="fa-solid fa-circle-info"></i> Recomendaciones / Frecuencia:</strong>
+                    <p id="modalCareText"></p>
+                </div>
+                
+                <!-- Acciones del Modal -->
+                <div class="modal-actions-grid" id="modalActionsGrid">
+                    <button type="button" class="btn-secondary" id="modalReserveSingleBtn">
+                        Reservar 1 Sesión
+                    </button>
+                    <button type="button" class="btn-primary" id="modalReservePackBtn">
+                        Reservar Plan de Ahorro
+                    </button>
+                    <a href="#" class="btn-whatsapp-action hidden" id="modalWhatsappBtn" target="_blank" rel="noopener noreferrer">
+                        <i class="fa-brands fa-whatsapp"></i> Consultar por WhatsApp
                     </a>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- WIDGET FLOTANTE WHATSAPP CON MICRO-GLOBO CONTEXTUAL -->
+    <div class="whatsapp-widget-container" id="whatsappWidget">
+        <div class="whatsapp-bubble" id="whatsappBubble">
+            <span>¿Tenés dudas? Hablemos con Natalia 👋</span>
+            <button type="button" class="bubble-close" id="bubbleCloseBtn" aria-label="Cerrar aviso">&times;</button>
+        </div>
+        <a href="https://wa.me/5491132194320?text=Hola%20Natalia,%20quisiera%20recibir%20asesoramiento%20personalizado" class="whatsapp-float" id="whatsappFloat" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- FOOTER CON SEO LOCAL & HORARIOS OFICIALES -->
+    <footer class="footer" id="contacto">
+        <div class="container">
+            <div class="footer-grid">
+                
+                <!-- Columna 1: Marca & Trayectoria -->
+                <div class="footer-col footer-brand-col">
+                    <div class="footer-logo">
+                        <img src="assets/favicon.png" alt="Nativa Estética" class="footer-logo-img">
+                        <span class="footer-brand-title">NATIVA ESTÉTICA</span>
+                    </div>
+                    <p class="footer-tagline">Natalia Ferrante — Cosmetología, Estética y Bienestar Integral</p>
+                    <p class="footer-bio">Más de 25 años de trayectoria profesional brindando tratamientos personalizados, diagnósticos expertos y cuidado de la salud de tu piel.</p>
+                </div>
+
+                <!-- Columna 2: Horarios Oficiales -->
+                <div class="footer-col">
+                    <h4 class="footer-col-title"><i class="fa-regular fa-clock"></i> Horarios de Atención</h4>
+                    <ul class="footer-hours-list">
+                        <li><span>Lunes a Viernes:</span> <strong>09:00 a 19:00 hs</strong></li>
+                        <li><span>Sábados:</span> <strong>09:00 a 16:00 hs</strong></li>
+                        <li><span>Domingos:</span> <em>Cerrado</em></li>
+                    </ul>
+                    <p class="footer-notice">* Atención exclusivamente con turno previo acordado.</p>
+                </div>
+
+                <!-- Columna 3: Ubicación y Contacto Local -->
+                <div class="footer-col">
+                    <h4 class="footer-col-title"><i class="fa-solid fa-location-dot"></i> Gabinete Privado</h4>
+                    <p class="footer-location-text">
+                        <a href="https://share.google/nbRCY0ZRLrOKKaK79" target="_blank" rel="noopener noreferrer" class="footer-map-link">
+                            Remedios de Escalada, Partido de Lanús<br>
+                            Zona Sur (cerca de Lomas de Zamora), Buenos Aires
+                        </a>
+                    </p>
+                    <p class="footer-phone">
+                        <i class="fa-brands fa-whatsapp"></i> +54 9 11 3219-4320
+                    </p>
+                </div>
+
+                <!-- Columna 4: Canales y Redes Sociales -->
+                <div class="footer-col">
+                    <h4 class="footer-col-title"><i class="fa-solid fa-bullhorn"></i> Canales & Novedades</h4>
+                    <p class="footer-social-desc">Seguinos para conocer tips de skincare, promociones y novedades:</p>
+                    <div class="footer-socials">
+                        <a href="https://www.instagram.com/drenajelinfatico_escalada?igsh=YjNtMHRyNHNjYXoz" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Nativa Estética" class="social-icon ig">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="https://wa.me/5491132194320?text=Hola%20Natalia,%20quisiera%20hacer%20una%20consulta" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Directo" class="social-icon wa">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </a>
+                        <!-- Canal oficial -->
+                        <a href="https://whatsapp.com/channel/LINK_DE_TU_CANAL" target="_blank" rel="noopener noreferrer" aria-label="Canal oficial de WhatsApp" class="social-icon ch">
+                            <i class="fa-solid fa-tower-broadcast"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
 
             <div class="copyright">
-                <p>&copy; 2026 Nativa Estética. Todos los derechos reservados.</p>
+                <p>&copy; 2026 Nativa Estética. Todos los derechos reservados. | Diseñado para máxima velocidad y conversión.</p>
             </div>
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script src="app.js"></script>
     
 </body>

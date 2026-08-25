@@ -4,104 +4,236 @@ document.addEventListener('DOMContentLoaded', () => {
   ========================================== */
   const treatmentsData = {
     'dermapen': {
-      title: 'Dermapen & Nutrición',
-      desc: 'Microagujas que estimulan la producción natural de colágeno, atenuando líneas de expresión, manchas y cicatrices.',
-      needs: 'Pieles opacas, con manchas, cicatrices de acné o envejecimiento prematuro.',
+      title: 'Dermapen & Rutina Skincare Glow',
+      category: 'Facial Especializado',
+      pricing: '1 Sesión: $75.000 | Plan x5: $60.000/ses',
+      desc: 'Tratamiento facial avanzado de microagujas estériles que estimula la síntesis de colágeno y elastina. Incluye principios activos puros (Vitamina C, Ácido Hialurónico concentrado, ampollas regenerativas y serums de alta gama) para un rejuvenecimiento visible con efecto GLOW radiante.',
+      needs: 'Pieles opacas, con líneas de expresión, poros dilatados, secuelas de acné o envejecimiento cutáneo.',
       benefits: [
-        'Estimula la producción natural de colágeno y elastina',
-        'Mejora la textura, firmeza y luminosidad de la piel',
-        'Reduce la apariencia de poros dilatados y finas líneas'
-      ]
+        'Estimula la renovación celular y la producción de colágeno natural',
+        'Aporta luminosidad instantánea y empareja el tono cutáneo',
+        'Atenúa poros abiertos, marcas y líneas de expresión finas',
+        'Incluye cocktail nutritivo de Vitamina C y Ácido Hialurónico'
+      ],
+      care: 'Frecuencia recomendada: 1 vez por mes. No se ofrece plan x10 para cuidar los tiempos biológicos de regeneración cutánea.',
+      singleLabel: 'Reservar 1 Sesión ($75.000)',
+      singleValue: 'Dermapen & Rutina Skincare Glow (1 Sesión)',
+      packLabel: 'Reservar Plan x5 ($60.000/ses)',
+      packValue: 'Dermapen & Rutina Skincare Glow (Plan x5)'
     },
     'drenaje-linfatico': {
       title: 'Drenaje Linfático Manual',
-      desc: 'Técnica de masaje suave y rítmico que estimula el sistema linfático para eliminar toxinas, reducir la retención de líquidos y mejorar la circulación.',
-      needs: 'Edemas, retención de líquidos, posoperatorios o pesadez en piernas.',
+      category: 'Corporal Terapéutico',
+      pricing: '1 Sesión: $55.000 | Plan x10: $45.000/ses',
+      desc: 'Técnica de masaje suave, preciso y rítmico que activa el sistema linfático superficial y profundo. Ideal para desinflamar tejidos, descongestionar, aliviar piernas cansadas y optimizar la recuperación en procesos posquirúrgicos o liposucción.',
+      needs: 'Retención de líquidos, edemas, celulitis edematosa, posoperatorios y pesadez en extremidades.',
       benefits: [
-        'Elimina el exceso de líquidos y toxinas',
-        'Favorece la circulación sanguínea y linfática',
-        'Produce un profundo efecto relajante y desintoxicante'
-      ]
+        'Elimina líquidos retenidos y toxinas acumuladas',
+        'Alivia inmediatamente la hinchazón y la sensación de pesadez',
+        'Acelera la recuperación y cicatrización en posoperatorios',
+        'Favorece la microcirculación y el descanso corporal'
+      ],
+      care: 'Para optimizar resultados en edemas o retención persistente se recomienda el Plan de 10 sesiones (1 a 2 veces por semana).',
+      singleLabel: 'Reservar 1 Sesión ($55.000)',
+      singleValue: 'Drenaje Linfático Manual (1 Sesión)',
+      packLabel: 'Reservar Plan x10 ($45.000/ses)',
+      packValue: 'Drenaje Linfático Manual (Plan x10)'
+    },
+    'drenaje-embarazo': {
+      title: 'Drenaje Linfático x10 (Embarazo)',
+      category: 'Corporal Maternidad',
+      pricing: 'Plan x10: $45.000/ses ($450.000 total)',
+      desc: 'Protocolo seguro, suave y especializado diseñado para futuras mamás (pre y post parto). Alivia la hinchazón en piernas, tobillos y pies, reduce la sobrecarga circulatoria y brinda un espacio de relajación y bienestar para la mamá y su bebé.',
+      needs: 'Edema gestacional, piernas pesadas, retención de líquidos en embarazo y recuperación posparto.',
+      benefits: [
+        'Técnica 100% segura y adaptada a cada etapa de la gestación',
+        'Descongestiona piernas, pies y tobillos inflamados',
+        'Mejora el retorno venoso y linfático sin presiones invasivas',
+        'Promueve la relajación y el descanso profundo'
+      ],
+      care: 'Requiere apto o consentimiento de tu médico obstetra de cabecera a partir del segundo trimestre.',
+      packOnly: true,
+      packLabel: 'Reservar Plan x10 ($45.000/ses)',
+      packValue: 'Drenaje Linfático Embarazo (Plan x10)'
     },
     'masaje-descontracturante': {
       title: 'Masaje Descontracturante',
-      desc: 'Terapia manual intensiva enfocada en liberar nudos y tensiones musculares acumuladas por estrés, malas posturas o esfuerzo físico.',
-      needs: 'Dolores musculares, contracturas en espalda/cuello y estrés acumulado.',
+      category: 'Terapéutico & Alivio',
+      pricing: '1 Sesión: $50.000 | Plan x10: $40.000/ses',
+      desc: 'Terapia manual intensiva y focalizada que actúa sobre las fibras musculares profundas para disolver nudos, aliviar contracturas agudas o crónicas y devolver la flexibilidad a la espalda, cuello y hombros.',
+      needs: 'Contracturas musculares, dolor cervical, dorsal o lumbar, y tensiones acumuladas por mala postura o estrés.',
       benefits: [
-        'Alivia tensiones y dolores musculares severos',
-        'Mejora la flexibilidad y movilidad',
-        'Reduce el estrés físico y mental'
-      ]
+        'Disuelve tensiones y contracturas musculares profundas',
+        'Aumenta la movilidad articular y relaja la columna',
+        'Alivia dolores de cabeza tensionales y rigidez cervical',
+        'Genera sensación inmediata de liviandad corporal'
+      ],
+      care: 'El Plan x10 permite un tratamiento progresivo que previene la reaparición de contracturas crónicas.',
+      singleLabel: 'Reservar 1 Sesión ($50.000)',
+      singleValue: 'Masaje Descontracturante (1 Sesión)',
+      packLabel: 'Reservar Plan x10 ($40.000/ses)',
+      packValue: 'Masaje Descontracturante (Plan x10)'
     },
     'piedras-calientes': {
       title: 'Masaje con Piedras Calientes',
-      desc: 'Tratamiento geotermal que combina el masaje terapéutico con la aplicación de piedras de origen volcánico a temperaturas agradables.',
-      needs: 'Tensión muscular profunda, insomnio, ansiedad o agotamiento general.',
+      category: 'Geotermal & Relajación',
+      pricing: '1 Sesión: $50.000 | Plan x10: $40.000/ses',
+      desc: 'Tratamiento holístico y sensorial que combina maniobras de masaje terapéutico con la aplicación de piedras volcánicas de basalto a temperatura controlada, induciendo un estado de relajación física y mental profunda.',
+      needs: 'Estrés elevado, agotamiento físico, insomnio, ansiedad o tensión muscular generalizada.',
       benefits: [
-        'Relajación muscular profunda por termoterapia',
-        'Mejora el flujo de energía y reduce el estrés',
-        'Promueve un descanso reparador'
-      ]
+        'Efecto descontracturante natural por acción del calor geotermal',
+        'Induce una relajación del sistema nervioso y mejora el sueño',
+        'Estimula la circulación sanguínea y oxigenación celular',
+        'Equilibra la energía corporal y disipa el cansancio acumulado'
+      ],
+      care: 'Recomendado como terapia desestresante mensual o en plan continuado de 10 sesiones.',
+      singleLabel: 'Reservar 1 Sesión ($50.000)',
+      singleValue: 'Masaje con Piedras Calientes (1 Sesión)',
+      packLabel: 'Reservar Plan x10 ($40.000/ses)',
+      packValue: 'Masaje con Piedras Calientes (Plan x10)'
     },
     'limpieza-profunda': {
       title: 'Limpieza Facial Profunda',
-      desc: 'Higiene facial completa con extracción de impurezas, exfoliación, alta frecuencia y mascarilla descongestiva adaptada a tu biotipo cutáneo.',
-      needs: 'Pieles con puntos negros, impurezas, exceso de sebo o falta de luminosidad.',
+      category: 'Higiene & Salud Cutánea',
+      pricing: '1 Sesión: $45.000',
+      desc: 'Higiene facial exhaustiva y personalizada. Incluye desmaquillado, exfoliación adecuada a tu biotipo, extracción manual minuciosa de comedones/puntos negros, alta frecuencia bactericida y máscara descongestiva e hidratante.',
+      needs: 'Puntos negros, impurezas, poros obstruidos, exceso de oleosidad o piel apagada.',
       benefits: [
-        'Remueve células muertas e impurezas profundas',
-        'Equilibra la producción de grasa',
-        'Deja la piel limpia, suave y luminosa'
-      ]
+        'Elimina células muertas e impurezas atrapadas en los poros',
+        'Equilibra el pH y la secreción sebácea de la piel',
+        'Prepara el rostro para absorber mejor tu rutina cosmética diaria',
+        'Deja la piel visiblemente limpia, suave y oxigenada'
+      ],
+      care: 'Frecuencia aconsejada: 1 vez al mes. No se ofrece plan x10 para respetar la barrera lipídica y el recambio celular mensual.',
+      singleOnly: true,
+      singleLabel: 'Reservar Sesión ($45.000)',
+      singleValue: 'Limpieza Facial Profunda (1 Sesión)'
     },
     'maderoterapia': {
-      title: 'Maderoterapia Corporal',
-      desc: 'Técnica holística de modelado corporal utilizando instrumentos de madera anatómicamente diseñados para reafirmar y moldear la figura.',
-      needs: 'Adiposidad localizada, celulitis y flacidez corporal.',
+      title: 'Maderoterapia + Drenaje x10',
+      category: 'Modelado Corporal',
+      pricing: 'Plan x10: $60.000/ses ($600.000 total)',
+      desc: 'Tratamiento corporal reductivo y reafirmante que fusiona maniobras con elementos de madera de diseño anatómico y drenaje linfático manual. Trabaja activamente sobre la celulitis y el contorno corporal.',
+      needs: 'Adiposidad localizada, celulitis compacta/fibrosa y flacidez corporal.',
       benefits: [
-        'Redefine el contorno corporal y combate la celulitis',
-        'Tonifica el tejido cutáneo y muscular',
-        'Estimula el drenaje de grasas'
-      ]
+        'Ayuda a romper depósitos de grasa y alisar la celulitis',
+        'Estimula la producción de colágeno y elastina dérmica',
+        'Activa el drenaje de toxinas y líquidos retenidos',
+        'Modela y tonifica glúteos, piernas, abdomen y flancos'
+      ],
+      care: 'No se comercializa por sesión individual: solo se realiza en Combo x10 con 2 sesiones semanales para garantizar resultados reales.',
+      packOnly: true,
+      packLabel: 'Reservar Plan x10 ($60.000/ses)',
+      packValue: 'Combo: Maderoterapia + Drenaje x10 ($60.000)'
+    },
+    'depilacion-definitiva': {
+      title: 'Depilación Definitiva (Jornada Estacional)',
+      category: 'Promoción Estacional',
+      pricing: 'Consultar Fechas & Zonas por WhatsApp',
+      desc: 'Jornadas periódicas con tecnología de última generación para eliminación progresiva y duradera del vello en zonas faciales y corporales. Consultá el cronograma de fechas, zonas disponibles y promociones por paquete.',
+      needs: 'Eliminación del vello no deseado, foliculitis e irritación por afeitado/cera.',
+      benefits: [
+        'Resultados progresivos y definitivos en pocas sesiones',
+        'Apta para diferentes tipos de piel y zonas del cuerpo',
+        'Elimina la foliculitis y mejora la textura cutánea',
+        'Atención profesional y personalizada en gabinete privado'
+      ],
+      care: 'Servicio en fechas especiales programadas. Consultá disponibilidad para la próxima fecha directamente por WhatsApp.',
+      isWhatsappOnly: true,
+      whatsappUrl: 'https://wa.me/5491132194320?text=Hola%20Natalia,%20quisiera%20consultar%20por%20la%20próxima%20fecha%20de%20Depilación%20Definitiva'
     },
     'combo-1': {
-      title: 'Combo 1: 10 Sesiones Descontracturante + Piedras',
-      desc: 'Tratamiento integral enfocado en la relajación profunda del tono muscular y la descontractura profunda.',
-      needs: 'Estrés muscular crónico y necesidad de alivio corporal completo.',
+      title: 'Combo: Descontracturante + Piedras + Reiki x10',
+      category: 'Combo Exclusivo',
+      pricing: 'Plan x10: $45.000/ses ($450.000 total)',
+      desc: 'Máxima experiencia de bienestar integral. Combina 10 sesiones de masaje descontracturante muscular, la calidez de las piedras volcánicas y la armonización energética con Reiki.',
+      needs: 'Agotamiento físico extremo, contracturas musculares crónicas y estrés emocional.',
       benefits: [
-        'Mayor aprovechamiento económico por paquete de 10 sesiones',
-        'Combinación de técnicas manuales y termoterapia volcánica',
-        'Seguimiento progresivo del tono muscular'
-      ]
+        'Ahorro destacado en paquete completo de 10 sesiones',
+        'Alivio muscular profundo + calidez geotermal reconfortante',
+        'Armonización energética integral con sesión de Reiki',
+        'Tratamiento progresivo y personalizado'
+      ],
+      packOnly: true,
+      packLabel: 'Reservar Combo x10 ($45.000/ses)',
+      packValue: 'Combo: Descontracturante + Piedras + Reiki x10 ($45.000)'
     },
     'combo-2': {
-      title: 'Combo 2: 10 Sesiones Drenaje Linfático',
-      desc: 'Ciclo completo para la estimulación de la circulación linfática, reducción de retención de líquidos y toxinas.',
-      needs: 'Retención de líquidos sostenida, celulitis edematosa o piernas cansadas.',
+      title: 'Combo: Drenaje + Ultrasonido x10',
+      category: 'Post-Operatorio & Reducción',
+      pricing: 'Plan x10: $45.000/ses ($450.000 total)',
+      desc: 'Protocolo altamente recomendado para recuperación posquirúrgica (lipoescultura, dermolipectomía, cirugías plásticas) o tratamiento de celulitis y reducción corporal focalizada.',
+      needs: 'Procesos posoperatorios, fibrosis, edemas severos y celulitis dura.',
       benefits: [
-        'Tratamiento continuado de desintoxicación corporal',
-        'Resultados visibles y duraderos en modelado y liviandad',
-        'Planificación personalizada de sesiones'
-      ]
+        'Acelera la desinflamación y previene la formación de fibrosis',
+        'El ultrasonido estimula la reabsorción de líquidos y hematomas',
+        'Mejora drásticamente los tiempos de recuperación médica',
+        'Atención especializada con criterio kinésico y estético'
+      ],
+      packOnly: true,
+      packLabel: 'Reservar Combo x10 ($45.000/ses)',
+      packValue: 'Combo: Drenaje + Ultrasonido x10 ($45.000)'
     },
     'combo-3': {
-      title: 'Combo 3: 10 Sesiones Drenaje + Descontracturante',
-      desc: 'Combinación intensiva de alivio muscular y desinflamación corporal distribuida en 10 sesiones.',
-      needs: 'Tensión muscular combinada con inflamación o retención de líquidos.',
+      title: 'Combo: Drenaje + Descontracturante x10',
+      category: 'Equilibrio Corporal 360°',
+      pricing: 'Plan x10: $50.000/ses ($500.000 total)',
+      desc: 'El balance ideal entre desinflamar el cuerpo y soltar tensiones musculares. 10 sesiones donde se alternan o combinan maniobras de drenaje linfático y masaje profundo según tu evolución.',
+      needs: 'Piernas cansadas o retención combinada con dolor de espalda, cervicales o estrés.',
       benefits: [
-        'Enfoque 360° en bienestar físico y muscular',
-        'Alternancia o combinación de sesiones según necesidad',
-        'Atención personalizada adaptada a tu evolución'
-      ]
+        'Enfoque corporal integral: liviandad circulatoria y alivio muscular',
+        'Tratamiento flexible adaptado a cómo llegás a cada sesión',
+        'Mejora continua y sostenida del bienestar físico'
+      ],
+      packOnly: true,
+      packLabel: 'Reservar Combo x10 ($50.000/ses)',
+      packValue: 'Combo: Drenaje + Descontracturante x10 ($50.000)'
     },
     'combo-4': {
-      title: 'Combo 4: Facial Completo Premium',
-      desc: 'Incluye Dermapen, Radiofrecuencia, Punta de Diamante y Limpieza Facial Hidratante.',
-      needs: 'Renovación cutánea profunda, efecto glow e higiene facial exhaustiva.',
+      title: 'Combo: Maderoterapia + Drenaje x10',
+      category: 'Modelado Intensivo',
+      pricing: 'Plan x10: $60.000/ses ($600.000 total)',
+      desc: 'El plan estrella para modelar y reducir. 10 sesiones intensivas de maderoterapia combinadas con drenaje linfático manual para movilizar adiposidades y drenar toxinas activamente.',
+      needs: 'Modelado de silueta, celulitis rebelde y tonificación de tejidos.',
       benefits: [
-        'Integración de las 4 aparatologías faciales más efectivas',
-        'Efecto rejuvenecedor y tensor inmediato',
-        'Piel completamente renovada e hidratada'
-      ]
+        'Maniobras específicas con instrumentos de madera anatómicos',
+        'Drenaje inmediato de toxinas y líquidos removidos',
+        'Planificación sugerida de 2 sesiones por semana para óptimo resultado'
+      ],
+      packOnly: true,
+      packLabel: 'Reservar Combo x10 ($60.000/ses)',
+      packValue: 'Combo: Maderoterapia + Drenaje x10 ($60.000)'
+    },
+    'combo-5': {
+      title: 'Combo: Reflexología Manos + Pies x5',
+      category: 'Terapia Holística 1 Hora',
+      pricing: 'Plan x5: $30.000/ses ($150.000 total)',
+      desc: 'Sesión integral de 1 hora completa de reflexología podal y palmar. A través de la presión en zonas reflejas, se estimula la autorregulación de órganos, se alivia el cansancio y se induce un bienestar total.',
+      needs: 'Estrés, insomnio, fatiga, pies cansados y necesidad de desconexión profunda.',
+      benefits: [
+        '1 hora completa de terapia en manos y pies',
+        'Estimula los puntos reflejos del cuerpo y calma el sistema nervioso',
+        'Plan accesible de 5 sesiones para un respiro semanal'
+      ],
+      packOnly: true,
+      packLabel: 'Reservar Plan x5 ($30.000/ses)',
+      packValue: 'Combo: Reflexología Manos + Pies x5 ($30.000)'
+    },
+    'combo-6': {
+      title: 'Combo: Masajes Deportivos x10 (Obra Social)',
+      category: 'Rendimiento & Recuperación',
+      pricing: 'Plan x10: $40.000/ses ($400.000 total)',
+      desc: 'Terapia manual orientada a deportistas y personas con alta exigencia física. Optimiza la preparación muscular, previene sobrecargas y acelera la recuperación post-entrenamiento. Único servicio con opción de reintegro por obra social.',
+      needs: 'Sobrecargas musculares, preparación previa a competencias o recuperación post esfuerzo.',
+      benefits: [
+        'Alivia fatiga y contracturas por entrenamiento intenso',
+        'Previene lesiones musculares y mejora el rango articular',
+        'Apto para trámite de reintegro con factura profesional según tu cobertura'
+      ],
+      care: 'Emitimos factura profesional para que puedas gestionar el reintegro en tu Obra Social o Prepaga según tu plan.',
+      packOnly: true,
+      packLabel: 'Reservar Plan x10 ($40.000/ses)',
+      packValue: 'Combo: Masajes Deportivos x10 ($40.000)'
     }
   };
 
@@ -117,12 +249,22 @@ document.addEventListener('DOMContentLoaded', () => {
     whatsappFloat.target = '_blank';
   }
   document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
-    if (!link.id.includes('btnSendWhatsappBooking') && !link.id.includes('whatsappFloat')) {
+    if (!link.id.includes('btnSendWhatsappBooking') && !link.id.includes('whatsappFloat') && !link.id.includes('modalWhatsappBtn')) {
       const defaultMsg = encodeURIComponent('Hola Natalia! Me gustaría consultar por un turno.');
       link.href = `${WA_BASE_URL}?text=${defaultMsg}`;
       link.target = '_blank';
     }
   });
+
+  // Listener para cerrar el globo flotante de WhatsApp
+  const bubbleCloseBtn = document.getElementById('bubbleCloseBtn');
+  const whatsappBubble = document.getElementById('whatsappBubble');
+  if (bubbleCloseBtn && whatsappBubble) {
+    bubbleCloseBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      whatsappBubble.style.display = 'none';
+    });
+  }
 
   /* ==========================================
      2. NAVBAR & NAVEGACIÓN MOBILE (#reservar -> #reserva)
@@ -177,117 +319,134 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ==========================================
-   3. MODAL DE TRATAMIENTOS Y COMBOS
-========================================== */
-const treatmentModal = document.getElementById('treatmentModal');
-const modalCloseBtn = document.getElementById('modalCloseBtn');
-const modalReserveSingleBtn = document.getElementById('modalReserveSingleBtn');
-const modalReservePackBtn = document.getElementById('modalReservePackBtn');
-let currentSelectedModalTreatment = '';
+     3. MODAL DE TRATAMIENTOS Y COMBOS
+  ========================================== */
+  const treatmentModal = document.getElementById('treatmentModal');
+  const modalCloseBtn = document.getElementById('modalCloseBtn');
+  const modalReserveSingleBtn = document.getElementById('modalReserveSingleBtn');
+  const modalReservePackBtn = document.getElementById('modalReservePackBtn');
 
-function openModal(dataId) {
-  const data = treatmentsData[dataId];
-  if (!data || !treatmentModal) return;
-  
-  currentSelectedModalTreatment = data.title;
-  
-  const mTitle = document.getElementById('modalTitle');
-  const mDesc = document.getElementById('modalDesc');
-  const mNeeds = document.getElementById('modalNeeds');
-  const mBenefits = document.getElementById('modalBenefits');
-  
-  if (mTitle) mTitle.textContent = data.title;
-  if (mDesc) mDesc.textContent = data.desc;
-  if (mNeeds) mNeeds.textContent = data.needs;
-  if (mBenefits) {
-    mBenefits.innerHTML = '';
-    data.benefits.forEach(b => {
-      const li = document.createElement('li');
-      li.textContent = b;
-      mBenefits.appendChild(li);
-    });
-  }
-
-  // Si abren un combo exclusivo, ocultamos el botón de 1 sesión para evitar confusiones
-  if (dataId.startsWith('combo')) {
-    if (modalReserveSingleBtn) modalReserveSingleBtn.style.display = 'none';
-    if (modalReservePackBtn) modalReservePackBtn.textContent = 'Reservar Combo';
-  } else {
-    if (modalReserveSingleBtn) modalReserveSingleBtn.style.display = 'block';
-    if (modalReservePackBtn) modalReservePackBtn.textContent = 'Reservar Plan x10 (Ahorro)';
-  }
-
-  treatmentModal.classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeModal() {
-  if (treatmentModal) {
-    treatmentModal.classList.remove('active');
-    document.body.style.overflow = '';
-  }
-}
-
-const serviceCards = document.querySelectorAll('.service-card, .combo-card');
-serviceCards.forEach(card => {
-  card.addEventListener('click', (e) => {
-    if (e.target.closest('.select-combo-btn')) return;
-    const dataId = card.getAttribute('data-id');
-    if (dataId) {
-      openModal(dataId);
+  function openModal(dataId) {
+    const data = treatmentsData[dataId];
+    if (!data || !treatmentModal) return;
+    
+    const mTitle = document.getElementById('modalTitle');
+    const mDesc = document.getElementById('modalDesc');
+    const mNeeds = document.getElementById('modalNeeds');
+    const mBenefits = document.getElementById('modalBenefits');
+    const mCategoryTag = document.getElementById('modalCategoryTag');
+    const mPriceText = document.getElementById('modalPriceText');
+    const mCareBox = document.getElementById('modalCareBox');
+    const mCareText = document.getElementById('modalCareText');
+    const mWhatsappBtn = document.getElementById('modalWhatsappBtn');
+    
+    if (mTitle) mTitle.textContent = data.title;
+    if (mCategoryTag) mCategoryTag.textContent = data.category || 'Tratamiento';
+    if (mPriceText) mPriceText.textContent = data.pricing || '';
+    if (mDesc) mDesc.textContent = data.desc;
+    if (mNeeds) mNeeds.textContent = data.needs;
+    
+    if (mBenefits) {
+      mBenefits.innerHTML = '';
+      data.benefits.forEach(b => {
+        const li = document.createElement('li');
+        li.textContent = b;
+        mBenefits.appendChild(li);
+      });
     }
-  });
-});
 
-if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeModal);
-if (treatmentModal) {
-  treatmentModal.addEventListener('click', (e) => {
-    if (e.target === treatmentModal) closeModal();
-  });
-}
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && treatmentModal && treatmentModal.classList.contains('active')) {
-    closeModal();
-  }
-});
-
-// Función auxiliar para cerrar modal, seleccionar opción y scrollear
-function handleModalSelection(suffix) {
-  closeModal();
-  if (currentSelectedModalTreatment) {
-    // Si la función selectServiceInSelect existe, la ejecutamos
-    if (typeof selectServiceInSelect === 'function') {
-      const serviceToSelect = suffix ? `${currentSelectedModalTreatment} ${suffix}` : currentSelectedModalTreatment;
-      
-      // Intentamos seleccionar exacto; si no encuentra la opción con sufijo, selecciona el título base
-      const selectElem = document.getElementById('serviceSelect') || document.querySelector('select');
-      if (selectElem) {
-        let optionExists = Array.from(selectElem.options).some(opt => opt.value.includes(serviceToSelect) || opt.text.includes(serviceToSelect));
-        if (optionExists) {
-          selectServiceInSelect(serviceToSelect);
-        } else {
-          selectServiceInSelect(currentSelectedModalTreatment);
-        }
+    if (mCareBox && mCareText) {
+      if (data.care) {
+        mCareText.textContent = data.care;
+        mCareBox.style.display = 'block';
       } else {
-        selectServiceInSelect(currentSelectedModalTreatment);
+        mCareBox.style.display = 'none';
       }
     }
-  }
-  
-  const reservaSec = document.getElementById('reserva') || document.getElementById('reservar');
-  if (reservaSec) {
-    reservaSec.scrollIntoView({ behavior: 'smooth' });
-  }
-}
 
-// Eventos para los dos botones
-if (modalReserveSingleBtn) {
-  modalReserveSingleBtn.addEventListener('click', () => handleModalSelection('(1 Sesión)'));
-}
+    // Configuración dinámica de botones
+    if (data.isWhatsappOnly) {
+      if (modalReserveSingleBtn) modalReserveSingleBtn.style.display = 'none';
+      if (modalReservePackBtn) modalReservePackBtn.style.display = 'none';
+      if (mWhatsappBtn) {
+        mWhatsappBtn.classList.remove('hidden');
+        mWhatsappBtn.style.display = 'inline-flex';
+        mWhatsappBtn.href = data.whatsappUrl || `${WA_BASE_URL}?text=Hola%20Natalia,%20quisiera%20consultar%20por%20${encodeURIComponent(data.title)}`;
+      }
+    } else if (data.singleOnly) {
+      if (mWhatsappBtn) mWhatsappBtn.style.display = 'none';
+      if (modalReserveSingleBtn) {
+        modalReserveSingleBtn.style.display = 'inline-flex';
+        modalReserveSingleBtn.textContent = data.singleLabel || 'Reservar 1 Sesión';
+        modalReserveSingleBtn.onclick = () => handleModalSelection(data.singleValue || data.title);
+      }
+      if (modalReservePackBtn) modalReservePackBtn.style.display = 'none';
+    } else if (data.packOnly) {
+      if (mWhatsappBtn) mWhatsappBtn.style.display = 'none';
+      if (modalReserveSingleBtn) modalReserveSingleBtn.style.display = 'none';
+      if (modalReservePackBtn) {
+        modalReservePackBtn.style.display = 'inline-flex';
+        modalReservePackBtn.textContent = data.packLabel || 'Reservar Plan';
+        modalReservePackBtn.onclick = () => handleModalSelection(data.packValue || data.title);
+      }
+    } else {
+      if (mWhatsappBtn) mWhatsappBtn.style.display = 'none';
+      if (modalReserveSingleBtn) {
+        modalReserveSingleBtn.style.display = 'inline-flex';
+        modalReserveSingleBtn.textContent = data.singleLabel || 'Reservar 1 Sesión';
+        modalReserveSingleBtn.onclick = () => handleModalSelection(data.singleValue || `${data.title} (1 Sesión)`);
+      }
+      if (modalReservePackBtn) {
+        modalReservePackBtn.style.display = 'inline-flex';
+        modalReservePackBtn.textContent = data.packLabel || 'Reservar Plan de Ahorro';
+        modalReservePackBtn.onclick = () => handleModalSelection(data.packValue || `${data.title} (Plan x10)`);
+      }
+    }
 
-if (modalReservePackBtn) {
-  modalReservePackBtn.addEventListener('click', () => handleModalSelection('(Plan x10)'));
-}
+    treatmentModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    if (treatmentModal) {
+      treatmentModal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }
+
+  const serviceCards = document.querySelectorAll('.service-card, .combo-card');
+  serviceCards.forEach(card => {
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('.select-combo-btn')) return;
+      const dataId = card.getAttribute('data-id');
+      if (dataId) {
+        openModal(dataId);
+      }
+    });
+  });
+
+  if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeModal);
+  if (treatmentModal) {
+    treatmentModal.addEventListener('click', (e) => {
+      if (e.target === treatmentModal) closeModal();
+    });
+  }
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && treatmentModal && treatmentModal.classList.contains('active')) {
+      closeModal();
+    }
+  });
+
+  function handleModalSelection(serviceToSelect) {
+    closeModal();
+    if (serviceToSelect) {
+      selectServiceInSelect(serviceToSelect);
+    }
+    const reservaSec = document.getElementById('reserva') || document.getElementById('reservar');
+    if (reservaSec) {
+      reservaSec.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
 
   /* ==========================================
    4. SELECCIÓN DE SERVICIOS Y COMBOS EN EL SELECT
