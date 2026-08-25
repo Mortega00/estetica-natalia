@@ -267,33 +267,37 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================
-     2. NAVBAR & NAVEGACIÓN MOBILE (#reservar -> #reserva)
+     2. NAVBAR & NAVEGACIÓN MOBILE (FIX SCROLL & CIERRE INMEDIATO)
   ========================================== */
   const navMenu = document.getElementById('navMenu');
   const mobileToggle = document.getElementById('mobileToggle');
+
   function closeMobileMenu() {
-    if (navMenu && navMenu.classList.contains('active')) {
+    if (navMenu) {
       navMenu.classList.remove('active');
-      if (mobileToggle) {
-        mobileToggle.setAttribute('aria-expanded', 'false');
-        mobileToggle.classList.remove('active');
-      }
-      document.body.style.overflow = '';
     }
+    if (mobileToggle) {
+      mobileToggle.setAttribute('aria-expanded', 'false');
+      mobileToggle.classList.remove('active');
+    }
+    document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
   }
+
   if (mobileToggle && navMenu) {
     mobileToggle.addEventListener('click', (e) => {
       e.stopPropagation();
       const isOpen = navMenu.classList.toggle('active');
       mobileToggle.classList.toggle('active', isOpen);
       mobileToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-      document.body.style.overflow = isOpen ? 'hidden' : '';
     });
+
     document.addEventListener('click', (e) => {
       if (navMenu.classList.contains('active') && !navMenu.contains(e.target) && !mobileToggle.contains(e.target)) {
         closeMobileMenu();
       }
     });
+
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && navMenu.classList.contains('active')) {
         closeMobileMenu();
@@ -301,18 +305,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  const allNavLinks = document.querySelectorAll('a[href^="#"]');
+  // Cierre inmediato en todos los enlaces de la navegación y scroll suave
+  const allNavLinks = document.querySelectorAll('.nav a, a[href^="#"]');
   allNavLinks.forEach(link => {
     link.addEventListener('click', (e) => {
+      closeMobileMenu();
       let targetId = link.getAttribute('href');
-      if (!targetId || targetId === '#') return;
+      if (!targetId || targetId === '#' || targetId.startsWith('http') || targetId.startsWith('wa.me')) return;
       if (targetId === '#reservar') {
         targetId = '#reserva';
       }
       const targetElement = document.querySelector(targetId);
       if (targetElement) {
         e.preventDefault();
-        closeMobileMenu();
         targetElement.scrollIntoView({ behavior: 'smooth' });
       }
     });
