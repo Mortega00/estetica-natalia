@@ -69,7 +69,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -104,13 +104,13 @@
             </button>
 
             <nav class="nav" id="navMenu">
-                <a href="#inicio" class="nav-link">Inicio</a>
+                <a href="#inicio" class="nav-link nav-link-optional">Inicio</a>
                 <a href="#tratamientos" class="nav-link">Tratamientos</a>
-                <a href="#combos" class="nav-link">Planes & Combos</a>
-                <a href="#condiciones-planes" class="nav-link">Condiciones</a>
-                <a href="#quien-soy" class="nav-link">Sobre Nativa</a>
-                <a href="#antes-despues" class="nav-link">Antes y Después</a>
-                <a href="#faq" class="nav-link">FAQ</a>
+                <a href="#combos" class="nav-link">Experiencia</a>
+                <a href="#contacto" class="nav-link nav-link-contact">Contacto</a>
+                <a href="#quien-soy" class="nav-link nav-link-about">Sobre Natalia</a>
+                <a href="#antes-despues" class="nav-link nav-link-optional">Antes y Después</a>
+                <a href="#faq" class="nav-link nav-link-faq">FAQ</a>
                 <a href="#reserva" class="btn-nav">Reservar Turno</a>
 
                 <!-- Accesos directos a redes exclusivos para vista mobile -->
@@ -144,8 +144,8 @@
                     <a href="#reserva" class="btn-primary">
                         <i class="fa-regular fa-calendar-check"></i> Reservar Turno
                     </a>
-                    <a href="#quien-soy" class="btn-secondary">
-                        <i class="fa-regular fa-user"></i> Conocer a Natalia
+                    <a href="#tratamientos" class="btn-secondary">
+                        <i class="fa-solid fa-arrow-down"></i> Descubrir tratamientos
                     </a>
                 </div>
             </div>
@@ -157,13 +157,18 @@
         <div class="container">
             
             <!-- Banner de Autoridad y Diagnóstico Experto -->
-            <div class="trayectoria-badge">
-                <div class="trayectoria-icon">
-                    <i class="fa-solid fa-gem"></i>
+            <div class="trayectoria-badge" aria-label="Razones para elegir Nativa Estética">
+                <div class="trust-item">
+                    <strong>+25 años</strong>
+                    <span>de experiencia profesional</span>
                 </div>
-                <div class="trayectoria-info">
-                    <h3>25 Años de Experiencia en Estética Profesional</h3>
-                    <p>Atención 100% personalizada por Natalia Ferrante. Cada piel y cada cuerpo requieren diagnóstico experto y productos cosmecéuticos de primera línea para garantizar resultados visibles, seguros y duraderos.</p>
+                <div class="trust-item">
+                    <strong>Atención personalizada</strong>
+                    <span>cada sesión comienza con diagnóstico</span>
+                </div>
+                <div class="trust-item">
+                    <strong>Gabinete privado</strong>
+                    <span>en Remedios de Escalada</span>
                 </div>
             </div>
 
@@ -356,6 +361,12 @@
                     </div>
                 </div>
 
+            </div>
+
+            <details class="combos-more">
+                <summary>Ver todos los programas <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></summary>
+                <div class="combos-grid combos-grid-more">
+
                 <!-- Combo 4: Maderoterapia + Drenaje -->
                 <div class="combo-card" data-id="combo-maderoterapia-drenaje">
                     <div class="combo-badge">Pack Modelador x10 (2 veces/sem)</div>
@@ -390,10 +401,11 @@
                 </div>
 
             </div>
+            </details>
 
             <!-- Indicador visual de swipe en móviles -->
             <div class="swipe-hint">
-                <span>&larr; Deslizá para ver todos los planes &rarr;</span>
+                <span>Seleccioná un programa para conocer sus detalles</span>
             </div>
         </div>
     </section>
@@ -403,14 +415,23 @@
         <div class="container">
             <div class="plan-conditions-card">
                 <div class="conditions-header">
-                    <i class="fa-solid fa-shield-check"></i>
                     <div>
-                        <h3>Condiciones y Modalidad de los Planes (x5 / x10)</h3>
-                        <p>Transparencia y claridad para que disfrutes de tu programa con total confianza</p>
+                        <span class="subtitle">TU EXPERIENCIA EN NATIVA</span>
+                        <h3>Una visita, paso a paso.</h3>
+                        <p>Elegí lo que necesitás, reservá tu turno y recibí una atención hecha a tu medida.</p>
                     </div>
                 </div>
-                
-                <div class="conditions-grid">
+
+                <ol class="experience-journey" aria-label="Recorrido de una visita en Nativa Estética">
+                    <li><span>01</span><strong>Elegí tu tratamiento</strong></li>
+                    <li><span>02</span><strong>Reservá tu turno</strong></li>
+                    <li><span>03</span><strong>Recibí una evaluación personalizada</strong></li>
+                    <li><span>04</span><strong>Disfrutá tu sesión</strong></li>
+                </ol>
+
+                <details class="plan-conditions-details">
+                    <summary>Antes de comenzar <span>Ver condiciones de los programas</span></summary>
+                    <div class="conditions-grid">
                     <div class="condition-item">
                         <i class="fa-solid fa-handshake"></i>
                         <div>
@@ -446,18 +467,39 @@
                             <p>Los turnos pueden reprogramarse con al menos <strong>24 horas de anticipación</strong> sin perder la sesión. Cancelaciones fuera de término o inasistencias se computarán como realizadas.</p>
                         </div>
                     </div>
-                </div>
+                    </div>
 
-                <div class="conditions-footer">
-                    <a href="#combos" class="btn-secondary">
-                        <i class="fa-solid fa-check"></i> Conozco y Acepto las Condiciones
-                    </a>
-                </div>
+                    <div class="conditions-footer">
+                        <a href="#combos" class="btn-secondary">
+                            <i class="fa-solid fa-check"></i> Ver programas
+                        </a>
+                    </div>
+                </details>
             </div>
         </div>
     </section>
 
-    <!-- 5. ANTES Y DESPUÉS (GALERÍA DE RESULTADOS) -->
+    <!-- 5. EL ESPACIO -->
+    <section class="space-section">
+        <div class="container space-grid">
+            <div class="space-image-wrapper">
+                <img src="assets/centro-estetica.png" alt="Gabinete de Nativa Estética preparado para una sesión personalizada" loading="lazy">
+            </div>
+            <div class="space-content">
+                <span class="subtitle">EL ESPACIO</span>
+                <h2>Un momento pensado para vos.</h2>
+                <p>Un gabinete privado y cuidado para que cada sesión tenga su propio ritmo: con calma, higiene y atención personal.</p>
+                <ul class="space-points">
+                    <li>Privacidad para cada consulta</li>
+                    <li>Preparación e higiene en cada encuentro</li>
+                    <li>Atención profesional sin apuros</li>
+                </ul>
+                <a href="#tratamientos" class="btn-secondary">Conocer tratamientos <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. ANTES Y DESPUÉS (GALERÍA DE RESULTADOS) -->
     <section class="before-after-section" id="antes-despues">
         <div class="container">
             <div class="section-title-container">
@@ -524,7 +566,7 @@
         </div>
     </section>
 
-    <!-- 6. QUIÉN SOY (AUTORIDAD & CONFIANZA) -->
+    <!-- 7. QUIÉN SOY (AUTORIDAD & CONFIANZA) -->
     <section class="experience-section" id="quien-soy">
         <div class="container">
             <div class="experience-grid">
@@ -537,9 +579,9 @@
                 </div>
                 
                 <div class="experience-content">
-                    <span class="subtitle">SOBRE MÍ</span>
-                    <h2>Natalia Ferrante</h2>
-                    <p class="highlight-text">Cosmetóloga y Esteticista Profesional con más de 25 años dedicados a la salud, belleza y cuidado integral de la piel.</p>
+                    <span class="subtitle">SOBRE NATIVA</span>
+                    <h2>Experiencia profesional.<br>Atención verdaderamente personal.</h2>
+                    <p class="highlight-text">Natalia Ferrante · Cosmetóloga y Esteticista Profesional · +25 años de trayectoria.</p>
                     <p class="section-desc" style="text-align: left;">
                         Mi compromiso en Nativa Estética es brindar una experiencia cálida, respetuosa y 100% personalizada. Cada persona tiene una piel y necesidades únicas; por eso, cada sesión comienza con un diagnóstico profesional exhaustivo para aplicar las técnicas y cosmecéuticos más adecuados.
                     </p>
@@ -561,7 +603,7 @@
 
                     <div style="margin-top: 25px;">
                         <a href="#reserva" class="btn-primary" style="width: auto; display: inline-block;">
-                            <i class="fa-regular fa-calendar-check"></i> Agendar Turno con Natalia
+                            <i class="fa-regular fa-calendar-check"></i> Reservar con Natalia
                         </a>
                     </div>
                 </div>
@@ -569,7 +611,7 @@
         </div>
     </section>
 
-    <!-- 7. RESEÑAS & TESTIMONIOS REALES -->
+    <!-- 8. RESEÑAS & TESTIMONIOS REALES -->
     <section class="testimonials-section" id="reseñas">
         <div class="container">
             <div class="section-title-container">
@@ -620,7 +662,7 @@
         </div>
     </section>
 
-    <!-- 8. PREGUNTAS FRECUENTES (FAQ ACTUALIZADO) -->
+    <!-- 9. PREGUNTAS FRECUENTES (FAQ ACTUALIZADO) -->
     <section id="faq" class="faq-section">
         <div class="container">
             <div class="section-title-container">
@@ -726,7 +768,7 @@
         </div>
     </section>
 
-    <!-- 9. SECCIÓN AGENDA DE TURNOS -->
+    <!-- 10. SECCIÓN AGENDA DE TURNOS -->
     <section id="reserva" class="booking-section">
         <div class="container">
             <div class="section-title-container">
@@ -1006,56 +1048,42 @@
         <div class="container">
             <div class="footer-grid">
                 
-                <!-- Columna 1: Marca & Trayectoria -->
+                <!-- Marca -->
                 <div class="footer-col footer-brand-col">
                     <div class="footer-logo">
                         <img src="assets/favicon.png" alt="Nativa Estética" class="footer-logo-img">
                         <span class="footer-brand-title">NATIVA ESTÉTICA</span>
                     </div>
-                    <p class="footer-tagline">Natalia Ferrante — Cosmetología, Estética y Bienestar Integral</p>
-                    <p class="footer-bio">Más de 25 años de trayectoria profesional brindando tratamientos personalizados, diagnósticos expertos y cuidado de la salud de tu piel.</p>
+                    <p class="footer-tagline">Estética, bienestar y atención personalizada.</p>
+                    <p class="footer-bio">Un espacio de cuidado profesional para tu piel y tu bienestar.</p>
                 </div>
 
-                <!-- Columna 2: Horarios Oficiales -->
+                <!-- Explorar -->
                 <div class="footer-col">
-                    <h4 class="footer-col-title"><i class="fa-regular fa-clock"></i> Horarios de Atención</h4>
-                    <ul class="footer-hours-list">
-                        <li><span>Lunes a Viernes:</span> <strong>09:00 a 19:00 hs</strong></li>
-                        <li><span>Sábados:</span> <strong>09:00 a 16:00 hs</strong></li>
-                        <li><span>Domingos:</span> <em>Cerrado</em></li>
+                    <h4 class="footer-col-title">Explorar</h4>
+                    <ul class="footer-links">
+                        <li><a href="#tratamientos">Tratamientos</a></li>
+                        <li><a href="#combos">Experiencia</a></li>
+                        <li><a href="#quien-soy">Sobre Natalia</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#reserva">Reservar turno</a></li>
                     </ul>
-                    <p class="footer-notice">* Atención exclusivamente con turno previo acordado</p>
                 </div>
 
-                <!-- Columna 3: Ubicación y Contacto Local -->
+                <!-- Ubicación -->
                 <div class="footer-col">
-                    <h4 class="footer-col-title"><i class="fa-solid fa-location-dot"></i> Gabinete Privado</h4>
-                    <p class="footer-location-text">
-                        <a href="https://share.google/nbRCY0ZRLrOKKaK79" target="_blank" rel="noopener noreferrer" class="footer-map-link">
-                            Remedios de Escalada, Partido de Lanús<br>
-                            Buenos Aires
-                        </a>
-                    </p>
-                    <p class="footer-phone">
-                        <i class="fa-brands fa-whatsapp"></i> +54 9 11 3219-4320
-                    </p>
+                    <h4 class="footer-col-title">Visitános</h4>
+                    <a href="https://share.google/nbRCY0ZRLrOKKaK79" target="_blank" rel="noopener noreferrer" class="footer-map-link">Remedios de Escalada,<br>Partido de Lanús, Buenos Aires</a>
+                    <a href="https://share.google/nbRCY0ZRLrOKKaK79" target="_blank" rel="noopener noreferrer" class="footer-text-link">Cómo llegar <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
                 </div>
 
-                <!-- Columna 4: Canales y Redes Sociales -->
+                <!-- Contacto -->
                 <div class="footer-col">
-                    <h4 class="footer-col-title"><i class="fa-solid fa-bullhorn"></i> Canales & Novedades</h4>
-                    <p class="footer-social-desc">Seguinos para conocer tips de skincare, promociones y novedades:</p>
-                    <div class="footer-socials">
-                        <a href="https://www.instagram.com/drenajelinfatico_escalada?igsh=YjNtMHRyNHNjYXoz" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Nativa Estética" class="social-icon ig">
-                            <i class="fa-brands fa-instagram"></i>
-                        </a>
-                        <a href="https://wa.me/5491132194320?text=Hola%20Natalia,%20quisiera%20hacer%20una%20consulta" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Directo" class="social-icon wa">
-                            <i class="fa-brands fa-whatsapp"></i>
-                        </a>
-                        <!-- Canal oficial -->
-                        <a href="https://whatsapp.com/channel/LINK_DE_TU_CANAL" target="_blank" rel="noopener noreferrer" aria-label="Canal oficial de WhatsApp" class="social-icon ch">
-                            <i class="fa-solid fa-tower-broadcast"></i>
-                        </a>
+                    <h4 class="footer-col-title">Contacto</h4>
+                    <div class="footer-contact-links">
+                        <a href="https://wa.me/5491132194320?text=Hola%20Natalia,%20quisiera%20hacer%20una%20consulta" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+                        <a href="https://www.instagram.com/drenajelinfatico_escalada?igsh=YjNtMHRyNHNjYXoz" target="_blank" rel="noopener noreferrer">Instagram</a>
+                        <a href="tel:+5491132194320">+54 9 11 3219-4320</a>
                     </div>
                 </div>
 
