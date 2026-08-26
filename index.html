@@ -365,7 +365,8 @@
 
             <details class="combos-more">
                 <summary>Ver todos los programas <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></summary>
-                <div class="combos-grid combos-grid-more">
+                <div class="combos-more-content">
+                    <div class="combos-grid combos-grid-more">
 
                 <!-- Combo 4: Maderoterapia + Drenaje -->
                 <div class="combo-card" data-id="combo-maderoterapia-drenaje">
@@ -400,7 +401,8 @@
                     </div>
                 </div>
 
-            </div>
+                    </div>
+                </div>
             </details>
 
             <!-- Indicador visual de swipe en móviles -->
@@ -431,7 +433,8 @@
 
                 <details class="plan-conditions-details">
                     <summary>Antes de comenzar <span>Ver condiciones de los programas</span></summary>
-                    <div class="conditions-grid">
+                    <div class="plan-conditions-content">
+                        <div class="conditions-grid">
                     <div class="condition-item">
                         <i class="fa-solid fa-handshake"></i>
                         <div>
@@ -467,34 +470,15 @@
                             <p>Los turnos pueden reprogramarse con al menos <strong>24 horas de anticipación</strong> sin perder la sesión. Cancelaciones fuera de término o inasistencias se computarán como realizadas.</p>
                         </div>
                     </div>
-                    </div>
+                        </div>
 
-                    <div class="conditions-footer">
-                        <a href="#combos" class="btn-secondary">
-                            <i class="fa-solid fa-check"></i> Ver programas
-                        </a>
+                        <div class="conditions-footer">
+                            <a href="#combos" class="btn-secondary">
+                                <i class="fa-solid fa-check"></i> Ver programas
+                            </a>
+                        </div>
                     </div>
                 </details>
-            </div>
-        </div>
-    </section>
-
-    <!-- 5. EL ESPACIO -->
-    <section class="space-section">
-        <div class="container space-grid">
-            <div class="space-image-wrapper">
-                <img src="assets/centro-estetica.png" alt="Gabinete de Nativa Estética preparado para una sesión personalizada" loading="lazy">
-            </div>
-            <div class="space-content">
-                <span class="subtitle">EL ESPACIO</span>
-                <h2>Un momento pensado para vos.</h2>
-                <p>Un gabinete privado y cuidado para que cada sesión tenga su propio ritmo: con calma, higiene y atención personal.</p>
-                <ul class="space-points">
-                    <li>Privacidad para cada consulta</li>
-                    <li>Preparación e higiene en cada encuentro</li>
-                    <li>Atención profesional sin apuros</li>
-                </ul>
-                <a href="#tratamientos" class="btn-secondary">Conocer tratamientos <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
             </div>
         </div>
     </section>
@@ -671,7 +655,8 @@
                 <p class="section-desc">Todo lo que necesitás saber antes de tu visita o reserva</p>
             </div>
 
-            <div class="faq-list">
+            <div class="faq-editorial">
+                <div class="faq-list">
                 
                 <!-- FAQ 1: Reserva y seña -->
                 <div class="faq-item">
@@ -764,6 +749,7 @@
                     </div>
                 </div>
 
+                </div>
             </div>
         </div>
     </section>
@@ -1097,6 +1083,7 @@
 
     <!-- Scripts -->
     <script src="app.js"></script>
+    <script src="animations.js" defer></script>
     
 </body>
 </html>
