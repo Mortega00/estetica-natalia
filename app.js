@@ -535,7 +535,7 @@ comboButtons.forEach(btn => {
   /* ==========================================
      5. CALENDARIO & HORARIOS
   ========================================== */
-  const APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyLJaogHA-pi_GYreLBljO_rkonVeJwfdWyQzZnp99OkCeJEtXR2OGPPkuBClsdResL/exec';
+  const APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbztJqiQ0BbV5rn-4aRXlbOZ_U3qYUkQdhXZTXuZAETa-f4SXTLeltItO2FKROYdwe6a/exec';
   let selectedDate = null;
   let selectedTime = null;
 
@@ -1099,6 +1099,8 @@ async function showConfirmationCard() {
         console.log('HORA:', data.hora);
         console.log('ESTADO:', data.estado);
 
+        esperarConfirmacionEnVivo(data.id);
+
       } else {
 
         console.error(
@@ -1219,7 +1221,78 @@ async function showConfirmationCard() {
   }
 
   /* ==========================================
-     11. CARRUSEL DE TESTIMONIOS
+   11. POLLING: CONSULTA DE ESTADO EN VIVO
+========================================== */
+let pollingInterval = null;
+
+function esperarConfirmacionEnVivo(turnoId) {
+    // 1. Mostrarle al usuario que estamos esperando
+    const timerText = document.getElementById('timerCount');
+    if (timerText) {
+       // Podés agregar un texto o dejar que el timer siga corriendo
+       console.log(`Iniciando polling para el turno ${turnoId}...`);
+    }
+
+    // 2. Preguntar a Google Sheets cada 10 segundos
+    pollingInterval = setInterval(async () => {
+        try {
+            const urlConsulta = `${APP_SCRIPT_URL}?action=estadoTurno&id=${encodeURIComponent(turnoId)}`;
+            const response = await fetch(urlConsulta);
+            const statusData = await response.json();
+
+            if (statusData.ok) {
+                console.log(`Estado actual en vivo: ${statusData.estado}`);
+
+                // 3. Si tu mamá cambió el Excel a RESERVADA
+                if (statusData.estado === 'RESERVADA' || statusData.estado === 'CONFIRMADA') {
+                    clearInterval(pollingInterval);
+                    mostrarCartelExito();
+                }
+                // 4. Si lo rechaza
+                else if (statusData.estado === 'CANCELADA') {
+                    clearInterval(pollingInterval);
+                    mostrarCartelError();
+                }
+            }
+        } catch (error) {
+            console.error("Error en polling de turno:", error);
+        }
+    }, 10000); // 10000 ms = 10 segundos
+}
+
+function mostrarCartelExito() {
+    // Escondemos el timer y el botón de WhatsApp (porque ya pagó)
+    const confirmationCard = document.getElementById('confirmationCard');
+    
+    // Acá podés crear un div dinámico o modificar uno existente.
+    // Ejemplo rápido inyectando HTML en la tarjeta:
+    if(confirmationCard) {
+        confirmationCard.innerHTML = `
+            <div style="text-align:center; padding: 30px; background-color: #d4edda; color: #155724; border-radius: 10px;">
+                <i class="fa-solid fa-circle-check" style="font-size: 3rem; margin-bottom: 15px;"></i>
+                <h3 style="margin-bottom: 10px;">¡Pago Recibido!</h3>
+                <p>Tu seña ha sido confirmada y tu turno está 100% asegurado.</p>
+                <p>Te esperamos en Nativa Estética.</p>
+            </div>
+        `;
+    }
+}
+
+function mostrarCartelError() {
+    const confirmationCard = document.getElementById('confirmationCard');
+    if(confirmationCard) {
+        confirmationCard.innerHTML = `
+            <div style="text-align:center; padding: 30px; background-color: #f8d7da; color: #721c24; border-radius: 10px;">
+                <i class="fa-solid fa-circle-xmark" style="font-size: 3rem; margin-bottom: 15px;"></i>
+                <h3 style="margin-bottom: 10px;">Turno Cancelado</h3>
+                <p>Hubo un problema con la confirmación de la seña. Por favor, contactate por WhatsApp.</p>
+            </div>
+        `;
+    }
+}
+
+  /* ==========================================
+     12. CARRUSEL DE TESTIMONIOS
   ========================================== */
   const testimonialsCarousel = document.getElementById('testimonialsCarousel');
   const prevReviewBtn = document.getElementById('prevReviewBtn');
@@ -1234,7 +1307,7 @@ async function showConfirmationCard() {
   }
 
   /* ==========================================
-     12. ACORDEÓN DE PREGUNTAS FRECUENTES (FAQ)
+     13. ACORDEÓN DE PREGUNTAS FRECUENTES (FAQ)
   ========================================== */
   const faqItems = document.querySelectorAll('.faq-item');
   faqItems.forEach(item => {
