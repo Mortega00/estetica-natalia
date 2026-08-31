@@ -535,7 +535,7 @@ comboButtons.forEach(btn => {
   /* ==========================================
      5. CALENDARIO & HORARIOS
   ========================================== */
-  const APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbztJqiQ0BbV5rn-4aRXlbOZ_U3qYUkQdhXZTXuZAETa-f4SXTLeltItO2FKROYdwe6a/exec';
+  const APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyb2igtxzToG8w5pfGatfePHGqkAtbyOY2gWgg_EKPO9h4_d5SAP36fJH8Mhp6gKDw9/exec      ';
   let selectedDate = null;
   let selectedTime = null;
 
