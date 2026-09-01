@@ -728,22 +728,37 @@ comboButtons.forEach(btn => {
     let startingDay = firstDayOfMonth.getDay() - 1;
     if (startingDay === -1) startingDay = 6;
 
+    // Rellenar espacios vacíos
     for (let i = 0; i < startingDay; i++) {
       const emptyCell = document.createElement('div');
       emptyCell.classList.add('cal-day', 'disabled', 'empty');
       calDaysGrid.appendChild(emptyCell);
     }
 
+    const diasCortos = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
+
     for (let day = 1; day <= daysInMonth; day++) {
       const dayCell = document.createElement('div');
       dayCell.classList.add('cal-day');
-      dayCell.textContent = day;
+      
       const dateObj = new Date(currentCalYear, currentCalMonth, day);
+      const diaSemana = dateObj.getDay();
+      const nombreDia = diasCortos[diaSemana];
 
-      // Evaluación a NIVEL 1 (CALENDARIO)
+      // Armado visual inteligente del día
+      let innerHTML = `<span class="day-name">${nombreDia}</span><span class="day-num">${day}</span>`;
+      
+      if (diaSemana === 0) { // Domingo
+          innerHTML += `<span class="day-tag">Cerrado</span>`;
+      }
+      
+      dayCell.innerHTML = innerHTML;
+
+      // Evaluación de disponibilidad
       const hasSlots = hasAvailableSlotsInDay(dateObj);
 
-      if (!hasSlots) {
+      // Si no hay turnos O es domingo (0), se bloquea
+      if (!hasSlots || diaSemana === 0) {
         dayCell.classList.add('disabled');
       } else {
         if (selectedDate &&
@@ -752,6 +767,7 @@ comboButtons.forEach(btn => {
             selectedDate.getDate() === day) {
           dayCell.classList.add('selected');
         }
+        
         dayCell.addEventListener('click', () => {
           document.querySelectorAll('.cal-day').forEach(cell => cell.classList.remove('selected'));
           dayCell.classList.add('selected');
@@ -764,16 +780,6 @@ comboButtons.forEach(btn => {
     renderTimeSlot();
   }
 
-  if (prevMonthBtn) {
-    prevMonthBtn.addEventListener('click', () => {
-      currentCalMonth--;
-      if (currentCalMonth < 0) {
-        currentCalMonth = 11;
-        currentCalYear--;
-      }
-      renderCalendar();
-    });
-  }
   if (nextMonthBtn) {
     nextMonthBtn.addEventListener('click', () => {
       currentCalMonth++;
@@ -1329,3 +1335,9 @@ function mostrarCartelError() {
     }
   });
 });
+window.activarPromoGeneral = function() {
+    const reservaSec = document.getElementById('reserva') || document.querySelector('.booking-section');
+    if (reservaSec) {
+        reservaSec.scrollIntoView({ behavior: 'smooth' });
+    }
+}
