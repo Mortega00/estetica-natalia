@@ -237,6 +237,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  const promo15Prices = {
+    'dermapen': { regular: '$88.000', promo: '$75.000', cardLabel: 'Sesión' },
+    'drenaje-linfatico': { regular: '$65.000', promo: '$55.000', cardLabel: 'Sesión' },
+    'masaje-descontracturante': { regular: '$59.000', promo: '$50.000', cardLabel: 'Sesión' },
+    'piedras-calientes': { regular: '$59.000', promo: '$50.000', cardLabel: 'Sesión' },
+    'limpieza-profunda': { regular: '$53.000', promo: '$45.000', cardLabel: 'Sesión única' }
+  };
+  let promo15Active = false;
+
+  try {
+    promo15Active = sessionStorage.getItem('nativaPromo15') === '1';
+  } catch (error) {
+    console.warn('No se pudo leer el estado de la promoción.', error);
+  }
+
   /* ==========================================
      1. WHATSAPP & CONFIGURACIÓN OFICIAL
   ========================================== */
@@ -306,6 +321,18 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Cierre inmediato en todos los enlaces de la navegación y scroll suave
+  document.querySelectorAll('.promo-link').forEach(link => {
+    link.addEventListener('click', () => {
+      promo15Active = true;
+      try {
+        sessionStorage.setItem('nativaPromo15', '1');
+      } catch (error) {
+        console.warn('No se pudo guardar el estado de la promoción.', error);
+      }
+      applyPromo15Interface();
+    });
+  });
+
   const allNavLinks = document.querySelectorAll('.nav a, a[href^="#"]');
   allNavLinks.forEach(link => {
     link.addEventListener('click', (e) => {
@@ -322,6 +349,63 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  /* ==========================================
+     HERO TEMPORAL
+  ========================================== */
+  const heroTemporalContent = document.querySelector('.hero-content');
+  const heroTemporalSection = document.querySelector('.hero-section');
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  if (heroTemporalContent && heroTemporalSection && !prefersReducedMotion.matches) {
+    let heroEntryTimer = null;
+    let heroExitTimer = null;
+    let heroWasClearlyOut = false;
+
+    const clearHeroTemporalTimers = () => {
+      clearTimeout(heroEntryTimer);
+      clearTimeout(heroExitTimer);
+      heroEntryTimer = null;
+      heroExitTimer = null;
+    };
+
+    const startHeroTemporalCycle = () => {
+      clearHeroTemporalTimers();
+      heroTemporalContent.classList.add('hero-temporal');
+      heroTemporalContent.classList.remove('hero-copy-visible', 'hero-copy-hidden');
+
+      heroEntryTimer = setTimeout(() => {
+        heroTemporalContent.classList.add('hero-copy-visible');
+        heroEntryTimer = null;
+      }, 100);
+
+      heroExitTimer = setTimeout(() => {
+        heroTemporalContent.classList.add('hero-copy-hidden');
+        heroExitTimer = null;
+      }, 4500);
+    };
+
+    startHeroTemporalCycle();
+
+    if ('IntersectionObserver' in window) {
+      const heroTemporalObserver = new IntersectionObserver(([entry]) => {
+        if (entry.intersectionRatio <= 0.2) {
+          if (!heroWasClearlyOut) {
+            heroWasClearlyOut = true;
+            clearHeroTemporalTimers();
+          }
+          return;
+        }
+
+        if (heroWasClearlyOut && entry.intersectionRatio >= 0.55) {
+          heroWasClearlyOut = false;
+          startHeroTemporalCycle();
+        }
+      }, { threshold: [0.2, 0.55] });
+
+      heroTemporalObserver.observe(heroTemporalSection);
+    }
+  }
 
   /* ==========================================
      3. MODAL DE TRATAMIENTOS Y COMBOS
@@ -347,7 +431,12 @@ document.addEventListener('DOMContentLoaded', () => {
     
     if (mTitle) mTitle.textContent = data.title;
     if (mCategoryTag) mCategoryTag.textContent = data.category || 'Tratamiento';
-    if (mPriceText) mPriceText.textContent = data.pricing || '';
+    const promoPrice = promo15Prices[dataId];
+    const activeSinglePrice = promoPrice && (promo15Active ? promoPrice.promo : promoPrice.regular);
+    const modalPricing = promoPrice ? data.pricing.replace(promoPrice.promo, activeSinglePrice) : data.pricing;
+    const modalSingleLabel = promoPrice ? data.singleLabel.replace(promoPrice.promo, activeSinglePrice) : data.singleLabel;
+
+    if (mPriceText) mPriceText.textContent = modalPricing || '';
     if (mDesc) mDesc.textContent = data.desc;
     if (mNeeds) mNeeds.textContent = data.needs;
     
@@ -382,7 +471,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (mWhatsappBtn) mWhatsappBtn.style.display = 'none';
       if (modalReserveSingleBtn) {
         modalReserveSingleBtn.style.display = 'inline-flex';
-        modalReserveSingleBtn.textContent = data.singleLabel || 'Reservar 1 Sesión';
+        modalReserveSingleBtn.textContent = modalSingleLabel || 'Reservar 1 Sesión';
         modalReserveSingleBtn.onclick = () => handleModalSelection(data.singleValue || data.title);
       }
       if (modalReservePackBtn) modalReservePackBtn.style.display = 'none';
@@ -398,7 +487,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (mWhatsappBtn) mWhatsappBtn.style.display = 'none';
       if (modalReserveSingleBtn) {
         modalReserveSingleBtn.style.display = 'inline-flex';
-        modalReserveSingleBtn.textContent = data.singleLabel || 'Reservar 1 Sesión';
+        modalReserveSingleBtn.textContent = modalSingleLabel || 'Reservar 1 Sesión';
         modalReserveSingleBtn.onclick = () => handleModalSelection(data.singleValue || `${data.title} (1 Sesión)`);
       }
       if (modalReservePackBtn) {
@@ -457,6 +546,38 @@ document.addEventListener('DOMContentLoaded', () => {
    4. SELECCIÓN DE SERVICIOS Y COMBOS EN EL SELECT
 ========================================== */
 const selectService = document.getElementById('selectService');
+
+function applyPromo15Interface() {
+  const benefitNote = document.querySelector('.web-benefit-note');
+  if (benefitNote) benefitNote.hidden = !promo15Active;
+
+  Object.entries(promo15Prices).forEach(([treatmentId, price]) => {
+    const activePrice = promo15Active ? price.promo : price.regular;
+    const serviceCard = document.querySelector(`.service-card[data-id="${treatmentId}"]`);
+
+    if (serviceCard) {
+      const priceRef = serviceCard.querySelector('.price-ref');
+      const priceSingle = serviceCard.querySelector('.price-single');
+      if (priceRef) priceRef.textContent = promo15Active ? `Sesión: ${price.regular}` : '';
+      if (priceSingle) {
+        priceSingle.textContent = promo15Active
+          ? `Sesión con 15% OFF: ${activePrice}`
+          : `${price.cardLabel}: ${activePrice}`;
+      }
+    }
+
+    if (selectService) {
+      const serviceOption = Array.from(selectService.options).find(option => (
+        option.value === treatmentsData[treatmentId].singleValue
+      ));
+      if (serviceOption) {
+        serviceOption.textContent = serviceOption.textContent.replace(/\(\$[\d.]+\)/, `(${activePrice})`);
+      }
+    }
+  });
+}
+
+applyPromo15Interface();
 
 function selectServiceInSelect(serviceName) {
   if (!selectService || !serviceName) return;

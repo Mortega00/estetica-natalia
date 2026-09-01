@@ -418,6 +418,173 @@ summary:focus-visible {
     width: auto;
 }
 
+/* HERO TEMPORAL */
+@media (prefers-reduced-motion: no-preference) {
+    .hero-content.hero-temporal {
+        transition: max-width 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .hero-content.hero-temporal .hero-badge,
+    .hero-content.hero-temporal h1,
+    .hero-content.hero-temporal .hero-subtitle {
+        opacity: 0;
+        overflow: hidden;
+        transform: translateY(8px);
+        transition:
+            opacity 0.7s ease,
+            transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+            max-height 0.7s ease,
+            height 0.7s ease,
+            margin 0.7s ease,
+            padding 0.7s ease;
+        will-change: opacity, transform, max-height, height, margin;
+    }
+
+    .hero-content.hero-temporal .hero-badge {
+        height: 1.5em;
+        max-height: 1.5em;
+    }
+
+    .hero-content.hero-temporal h1,
+    .hero-content.hero-temporal .hero-subtitle {
+        max-height: 11em;
+    }
+
+    .hero-content.hero-copy-visible .hero-badge,
+    .hero-content.hero-copy-visible h1,
+    .hero-content.hero-copy-visible .hero-subtitle {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .hero-content.hero-temporal .hero-actions {
+        transition:
+            width 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+            max-width 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+            gap 0.7s ease,
+            transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .hero-content.hero-copy-hidden .hero-badge,
+    .hero-content.hero-copy-hidden h1,
+    .hero-content.hero-copy-hidden .hero-subtitle {
+        opacity: 0;
+        max-height: 0;
+        margin-top: 0;
+        margin-bottom: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        pointer-events: none;
+        transform: translateY(-8px);
+    }
+
+    .hero-content.hero-copy-hidden .hero-badge {
+        height: 0;
+    }
+
+    .hero-content.hero-copy-hidden {
+        max-width: 100%;
+    }
+
+    .hero-content.hero-copy-hidden .hero-actions {
+        align-items: center;
+        flex-direction: row;
+        justify-content: center;
+        width: min(100%, 470px);
+        max-width: 470px;
+        margin: 0 auto;
+        gap: 8px;
+        transform: translateY(0);
+    }
+
+    .hero-content.hero-copy-hidden .hero-actions .btn-primary,
+    .hero-content.hero-copy-hidden .hero-actions .btn-secondary {
+        flex: 1 1 0;
+        min-width: 0;
+        width: auto;
+    }
+}
+
+@media (max-width: 767px) and (prefers-reduced-motion: no-preference) {
+    .hero-content.hero-temporal .hero-actions {
+        position: relative;
+        height: 101px;
+        max-width: 360px;
+        margin: 0 auto;
+        transition:
+            height 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+            width 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+            max-width 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+            gap 0.7s ease;
+    }
+
+    .hero-content.hero-temporal .hero-actions .btn-primary,
+    .hero-content.hero-temporal .hero-actions .btn-secondary {
+        position: absolute;
+        top: 0;
+        left: 0;
+        min-width: 0;
+        width: 100% !important;
+        white-space: nowrap;
+        transition:
+            top 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+            left 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+            width 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+            padding 0.7s ease,
+            font-size 0.7s ease,
+            gap 0.7s ease;
+    }
+
+    .hero-content.hero-temporal .hero-actions .btn-secondary {
+        top: 55px;
+    }
+
+    .hero-content.hero-copy-hidden .hero-actions {
+        height: 46px;
+        width: 100% !important;
+        max-width: 360px;
+        gap: 8px !important;
+    }
+
+    .hero-content.hero-copy-hidden .hero-actions .btn-primary,
+    .hero-content.hero-copy-hidden .hero-actions .btn-secondary {
+        top: 0;
+        width: calc(50% - 4px) !important;
+        padding: 10px 8px !important;
+        font-size: 0.7rem !important;
+        gap: 5px;
+    }
+
+    .hero-content.hero-copy-hidden .hero-actions .btn-secondary {
+        left: calc(50% + 4px);
+    }
+}
+
+@media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
+    .hero-content.hero-temporal .hero-actions {
+        width: 100%;
+        max-width: 635px;
+    }
+}
+
+@media (max-width: 350px) and (prefers-reduced-motion: no-preference) {
+    .hero-content.hero-copy-hidden .hero-actions {
+        gap: 6px !important;
+    }
+
+    .hero-content.hero-copy-hidden .hero-actions .btn-primary,
+    .hero-content.hero-copy-hidden .hero-actions .btn-secondary {
+        width: calc(50% - 3px) !important;
+        padding: 10px 6px !important;
+        font-size: 0.64rem !important;
+        gap: 4px;
+    }
+
+    .hero-content.hero-copy-hidden .hero-actions .btn-secondary {
+        left: calc(50% + 3px);
+    }
+}
+
 .btn-primary {
     display: inline-flex;
     align-items: center;
