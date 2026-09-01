@@ -98,11 +98,17 @@ summary:focus-visible {
 .promo-bar {
     background: #312b24;
     color: var(--color-blanco);
-    padding: 8px 0;
+    padding: 9px 0;
     font-size: 0.8rem;
     border-bottom: 1px solid rgba(245, 220, 174, 0.16);
     position: relative;
     z-index: 1001;
+    cursor: pointer;
+    transition: background-color 0.25s ease;
+}
+
+.promo-bar:hover {
+    background: #3b342c;
 }
 
 .promo-bar-content {
@@ -146,7 +152,14 @@ summary:focus-visible {
 
 .promo-link:hover {
     color: #f5e4c3;
-    transform: translateX(2px);
+}
+
+.promo-link i {
+    transition: transform 0.25s ease;
+}
+
+.promo-link:hover i {
+    transform: translateX(3px);
 }
 
 /* ==========================================================================
@@ -369,33 +382,32 @@ summary:focus-visible {
     gap: 6px;
     background: transparent;
     border: 0;
-    border-left: 1px solid rgba(211, 224, 198, 0.7);
     border-radius: 0;
     color: #e6dece;
     font-size: 0.64rem;
     font-weight: 600;
     letter-spacing: 0.18em;
-    margin-bottom: 24px;
-    padding: 1px 0 1px 11px;
+    margin-bottom: 12px; /* 🔽 Reducido de 24px a 12px para acercarlo al título */
+    padding: 1px 0;
 }
 
 .hero-content h1 {
     font-family: var(--fuente-titulo);
     color: #fffdf9;
-    font-size: clamp(3.1rem, 5vw, 4.75rem);
+    font-size: clamp(2.4rem, 4.5vw, 3.8rem); /* 🔽 Reducido el tamaño máximo para que respire */
     font-weight: 500;
-    letter-spacing: -0.035em;
-    line-height: 0.98;
-    margin-bottom: 22px;
+    letter-spacing: -0.02em; /* 🔽 Separado un poquito el tracking para que no se encime */
+    line-height: 1.1; /* 🔼 Aumentado de 0.98 a 1.1 para darle aire entre líneas */
+    margin-bottom: 16px; /* 🔽 Reducido de 22px a 16px */
     max-width: 620px;
 }
 
 .hero-subtitle {
-    color: rgba(255, 253, 249, 0.88);
-    font-size: 0.94rem;
-    line-height: 1.75;
-    margin: 0 0 33px;
-    max-width: 550px;
+    color: rgba(255, 253, 249, 0.80); /* 🔽 Bajada la opacidad de 0.88 a 0.80 para dar jerarquía visual */
+    font-size: 0.88rem; /* 🔽 Reducido sutilmente de 0.94rem a 0.88rem */
+    line-height: 1.6; /* 🔽 Ajustado para textos más compactos y limpios */
+    margin: 0 0 24px; /* 🔽 Reducido el margen inferior de 33px a 24px */
+    max-width: 500px; /* 🔽 Estrechado un poco para que no ocupe tanto ancho */
 }
 
 .hero-actions {
@@ -512,14 +524,22 @@ summary:focus-visible {
     background: #fffefa;
 }
 
+.services-section:not(.combos-section) {
+    padding-top: 0;
+}
+
 .trayectoria-badge {
-    border-top: 1px solid var(--color-hoja-linea);
-    border-bottom: 1px solid var(--color-gris-linea);
-    padding: 24px 0;
+    background: rgba(255, 254, 250, 0.98);
+    border: 1px solid rgba(89, 72, 50, 0.11);
+    border-radius: 4px;
+    box-shadow: var(--sombra-suave);
+    padding: 23px 28px;
     display: grid;
     grid-template-columns: 1fr;
     gap: 18px;
-    margin-bottom: 74px;
+    margin: -34px auto 74px;
+    position: relative;
+    z-index: 2;
 }
 
 .trust-item {
@@ -691,6 +711,15 @@ summary:focus-visible {
     display: flex;
     flex-direction: column;
     gap: 2px;
+}
+
+.price-ref {
+    color: #91877b;
+    font-size: 0.68rem;
+    font-weight: 500;
+    line-height: 1.25;
+    text-decoration-thickness: 1px;
+    text-decoration-color: rgba(112, 103, 91, 0.72);
 }
 
 .price-single {
@@ -1276,6 +1305,19 @@ summary:focus-visible {
     box-shadow: none;
 }
 
+.web-benefit-note {
+    margin: 0 0 16px;
+    padding: 8px 10px;
+    background: var(--color-hoja-suave);
+    border: 1px solid var(--color-hoja-linea);
+    border-radius: 8px;
+    color: var(--color-verde-texto);
+    font-size: 0.72rem;
+    font-weight: 600;
+    line-height: 1.4;
+    text-align: center;
+}
+
 .wizard-pane {
     display: none;
     flex-direction: column;
@@ -1371,10 +1413,11 @@ summary:focus-visible {
 }
 
 .time-chip {
+    min-height: 44px;
     padding: 10px;
     border: 1px solid rgba(89, 72, 50, 0.13);
     background: #fffefa;
-    border-radius: 8px;
+    border-radius: 6px;
     text-align: center;
     font-size: 0.75rem;
     font-weight: 600;
@@ -1393,8 +1436,9 @@ summary:focus-visible {
 
 .time-chip.disabled {
     background: #f3eee7;
-    border-color: transparent;
+    border-color: rgba(89, 72, 50, 0.06);
     color: #aaa094;
+    opacity: 0.58;
 }
 
 /* Formulario Paso 3 */
@@ -2248,35 +2292,89 @@ summary:focus-visible {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 34px;
-    height: 34px;
-    border: 1px solid transparent;
-    border-radius: 50%;
+    flex-direction: column;
+    gap: 1px;
+    width: 100%;
+    min-width: 0;
+    min-height: 46px;
+    padding: 4px 2px;
+    border: 1px solid rgba(89, 72, 50, 0.08);
+    border-radius: 6px;
     color: #564c40;
     cursor: pointer;
-    font-size: 0.72rem;
+    font-size: 0.68rem;
     font-weight: 500;
     user-select: none;
     transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
+.day-name {
+    color: var(--color-gris);
+    font-size: 0.5rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.day-num {
+    color: var(--color-oscuro);
+    font-size: 0.76rem;
+    line-height: 1;
+}
+
+.day-tag {
+    display: none;
+}
+
 .cal-day.disabled {
-    color: #b9afa4;
+    background: #f4efe8;
+    border-color: transparent;
+    color: #a89f95;
     cursor: not-allowed;
-    opacity: 0.5;
+    opacity: 0.72;
+    pointer-events: none;
+}
+
+.cal-day.disabled:not(.empty) .day-tag {
+    display: block;
+    color: #9a8f82;
+    font-size: 0.4rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    line-height: 1;
+}
+
+.cal-day.disabled:not(.empty) .day-name {
+    display: none;
+}
+
+.cal-day.closed-day,
+.cal-day:has(.day-tag) {
+    background: #f1ece5;
+    border-color: rgba(89, 72, 50, 0.08);
+}
+
+.cal-day.closed-day {
+    cursor: not-allowed;
     pointer-events: none;
 }
 
 .cal-day.selected {
     background-color: var(--color-oscuro);
     border-color: var(--color-oscuro);
-    border-radius: 50%;
     color: #fffdf9;
     font-weight: 600;
 }
 
+.cal-day.selected .day-name,
+.cal-day.selected .day-num {
+    color: #fffdf9;
+}
+
 .cal-day.today {
     border-color: var(--color-hoja);
+    box-shadow: inset 0 0 0 1px var(--color-hoja);
 }
 
 .cal-day:not(.disabled):not(.empty):hover {
@@ -2353,7 +2451,12 @@ summary:focus-visible {
 @media (min-width: 768px) {
     .hero-actions { flex-direction: row; }
     .hero-actions .btn-primary, .hero-actions .btn-secondary, .btn-primary, .btn-secondary { width: auto; }
-    .trayectoria-badge { grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    .trayectoria-badge { grid-template-columns: repeat(3, 1fr); gap: 0; }
+    .trust-item { padding: 0 24px; }
+    .trust-item:first-child { padding-left: 0; }
+    .trust-item + .trust-item { border-left: 1px solid var(--color-gris-linea); }
+    .trust-item::before { left: 10px; }
+    .trust-item:first-child::before { left: 0; }
     .services-grid { grid-template-columns: repeat(2, 1fr); }
     .service-card { flex-direction: row; align-items: center; }
     .card-image-wrapper { width: 100px; height: 100px; }
@@ -2384,8 +2487,11 @@ summary:focus-visible {
     .header, .header-content { min-height: 68px; }
     .logo-icon { width: 34px; height: 34px; }
     .brand-name { font-size: 1.38rem; }
-    .promo-badge { display: none; }
-    .promo-text, .promo-link { font-size: 0.61rem; }
+    .promo-bar { padding: 8px 0; }
+    .promo-bar-content { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 3px 9px; text-align: left; }
+    .promo-badge { display: inline-flex; align-self: center; order: 1; padding: 3px 8px; font-size: 0.52rem; letter-spacing: 0.075em; }
+    .promo-link { align-self: center; order: 2; margin-left: auto; font-size: 0.64rem; white-space: nowrap; }
+    .promo-text { flex-basis: 100%; order: 3; font-size: 0.64rem; line-height: 1.35; }
     .nav { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: rgba(255, 254, 250, 0.98); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); flex-direction: column; padding: 20px; box-shadow: 0 14px 30px rgba(48, 42, 35, 0.09); border-bottom: 1px solid var(--color-gris-linea); max-height: 80vh; overflow-y: auto; -webkit-overflow-scrolling: touch; gap: 4px; z-index: 1100; }
     .nav.active { display: flex; }
     .nav-link { color: var(--color-oscuro); font-size: 0.78rem; padding: 12px 0; border-bottom: 1px solid rgba(0, 0, 0, 0.04); width: 100%; text-align: left; }
@@ -2396,21 +2502,38 @@ summary:focus-visible {
     .btn-nav { order: 6; width: 100%; text-align: center; margin-top: 8px; padding: 12px 20px; }
     .nav-mobile-socials { order: 7; }
     .nav-mobile-socials, .mobile-toggle { display: block; }
-    .trayectoria-badge { text-align: left; padding: 22px 0; margin-bottom: 50px; }
-    .hero-section { min-height: 620px; background-position: center top; background-size: auto 82%; }
-    .hero-overlay { background: linear-gradient(180deg, rgba(30, 25, 19, 0.42) 0%, rgba(35, 43, 31, 0.63) 64%, rgba(30, 25, 19, 0.82) 100%); }
-    .hero-container { align-items: flex-end; padding: 92px 0 140px; }
-    .hero-content { text-align: center; }
-    .hero-badge { font-size: 0.54rem; letter-spacing: 0.13em; margin-bottom: 17px; padding: 7px 10px; }
-    .hero-content h1 { font-size: clamp(2.7rem, 12vw, 3.55rem); margin-bottom: 18px; }
-    .hero-subtitle { font-size: 0.79rem; line-height: 1.68; margin-bottom: 25px; }
-    .hero-actions, .hero-actions .btn-primary, .hero-actions .btn-secondary { width: 100%; }
-    .services-section, .combos-section, .space-section, .before-after-section, .experience-section, .testimonials-section, .faq-section, .booking-section, .plan-conditions-section { padding: 74px 0; }
-    .section-title-container { margin-bottom: 35px; }
-    .section-title-container h2 { font-size: 2.5rem; }
-    .service-card { gap: 14px; padding: 0 0 16px; }
-    .card-image-wrapper { width: 83px; height: 83px; }
-    .service-card h3 { font-size: 1.27rem; }
+    .trayectoria-badge { gap: 0; margin: -18px 0 48px; padding: 7px 16px; text-align: left; }
+    .trust-item { padding: 10px 0 10px 13px; }
+    .trust-item + .trust-item { border-top: 1px solid var(--color-gris-linea); }
+    .trust-item::before { top: 1.05rem; width: 4px; height: 4px; }
+    .trust-item strong { font-size: 1.17rem; line-height: 1.1; }
+    .trust-item span { margin-top: 2px; font-size: 0.64rem; }
+    .hero-section { min-height: clamp(540px, 70svh, 620px); background-position: 53% center; background-size: cover; }
+    .hero-overlay { background: linear-gradient(180deg, rgba(30, 25, 19, 0.3) 0%, rgba(30, 25, 19, 0.48) 42%, rgba(30, 25, 19, 0.84) 100%); }
+    .hero-container { align-items: flex-end; padding: 58px 20px 52px; }
+    .hero-content { width: 100%; min-width: 0; max-width: 470px; text-align: center; }
+    .hero-badge { font-size: 0.55rem; letter-spacing: 0.1em; margin-bottom: 15px; padding: 1px 0 1px 9px; }
+    .hero-content h1 { font-size: clamp(2.5rem, calc(1.5rem + 4.5vw), 3.1rem); line-height: 0.98; margin-bottom: 15px; }
+    .hero-subtitle { font-size: 0.8rem; line-height: 1.62; margin-bottom: 22px; }
+    .hero-actions { gap: 10px; max-width: 360px; margin: 0 auto; width: 100%; }
+    .hero-actions .btn-primary, .hero-actions .btn-secondary { min-height: 46px; width: 100%; }
+    .services-section, .combos-section, .space-section, .before-after-section, .experience-section, .testimonials-section, .faq-section, .booking-section, .plan-conditions-section { padding: 68px 0; }
+    .services-section:not(.combos-section) { padding-top: 0; }
+    .section-title-container { margin-bottom: 32px; }
+    .section-title-container h2 { font-size: clamp(2.15rem, 8vw, 2.5rem); }
+    .services-grid { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+    .service-card { align-items: stretch; flex-direction: row; gap: 12px; padding: 10px; background: var(--color-blanco); border: 1px solid var(--color-gris-linea); border-radius: 8px; }
+    .card-image-wrapper { align-self: stretch; width: clamp(90px, 27vw, 104px); height: auto; min-height: 112px; }
+    .card-image-wrapper img { border-radius: 4px; }
+    .card-info { display: flex; flex-direction: column; min-width: 0; }
+    .card-badge { overflow: hidden; font-size: 0.52rem; line-height: 1.25; margin-bottom: 4px; text-overflow: ellipsis; white-space: nowrap; }
+    .service-card h3 { font-size: clamp(1.13rem, 4.7vw, 1.35rem); line-height: 1.05; margin-bottom: 4px; }
+    .card-problem { font-size: 0.7rem; line-height: 1.35; -webkit-line-clamp: 2; line-clamp: 2; }
+    .card-price-row { gap: 1px; margin-top: 6px; }
+    .price-ref { font-size: 0.61rem; }
+    .price-single, .price-pack, .price-seasonal { font-size: 0.75rem; }
+    .solo-pack, .solo-single { font-size: 0.77rem; }
+    .btn-card-more { margin-top: 5px; font-size: 0.68rem; }
     .combo-card { flex-basis: 87%; padding: 25px; }
     .plan-conditions-card { padding: 28px 0; }
     .plan-conditions-details summary { align-items: flex-start; flex-direction: column; gap: 4px; }
@@ -2423,13 +2546,18 @@ summary:focus-visible {
     .calendar-layout { gap: 14px; }
     .cal-box, .time-box { padding: 16px; }
     .cal-grid { gap: 5px; }
-    .cal-day { width: 31px; height: 31px; font-size: 0.68rem; }
+    .cal-day { min-height: 43px; padding: 3px 1px; }
+    .day-name { font-size: 0.43rem; }
+    .day-num { font-size: 0.68rem; }
+    .cal-day.disabled:not(.empty) .day-tag { font-size: 0.35rem; }
     .wizard-actions { flex-direction: column-reverse; }
     .wizard-actions .btn { width: 100%; }
     .whatsapp-widget-container { bottom: 15px; right: 14px; }
     .whatsapp-bubble { max-width: 205px; font-size: 0.72rem; }
     .faq-editorial { padding: 6px 18px; border-radius: 8px; }
-    .footer { padding-top: 58px; }
+    .footer { padding-top: 52px; }
+    .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 18px; row-gap: 28px; }
+    .footer-brand-col { grid-column: 1 / -1; }
 }
 
 @media (max-width: 600px) {
@@ -2438,110 +2566,501 @@ summary:focus-visible {
     details.time-box-collapsible summary::-webkit-details-marker { display: none; }
     details.time-box-collapsible summary::after, .time-box-toggle::after { content: ""; display: inline-block; width: 8px; height: 8px; border-right: 2px solid #705f4a; border-bottom: 2px solid #705f4a; transform: rotate(45deg); transition: transform 0.3s ease; margin-left: 10px; }
     details.time-box-collapsible[open] summary::after, .time-box-collapsible.active .time-box-toggle::after { transform: rotate(-135deg); }
-    details.time-box-collapsible .time-grid, .time-box-collapsible .time-grid { margin-top: 16px; display: flex; flex-direction: column; gap: 7px; max-height: 180px; overflow-y: auto; padding-right: 6px; }
-    details.time-box-collapsible .time-chip, .time-box-collapsible .time-chip { width: 100%; padding: 10px 0; }
+    details.time-box-collapsible .time-grid, .time-box-collapsible .time-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 16px; gap: 7px; max-height: none; overflow: visible; padding-right: 0; }
+    details.time-box-collapsible .time-chip, .time-box-collapsible .time-chip { width: 100%; min-height: 44px; padding: 8px 2px; }
 }
 
 @media (max-width: 340px) {
     .promo-text, .promo-link { font-size: 0.56rem; }
     .hero-content h1 { font-size: 2.55rem; }
     .section-title-container h2 { font-size: 2.3rem; }
-    .cal-day { width: 28px; height: 28px; }
+    .cal-day { min-height: 40px; }
+}
+
+@media (max-width: 375px) {
+    .card-problem { display: none; }
 }
 /* ==========================================================================
-   AJUSTES FINALES OPTIMIZADOS PARA MÓVIL (Parche de visualización)
+   Reglas móviles consolidadas en las media queries anteriores.
    ========================================================================== */
+/* ==========================================================================
+   NATIVA — RESCATE VISUAL MOBILE FINAL
+   SOLO PRESENTACIÓN — NO ALTERA LÓGICA
+   ========================================================================== */
+
 @media (max-width: 767px) {
-    /* 1. HERO IMAGE: Ajuste de la foto gigante de fondo */
-    .hero-section {
-        min-height: 80vh !important; 
-        background-size: cover !important;
-        background-position: center 20% !important;
-    }
-    .hero-overlay {
-        background: linear-gradient(180deg, rgba(30, 25, 19, 0.2) 0%, rgba(30, 25, 19, 0.8) 65%, rgba(30, 25, 19, 0.98) 100%) !important;
-    }
-    .hero-container {
-        padding: 50px 0 70px !important;
+
+    /* =========================================================
+       1. HEADER NATIVA — SIEMPRE PRESENTE
+       ========================================================= */
+
+    .header {
+        position: sticky !important;
+        top: 0 !important;
+        z-index: 1500 !important;
+
+        min-height: 66px !important;
+        padding: 6px 0 !important;
+
+        background: rgba(253, 251, 247, 0.97) !important;
+        backdrop-filter: blur(12px) !important;
+        -webkit-backdrop-filter: blur(12px) !important;
+
+        border-bottom: 1px solid rgba(48, 42, 35, 0.08) !important;
+        box-shadow: 0 4px 18px rgba(48, 42, 35, 0.04) !important;
     }
 
-    /* 2. TRATAMIENTOS: Grilla de 2 columnas estilo "App" */
+    .header-content {
+        min-height: 54px !important;
+    }
+
+    .logo-icon {
+        width: 34px !important;
+        height: 34px !important;
+    }
+
+    .brand-name {
+        font-size: 1.42rem !important;
+    }
+
+    .brand-tagline {
+        font-size: 0.54rem !important;
+    }
+
+
+    /* =========================================================
+       2. PROMO 15% — FLOTANTE SIN TAPAR LA WEB
+       ========================================================= */
+
+    .promo-bar {
+        position: fixed !important;
+
+        top: 76px !important;
+        right: 12px !important;
+        left: auto !important;
+
+        width: auto !important;
+        max-width: calc(100vw - 24px) !important;
+
+        z-index: 1400 !important;
+
+        padding: 0 !important;
+        margin: 0 !important;
+
+        background: rgba(66, 54, 41, 0.96) !important;
+
+        border: 1px solid rgba(232, 207, 166, 0.28) !important;
+        border-radius: 999px !important;
+
+        box-shadow:
+            0 7px 18px rgba(48, 42, 35, 0.14),
+            0 2px 6px rgba(48, 42, 35, 0.06) !important;
+
+        overflow: hidden !important;
+
+        backdrop-filter: blur(10px) !important;
+        -webkit-backdrop-filter: blur(10px) !important;
+    }
+
+    .promo-bar-content {
+        width: auto !important;
+        min-height: 38px !important;
+
+        padding: 8px 12px !important;
+
+        display: flex !important;
+        flex-wrap: nowrap !important;
+
+        justify-content: center !important;
+        align-items: center !important;
+
+        gap: 8px !important;
+
+        text-decoration: none !important;
+        white-space: nowrap !important;
+    }
+
+    .promo-badge {
+        padding: 0 !important;
+
+        background: transparent !important;
+        border: 0 !important;
+
+        color: #f1d9aa !important;
+
+        flex: 0 0 auto !important;
+
+        font-size: 0.64rem !important;
+        line-height: 1 !important;
+        letter-spacing: 0.04em !important;
+    }
+
+    .promo-text {
+        margin: 0 !important;
+
+        color: rgba(255,255,255,0.96) !important;
+
+        flex: 0 1 auto !important;
+
+        font-size: 0.68rem !important;
+        line-height: 1.2 !important;
+    }
+
+    .promo-text strong {
+        color: #f5d69c !important;
+        font-weight: 700 !important;
+    }
+
+    .promo-link {
+        margin: 0 !important;
+
+        flex: 0 0 auto !important;
+
+        color: #f5d69c !important;
+
+        font-size: 0.66rem !important;
+        font-weight: 700 !important;
+
+        white-space: nowrap !important;
+    }
+
+    .promo-link::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+    }
+
+    .promo-bar:active {
+        transform: scale(0.98) !important;
+    }
+
+    /* =========================================================
+       3. HERO — AIRE + FOTO PROTAGONISTA
+       ========================================================= */
+
+    .hero-section {
+        min-height: 76svh !important;
+
+        background-size: cover !important;
+        background-position: center 22% !important;
+        background-attachment: scroll !important;
+    }
+
+    .hero-overlay {
+        background:
+            linear-gradient(
+                180deg,
+                rgba(30,25,19,0.06) 0%,
+                rgba(30,25,19,0.15) 30%,
+                rgba(30,25,19,0.52) 62%,
+                rgba(30,25,19,0.88) 100%
+            ) !important;
+    }
+
+    .hero-container {
+        min-height: 76svh !important;
+
+        display: flex !important;
+        align-items: flex-end !important;
+
+        padding-top: 100px !important;
+        padding-bottom: 48px !important;
+    }
+
+    .hero-content {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .hero-badge {
+        margin-bottom: 11px !important;
+
+        font-size: 0.62rem !important;
+        letter-spacing: 0.12em !important;
+    }
+
+    .hero-content h1 {
+        max-width: 94% !important;
+
+        margin-bottom: 14px !important;
+
+        font-size: clamp(2.5rem, 10.5vw, 3.15rem) !important;
+        line-height: 0.98 !important;
+    }
+
+    .hero-subtitle {
+        max-width: 94% !important;
+
+        margin-bottom: 22px !important;
+
+        font-size: 0.84rem !important;
+        line-height: 1.55 !important;
+    }
+
+    .hero-actions {
+        width: 100% !important;
+        gap: 9px !important;
+    }
+
+    .hero-actions .btn-primary,
+    .hero-actions .btn-secondary {
+        min-height: 46px !important;
+
+        padding: 12px 17px !important;
+
+        font-size: 0.8rem !important;
+    }
+
+
+    /* =========================================================
+       4. TRAYECTORIA — COMPACTA
+       ========================================================= */
+
+    .trayectoria-badge {
+        display: grid !important;
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+
+        gap: 0 !important;
+
+        margin-top: -22px !important;
+        margin-bottom: 42px !important;
+
+        background: #fff !important;
+
+        border: 1px solid rgba(169,134,85,0.13) !important;
+        border-radius: 15px !important;
+
+        box-shadow: 0 10px 28px rgba(48,42,35,0.07) !important;
+
+        overflow: hidden !important;
+    }
+
+    .trust-item {
+        min-width: 0 !important;
+
+        padding: 15px 7px !important;
+
+        background: transparent !important;
+        border: 0 !important;
+        border-radius: 0 !important;
+
+        box-shadow: none !important;
+
+        text-align: center !important;
+    }
+
+    .trust-item + .trust-item {
+        border-left: 1px solid rgba(169,134,85,0.13) !important;
+    }
+
+    .trust-item strong {
+        font-size: clamp(0.95rem, 4vw, 1.2rem) !important;
+        line-height: 1.05 !important;
+
+        margin-bottom: 4px !important;
+    }
+
+    .trust-item span {
+        font-size: 0.62rem !important;
+        line-height: 1.3 !important;
+    }
+
+    /* =========================================================
+       5. TRATAMIENTOS — 2 COLUMNAS MOBILE
+       ========================================================= */
+
     .services-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
         gap: 12px !important;
     }
+
     .service-card {
+        min-width: 0 !important;
+        display: flex !important;
         flex-direction: column !important;
-        align-items: flex-start !important;
-        padding: 14px !important;
+        align-items: stretch !important;
+        gap: 0 !important;
+        padding: 10px !important;
+        text-align: left !important;
         background: #ffffff !important;
-        border: 1px solid var(--color-gris-linea) !important;
-        border-radius: 10px !important;
+        border: 1px solid rgba(48,42,35,0.08) !important;
+        border-radius: 12px !important;
+        box-shadow: 0 4px 14px rgba(48,42,35,0.04) !important;
     }
+
     .card-image-wrapper {
         width: 100% !important;
-        height: 110px !important;
-        border-radius: 6px !important;
-        margin-bottom: 10px !important;
+        height: auto !important;
+        aspect-ratio: 1.35 / 1 !important;
+        flex: none !important;
+        margin: 0 0 9px !important;
+        border-radius: 8px !important;
+        overflow: hidden !important;
     }
+
+    .card-image-wrapper img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+    }
+
+    .card-info {
+        min-width: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        flex: 1 !important;
+    }
+
+    .card-badge {
+        margin-bottom: 5px !important;
+        font-size: 0.58rem !important;
+        line-height: 1.25 !important;
+        letter-spacing: 0.05em !important;
+    }
+
     .service-card h3 {
-        font-size: 0.95rem !important;
-        line-height: 1.15 !important;
+        min-height: 2.25em !important;
         margin-bottom: 6px !important;
+        font-size: clamp(0.96rem, 4.1vw, 1.08rem) !important;
+        line-height: 1.06 !important;
+        text-align: left !important;
     }
-    /* Ocultamos la descripción larga en celu para que la tarjeta quede corta y prolija */
+
+    /* En mobile priorizamos escaneo rápido */
     .card-problem {
         display: none !important;
     }
-    .card-badge {
-        font-size: 0.55rem !important;
-        margin-bottom: 6px !important;
-    }
+
     .card-price-row {
         margin-top: auto !important;
-        gap: 4px !important;
+        padding-top: 5px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 2px !important;
+        text-align: left !important;
     }
-    .price-single, .price-pack {
+
+    del.price-ref {
+        display: block !important;
+        margin-bottom: 1px !important;
+        color: #9d958a !important;
+        font-size: 0.7rem !important;
+        font-weight: 400 !important;
+        line-height: 1.25 !important;
+    }
+
+    .price-single,
+    .price-pack,
+    .solo-pack,
+    .solo-single,
+    .price-seasonal {
+        font-size: 0.78rem !important;
+        line-height: 1.35 !important;
+    }
+
+    .price-single {
+        color: var(--color-oscuro) !important;
+        font-weight: 700 !important;
+    }
+
+    .price-pack {
+        color: var(--color-primario) !important;
+        font-weight: 700 !important;
+    }
+
+    .btn-card-more {
+        display: block !important;
+        width: 100% !important;
+        margin-top: 7px !important;
+        font-size: 0.69rem !important;
+        line-height: 1.25 !important;
+        text-align: left !important;
+    }
+
+    /* =========================================================
+       6. FOOTER — 2 COLUMNAS REALES
+       ========================================================= */
+
+    .footer {
+        padding-top: 46px !important;
+    }
+
+    .footer-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 24px 18px !important;
+    }
+
+    .footer-brand-col {
+        grid-column: 1 / -1 !important;
+        margin-bottom: 3px !important;
+        text-align: left !important;
+    }
+
+    .footer-bio {
+        max-width: 100% !important;
+        margin: 0 !important;
+        font-size: 0.77rem !important;
+    }
+
+    .footer-tagline {
         font-size: 0.78rem !important;
     }
-    .solo-pack, .solo-single {
-        font-size: 0.82rem !important;
-    }
-    .btn-card-more {
-        font-size: 0.75rem !important;
-        margin-top: 10px !important;
-        width: 100%;
+
+    .footer-col-title {
+        margin-bottom: 9px !important;
+        font-size: 0.67rem !important;
     }
 
-    /* 3. OPTIMIZACIÓN DEL WIZARD (Turnos) */
-    .booking-wrapper {
-        padding: 20px 14px !important;
+    .footer-links a,
+    .footer-contact-links a,
+    .footer-map-link,
+    .footer-text-link {
+        font-size: 0.76rem !important;
+        line-height: 1.45 !important;
+        overflow-wrap: anywhere !important;
     }
-    .wizard-steps-indicator {
-        gap: 4px !important;
-        margin-bottom: 22px !important;
-    }
-    .step-item {
-        font-size: 0.55rem !important;
-        padding: 8px 4px !important;
-    }
-    .cal-box, .time-box {
-        padding: 14px !important;
-    }
+
+
 }
 
-/* Ajuste extremo para celulares muy chicos (iPhone SE, etc) */
-@media (max-width: 375px) {
+
+/* ==========================================================================
+   CELULARES MUY ANGOSTOS
+   ========================================================================== */
+
+@media (max-width: 350px) {
     .services-grid {
         gap: 8px !important;
     }
+
     .service-card {
-        padding: 10px !important;
+        padding: 8px !important;
     }
+
     .card-image-wrapper {
-        height: 90px !important;
+        margin-bottom: 7px !important;
     }
+
     .service-card h3 {
-        font-size: 0.85rem !important;
+        font-size: 0.92rem !important;
+    }
+
+    .price-single,
+    .price-pack,
+    .solo-pack,
+    .solo-single,
+    .price-seasonal {
+        font-size: 0.73rem !important;
+    }
+
+    .promo-text {
+        display: none !important;
+    }
+
+    .promo-bar-content {
+        min-height: 38px !important;
+        padding: 7px 10px !important;
     }
 }
