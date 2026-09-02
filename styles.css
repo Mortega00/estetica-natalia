@@ -560,10 +560,45 @@ summary:focus-visible {
     }
 }
 
+@media (min-width: 768px) {
+    .hero-section {
+        background-position: 57% center;
+    }
+}
+
 @media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
+    .hero-content.hero-temporal {
+        transform: translateY(0);
+        transition:
+            max-width 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+            transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
     .hero-content.hero-temporal .hero-actions {
         width: 100%;
         max-width: 635px;
+    }
+
+    .hero-content.hero-copy-hidden {
+        max-width: 635px;
+        transform: translateY(clamp(120px, 18vh, 185px));
+    }
+
+    .hero-content.hero-copy-hidden .hero-badge {
+        opacity: 1;
+        height: 1.5em;
+        max-height: 1.5em;
+        margin-bottom: 12px;
+        padding: 1px 0;
+        pointer-events: auto;
+        transform: translateY(0);
+    }
+
+    .hero-content.hero-copy-hidden .hero-actions {
+        justify-content: flex-start;
+        width: min(100%, 440px);
+        max-width: 440px;
+        margin: 0;
     }
 }
 
@@ -696,49 +731,81 @@ summary:focus-visible {
 }
 
 .trayectoria-badge {
-    background: rgba(255, 254, 250, 0.98);
-    border: 1px solid rgba(89, 72, 50, 0.11);
-    border-radius: 4px;
-    box-shadow: var(--sombra-suave);
-    padding: 23px 28px;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 18px;
-    margin: -34px auto 74px;
-    position: relative;
-    z-index: 2;
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    align-items: stretch !important;
+    gap: 64px !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    margin: 64px auto 88px !important;
+    max-width: 1050px !important;
 }
 
 .trust-item {
-    position: relative;
-    padding-left: 15px;
+    position: relative !important;
+    display: grid !important;
+    grid-template-rows: 3.2em 1fr !important;
+    align-content: start !important;
+    padding: 18px 20px !important;
+    margin: 0 !important;
+    background: rgba(255, 253, 249, 0.35) !important;
+    border: 1px solid rgba(89, 72, 50, 0.08) !important;
+    box-shadow: none !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    transition:
+        transform .25s ease,
+        border-color .25s ease,
+        background-color .25s ease,
+        box-shadow .25s ease !important;
 }
 
-.trust-item::before {
-    content: '';
-    position: absolute;
-    top: 0.45rem;
-    left: 0;
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: var(--color-hoja);
+.trust-item + .trust-item {
+    border: 0 !important;
+    border: 1px solid rgba(89, 72, 50, 0.08) !important;
+}
+
+.trust-item::before,
+.trust-item::after {
+    display: none !important;
+    content: none !important;
 }
 
 .trust-item strong {
-    display: block;
-    font-family: var(--fuente-titulo);
-    font-size: 1.45rem;
-    font-weight: 500;
-    color: var(--color-oscuro);
+    font-family: var(--fuente-titulo) !important;
+    font-size: clamp(1.7rem, 2vw, 2rem) !important;
+    font-weight: 500 !important;
+    color: var(--color-oscuro) !important;
+    line-height: 1 !important;
+    letter-spacing: -0.015em !important;
+    margin: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 3.2em !important;
 }
 
 .trust-item span {
-    display: block;
-    font-size: 0.72rem;
-    letter-spacing: 0.03em;
-    color: var(--color-gris);
-    line-height: 1.45;
+    font-family: var(--fuente-cuerpo) !important;
+    font-size: 0.75rem !important;
+    font-weight: 400 !important;
+    color: var(--color-gris) !important;
+    line-height: 1.65 !important;
+    max-width: 260px !important;
+    margin: 7px auto 0 !important;
+    display: block !important;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .trust-item:hover {
+        transform: translateY(-3px) !important;
+        background: rgba(255, 250, 240, 0.75) !important;
+        border-color: var(--color-primario) !important;
+        box-shadow: 0 8px 24px rgba(89, 72, 50, 0.06) !important;
+    }
 }
 
 .section-title-container {
@@ -2316,6 +2383,8 @@ summary:focus-visible {
     align-items: center;
     gap: 10px;
     margin-bottom: 14px;
+    color: inherit;
+    text-decoration: none;
 }
 
 .footer-logo-img {
@@ -2618,12 +2687,7 @@ summary:focus-visible {
 @media (min-width: 768px) {
     .hero-actions { flex-direction: row; }
     .hero-actions .btn-primary, .hero-actions .btn-secondary, .btn-primary, .btn-secondary { width: auto; }
-    .trayectoria-badge { grid-template-columns: repeat(3, 1fr); gap: 0; }
-    .trust-item { padding: 0 24px; }
-    .trust-item:first-child { padding-left: 0; }
-    .trust-item + .trust-item { border-left: 1px solid var(--color-gris-linea); }
-    .trust-item::before { left: 10px; }
-    .trust-item:first-child::before { left: 0; }
+    .trayectoria-badge { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; }
     .services-grid { grid-template-columns: repeat(2, 1fr); }
     .service-card { flex-direction: row; align-items: center; }
     .card-image-wrapper { width: 100px; height: 100px; }
@@ -2669,12 +2733,6 @@ summary:focus-visible {
     .btn-nav { order: 6; width: 100%; text-align: center; margin-top: 8px; padding: 12px 20px; }
     .nav-mobile-socials { order: 7; }
     .nav-mobile-socials, .mobile-toggle { display: block; }
-    .trayectoria-badge { gap: 0; margin: -18px 0 48px; padding: 7px 16px; text-align: left; }
-    .trust-item { padding: 10px 0 10px 13px; }
-    .trust-item + .trust-item { border-top: 1px solid var(--color-gris-linea); }
-    .trust-item::before { top: 1.05rem; width: 4px; height: 4px; }
-    .trust-item strong { font-size: 1.17rem; line-height: 1.1; }
-    .trust-item span { margin-top: 2px; font-size: 0.64rem; }
     .hero-section { min-height: clamp(540px, 70svh, 620px); background-position: 53% center; background-size: cover; }
     .hero-overlay { background: linear-gradient(180deg, rgba(30, 25, 19, 0.3) 0%, rgba(30, 25, 19, 0.48) 42%, rgba(30, 25, 19, 0.84) 100%); }
     .hero-container { align-items: flex-end; padding: 58px 20px 52px; }
@@ -2986,50 +3044,59 @@ summary:focus-visible {
     .trayectoria-badge {
         display: grid !important;
         grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-
-        gap: 0 !important;
-
-        margin-top: -22px !important;
-        margin-bottom: 42px !important;
-
-        background: #fff !important;
-
-        border: 1px solid rgba(169,134,85,0.13) !important;
-        border-radius: 15px !important;
-
-        box-shadow: 0 10px 28px rgba(48,42,35,0.07) !important;
-
-        overflow: hidden !important;
+        align-items: stretch !important;
+        gap: 6px !important;
+        margin: 34px 14px 48px !important;
+        padding: 0 !important;
+        background: transparent !important;
+        border: 0 !important;
+        box-shadow: none !important;
     }
 
     .trust-item {
         min-width: 0 !important;
-
-        padding: 15px 7px !important;
-
-        background: transparent !important;
-        border: 0 !important;
-        border-radius: 0 !important;
-
+        grid-template-rows: 3.4em 1fr !important;
+        padding: 12px 6px !important;
+        margin: 0 !important;
+        background: rgba(255, 253, 249, 0.35) !important;
+        border: 1px solid rgba(89, 72, 50, 0.08) !important;
         box-shadow: none !important;
-
         text-align: center !important;
     }
 
     .trust-item + .trust-item {
-        border-left: 1px solid rgba(169,134,85,0.13) !important;
+        border: 1px solid rgba(89, 72, 50, 0.08) !important;
+    }
+
+    .trust-item::before,
+    .trust-item::after {
+        display: none !important;
+        content: none !important;
     }
 
     .trust-item strong {
-        font-size: clamp(0.95rem, 4vw, 1.2rem) !important;
+        display: block !important;
+        font-family: var(--fuente-titulo) !important;
+        font-size: clamp(0.98rem, 4vw, 1.16rem) !important;
+        font-weight: 500 !important;
         line-height: 1.05 !important;
-
-        margin-bottom: 4px !important;
+        letter-spacing: -0.015em !important;
+        min-height: 3.4em !important;
+        margin: 0 !important;
+        overflow-wrap: normal !important;
+        word-break: normal !important;
     }
 
     .trust-item span {
-        font-size: 0.62rem !important;
-        line-height: 1.3 !important;
+        display: block !important;
+        font-family: var(--fuente-cuerpo) !important;
+        font-size: clamp(0.58rem, 2.25vw, 0.66rem) !important;
+        font-weight: 400 !important;
+        line-height: 1.4 !important;
+        max-width: 100% !important;
+        margin: 7px auto 0 !important;
+        overflow-wrap: normal !important;
+        word-break: normal !important;
     }
 
     /* =========================================================
@@ -3155,8 +3222,9 @@ summary:focus-visible {
 
     .footer-grid {
         display: grid !important;
-        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-        gap: 24px 18px !important;
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        column-gap: 12px !important;
+        row-gap: 24px !important;
     }
 
     .footer-brand-col {
@@ -3177,16 +3245,21 @@ summary:focus-visible {
 
     .footer-col-title {
         margin-bottom: 9px !important;
-        font-size: 0.67rem !important;
+        font-size: 0.62rem !important;
     }
 
     .footer-links a,
     .footer-contact-links a,
     .footer-map-link,
     .footer-text-link {
-        font-size: 0.76rem !important;
+        font-size: 0.68rem !important;
         line-height: 1.45 !important;
         overflow-wrap: anywhere !important;
+    }
+
+    .footer-links,
+    .footer-contact-links {
+        gap: 6px !important;
     }
 
 
@@ -3198,6 +3271,18 @@ summary:focus-visible {
    ========================================================================== */
 
 @media (max-width: 350px) {
+    .trayectoria-badge {
+        gap: 5px !important;
+    }
+
+    .trust-item {
+        padding: 12px 2px !important;
+    }
+
+    .trust-item strong {
+        font-size: 0.88rem !important;
+    }
+
     .services-grid {
         gap: 8px !important;
     }
