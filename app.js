@@ -17,9 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
       ],
       care: 'Frecuencia recomendada: 1 vez por mes. No se ofrece plan x10 para cuidar los tiempos biológicos de regeneración cutánea.',
       singleLabel: 'Reservar 1 Sesión ($75.000)',
-      singleValue: 'Dermapen & Rutina Skincare Glow (1 Sesión)',
+      singleValue: 'Dermapen + Rutina Skincare Glow — 1 Sesión',
       packLabel: 'Reservar Plan x5 ($60.000/ses)',
-      packValue: 'Dermapen & Rutina Skincare Glow (Plan x5)'
+      packValue: 'Dermapen + Rutina Skincare Glow — Plan x5'
     },
     'drenaje-linfatico': {
       title: 'Drenaje Linfático Manual',
@@ -35,9 +35,9 @@ document.addEventListener('DOMContentLoaded', () => {
       ],
       care: 'Para optimizar resultados en edemas o retención persistente se recomienda el Plan de 10 sesiones (1 a 2 veces por semana).',
       singleLabel: 'Reservar 1 Sesión ($55.000)',
-      singleValue: 'Drenaje Linfático Manual (1 Sesión)',
+      singleValue: 'Drenaje Linfático Manual — 1 Sesión',
       packLabel: 'Reservar Plan x10 ($45.000/ses)',
-      packValue: 'Drenaje Linfático Manual (Plan x10)'
+      packValue: 'Drenaje Linfático Manual — Plan x10'
     },
     'drenaje-embarazo': {
       title: 'Drenaje Linfático x10 (Embarazo)',
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
       care: 'Requiere apto o consentimiento de tu médico obstetra de cabecera a partir del segundo trimestre.',
       packOnly: true,
       packLabel: 'Reservar Plan x10 ($45.000/ses)',
-      packValue: 'Drenaje Linfático Embarazo (Plan x10)'
+      packValue: 'Drenaje Linfático Embarazo — Plan x10'
     },
     'masaje-descontracturante': {
       title: 'Masaje Descontracturante',
@@ -70,9 +70,9 @@ document.addEventListener('DOMContentLoaded', () => {
       ],
       care: 'El Plan x10 permite un tratamiento progresivo que previene la reaparición de contracturas crónicas.',
       singleLabel: 'Reservar 1 Sesión ($50.000)',
-      singleValue: 'Masaje Descontracturante (1 Sesión)',
+      singleValue: 'Masaje Descontracturante — 1 Sesión',
       packLabel: 'Reservar Plan x10 ($40.000/ses)',
-      packValue: 'Masaje Descontracturante (Plan x10)'
+      packValue: 'Masaje Descontracturante — Plan x10'
     },
     'piedras-calientes': {
       title: 'Masaje con Piedras Calientes',
@@ -88,9 +88,9 @@ document.addEventListener('DOMContentLoaded', () => {
       ],
       care: 'Recomendado como terapia desestresante mensual o en plan continuado de 10 sesiones.',
       singleLabel: 'Reservar 1 Sesión ($50.000)',
-      singleValue: 'Masaje con Piedras Calientes (1 Sesión)',
+      singleValue: 'Masaje con Piedras Calientes — 1 Sesión',
       packLabel: 'Reservar Plan x10 ($40.000/ses)',
-      packValue: 'Masaje con Piedras Calientes (Plan x10)'
+      packValue: 'Masaje con Piedras Calientes — Plan x10'
     },
     'limpieza-profunda': {
       title: 'Limpieza Facial Profunda',
@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
       care: 'Frecuencia aconsejada: 1 vez al mes. No se ofrece plan x10 para respetar la barrera lipídica y el recambio celular mensual.',
       singleOnly: true,
       singleLabel: 'Reservar Sesión ($45.000)',
-      singleValue: 'Limpieza Facial Profunda (1 Sesión)'
+      singleValue: 'Limpieza Facial Profunda — 1 Sesión'
     },
     'maderoterapia': {
       title: 'Maderoterapia + Drenaje x10',
@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
       care: 'No se comercializa por sesión individual: solo se realiza en Combo x10 con 2 sesiones semanales para garantizar resultados reales.',
       packOnly: true,
       packLabel: 'Reservar Plan x10 ($60.000/ses)',
-      packValue: 'Combo: Maderoterapia + Drenaje x10 ($60.000)'
+      packValue: 'Combo: Maderoterapia + Drenaje x10'
     },
     'depilacion-definitiva': {
       title: 'Depilación Definitiva (Jornada Estacional)',
@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ],
       packOnly: true,
       packLabel: 'Reservar Combo x10 ($45.000/ses)',
-      packValue: 'Combo: Descontracturante + Piedras + Reiki x10 ($45.000)'
+      packValue: 'Combo: Descontracturante + Piedras + Reiki x10'
     },
     'combo-2': {
       title: 'Combo: Drenaje + Ultrasonido x10',
@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ],
       packOnly: true,
       packLabel: 'Reservar Combo x10 ($45.000/ses)',
-      packValue: 'Combo: Drenaje + Ultrasonido x10 ($45.000)'
+      packValue: 'Combo: Drenaje + Ultrasonido x10'
     },
     'combo-3': {
       title: 'Combo: Drenaje + Descontracturante x10',
@@ -187,7 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ],
       packOnly: true,
       packLabel: 'Reservar Combo x10 ($50.000/ses)',
-      packValue: 'Combo: Drenaje + Descontracturante x10 ($50.000)'
+      packValue: 'Combo: Drenaje + Descontracturante x10'
     },
     'combo-4': {
       title: 'Combo: Maderoterapia + Drenaje x10',
@@ -202,7 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ],
       packOnly: true,
       packLabel: 'Reservar Combo x10 ($60.000/ses)',
-      packValue: 'Combo: Maderoterapia + Drenaje x10 ($60.000)'
+      packValue: 'Combo: Maderoterapia + Drenaje x10'
     },
     'combo-5': {
       title: 'Combo: Reflexología Manos + Pies x5',
@@ -217,7 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ],
       packOnly: true,
       packLabel: 'Reservar Plan x5 ($30.000/ses)',
-      packValue: 'Combo: Reflexología Manos + Pies x5 ($30.000)'
+      packValue: 'Combo: Reflexología Manos + Pies x5'
     },
     'combo-6': {
       title: 'Combo: Masajes Deportivos x10 (Obra Social)',
@@ -233,7 +233,7 @@ document.addEventListener('DOMContentLoaded', () => {
       care: 'Emitimos factura profesional para que puedas gestionar el reintegro en tu Obra Social o Prepaga según tu plan.',
       packOnly: true,
       packLabel: 'Reservar Plan x10 ($40.000/ses)',
-      packValue: 'Combo: Masajes Deportivos x10 ($40.000)'
+      packValue: 'Combo: Masajes Deportivos x10'
     }
   };
 
@@ -656,7 +656,7 @@ comboButtons.forEach(btn => {
   /* ==========================================
      5. CALENDARIO & HORARIOS
   ========================================== */
-  const APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxj1kvsyoDqFElYLP8d6TCYVkLDhgVJTS6AWrRYTJT_ObtqLM8EZtiKb8tjde0EtjOY/exec';
+  const APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwiK1iVPLYIxSQa9KagmZ4x6Pl6BotylRAKtGqHRlnYSLQxjvdIp6WckR0r4z-A8FiV/exec';
   let selectedDate = null;
   let selectedTime = null;
 
@@ -1111,9 +1111,7 @@ async function showConfirmationCard() {
     const wizardActions = document.querySelector('.wizard-actions');
     const stepPane4 = document.getElementById('stepPane4');
     const confirmationCard = document.getElementById('confirmationCard');
-
-    if (wizardActions) wizardActions.classList.add('hidden');
-    if (stepPane4) stepPane4.classList.add('hidden');
+    if (confirmationCard) confirmationCard.classList.add('hidden');
 
     // ==========================================
     // 1. FORMATO DE FECHA
@@ -1140,12 +1138,14 @@ async function showConfirmationCard() {
     const serviceSelectedText =
       selectService.options[selectService.selectedIndex].text ||
       selectService.value;
+    const serviceCanonicalValue = selectService.value;
 
     const reservaData = {
       action: 'crearReserva',
       fecha: isoDate,
       hora: selectedTime,
-      tratamiento: serviceSelectedText,
+      tratamiento: serviceCanonicalValue,
+      promo15: promo15Active === true,
       nombre: custName.value.trim(),
       whatsapp: custPhone.value.trim(),
       observaciones: commentsText
@@ -1169,8 +1169,6 @@ async function showConfirmationCard() {
     const honeypot = document.getElementById('website_hp');
     if (honeypot && honeypot.value.trim() !== '') {
       console.warn('🤖 Bot detectado. La reserva no se enviará a Google Sheets.');
-      if (confirmationCard) confirmationCard.classList.remove('hidden');
-      startTimer();
       return;
     }
 
@@ -1239,6 +1237,9 @@ async function showConfirmationCard() {
           data.mensaje || data.error
         );
 
+        alert(data.mensaje || data.error || 'No pudimos registrar la reserva. Por favor, intentá nuevamente.');
+        return;
+
       }
 
     } catch (err) {
@@ -1252,6 +1253,9 @@ async function showConfirmationCard() {
         err
       );
 
+      alert('No pudimos registrar la reserva. Por favor, verificá tu conexión e intentá nuevamente.');
+      return;
+
     }
 
     // ==========================================
@@ -1259,6 +1263,9 @@ async function showConfirmationCard() {
     // ==========================================
 
     if (confirmationCard) {
+
+      if (wizardActions) wizardActions.classList.add('hidden');
+      if (stepPane4) stepPane4.classList.add('hidden');
 
       confirmationCard.classList.remove('hidden');
 
@@ -1351,6 +1358,38 @@ async function showConfirmationCard() {
    11. POLLING: CONSULTA DE ESTADO EN VIVO
 ========================================== */
 let pollingInterval = null;
+
+const btnResetBooking = document.getElementById('btnResetBooking');
+if (btnResetBooking) {
+    btnResetBooking.addEventListener('click', () => {
+        if (timerInterval) {
+            clearInterval(timerInterval);
+            timerInterval = null;
+        }
+        if (pollingInterval) {
+            clearInterval(pollingInterval);
+            pollingInterval = null;
+        }
+
+        const confirmationCard = document.getElementById('confirmationCard');
+        const wizardActions = document.querySelector('.wizard-actions');
+        if (confirmationCard) confirmationCard.classList.add('hidden');
+        if (wizardActions) wizardActions.classList.remove('hidden');
+
+        currentStep = 1;
+        selectedDate = null;
+        selectedTime = null;
+        if (custName) custName.value = '';
+        if (custPhone) custPhone.value = '';
+        if (custNotes) custNotes.value = '';
+
+        updateWizard();
+        renderCalendar();
+
+        const reservaSec = document.getElementById('reserva');
+        if (reservaSec) reservaSec.scrollIntoView({ behavior: 'smooth' });
+    });
+}
 
 function esperarConfirmacionEnVivo(turnoId) {
     // 1. Mostrarle al usuario que estamos esperando

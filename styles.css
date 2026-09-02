@@ -3231,3 +3231,7 @@ summary:focus-visible {
         padding: 7px 10px !important;
     }
 }
+
+#antes-despues {
+    display: none !important;
+}
