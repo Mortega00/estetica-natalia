@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mortega00.github.io/estetica-natalia/sitemap.xml
+Sitemap: https://nativaestetica.netlify.app/sitemap.xml
