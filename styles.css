@@ -2719,9 +2719,11 @@ summary:focus-visible {
         color: rgba(255,255,255,0.96) !important;
 
         flex: 0 1 auto !important;
+        min-width: 0 !important;
 
         font-size: 0.68rem !important;
         line-height: 1.2 !important;
+        white-space: normal !important;
     }
 
     .promo-text strong {
