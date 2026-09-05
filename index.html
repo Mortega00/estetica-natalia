@@ -163,6 +163,20 @@
         </div>
     </section>
 
+    <!-- BANNER PROMOCIONAL: DEPILACIÓN DEFINITIVA -->
+    <section class="depilation-promo-section" aria-label="Disponibilidad de depilación definitiva">
+        <div class="container">
+            <a class="depilation-promo-banner" id="depilationPromoBanner" href="#depilacion-definitiva">
+                <div class="depilation-promo-content">
+                    <span class="depilation-promo-eyebrow"><i class="fa-solid fa-circle" aria-hidden="true"></i> CUPOS DISPONIBLES</span>
+                    <strong class="depilation-promo-title">Depilación Definitiva</strong>
+                    <p>Nuevas fechas disponibles. Consultá zonas, próximos turnos y precios.</p>
+                </div>
+                <span class="depilation-promo-cta">Ver disponibilidad <span aria-hidden="true">→</span></span>
+            </a>
+        </div>
+    </section>
+
     <!-- 2. TRATAMIENTOS (CATÁLOGO CON PRECIOS REALES) -->
     <section class="services-section" id="tratamientos">
         <div class="container">
@@ -205,7 +219,7 @@
                             <span class="price-single">Sesión: $88.000</span>
                             <span class="price-pack">Plan x5: $60.000/ses</span>
                         </div>
-                        <span class="btn-card-more">Ver detalles y reservar &rarr;</span>
+                        <span class="btn-card-more">Ver tratamiento &rarr;</span>
                     </div>
                 </div>
 
@@ -223,7 +237,7 @@
                             <span class="price-single">Sesión: $65.000</span>
                             <span class="price-pack">Plan x10: $45.000/ses</span>
                         </div>
-                        <span class="btn-card-more">Ver detalles y reservar &rarr;</span>
+                        <span class="btn-card-more">Ver tratamiento &rarr;</span>
                     </div>
                 </div>
 
@@ -239,7 +253,7 @@
                         <div class="card-price-row">
                             <span class="price-pack solo-pack">Plan x10: $45.000/ses</span>
                         </div>
-                        <span class="btn-card-more">Ver detalles y reservar &rarr;</span>
+                        <span class="btn-card-more">Ver tratamiento &rarr;</span>
                     </div>
                 </div>
 
@@ -257,7 +271,7 @@
                             <span class="price-single">Sesión: $59.000</span>
                             <span class="price-pack">Plan x10: $40.000/ses</span>
                         </div>
-                        <span class="btn-card-more">Ver detalles y reservar &rarr;</span>
+                        <span class="btn-card-more">Ver tratamiento &rarr;</span>
                     </div>
                 </div>
 
@@ -275,7 +289,7 @@
                             <span class="price-single">Sesión: $59.000</span>
                             <span class="price-pack">Plan x10: $40.000/ses</span>
                         </div>
-                        <span class="btn-card-more">Ver detalles y reservar &rarr;</span>
+                        <span class="btn-card-more">Ver tratamiento &rarr;</span>
                     </div>
                 </div>
 
@@ -292,7 +306,7 @@
                             <del class="price-ref"></del>
                             <span class="price-single solo-single">Sesión única: $53.000</span>
                         </div>
-                        <span class="btn-card-more">Ver detalles y reservar &rarr;</span>
+                        <span class="btn-card-more">Ver tratamiento &rarr;</span>
                     </div>
                 </div>
 
@@ -308,14 +322,14 @@
                         <div class="card-price-row">
                             <span class="price-pack solo-pack">En Plan x10: $60.000/ses</span>
                         </div>
-                        <span class="btn-card-more">Ver combo y reservar &rarr;</span>
+                        <span class="btn-card-more">Ver tratamiento &rarr;</span>
                     </div>
                 </div>
 
                 <!-- 8. Tarjeta Estacional: Depilación Definitiva -->
-                <div class="service-card seasonal-card" data-id="depilacion-definitiva">
+                <div class="service-card seasonal-card" id="depilacion-definitiva" data-id="depilacion-definitiva">
                     <div class="card-image-wrapper">
-                        <img src="assets/spa.png" alt="Depilación Definitiva Láser" loading="lazy">
+                        <img src="assets/depilacion-definitiva.png" alt="Depilación Definitiva Láser" loading="lazy">
                     </div>
                     <div class="card-info">
                         <span class="card-badge seasonal-badge"><i class="fa-regular fa-clock"></i> Disponible por Temporada</span>
@@ -324,7 +338,7 @@
                         <div class="card-price-row">
                             <span class="price-seasonal">Consultar fechas y zonas</span>
                         </div>
-                        <span class="btn-card-more">Consultar por WhatsApp &rarr;</span>
+                        <a class="btn-card-more depilation-whatsapp-direct" href="https://wa.me/5491132194320?text=Hola%20Natalia%2C%20vi%20la%20publicaci%C3%B3n%20de%20Depilaci%C3%B3n%20Definitiva%20y%20quer%C3%ADa%20consultar%20por%20disponibilidad%2C%20turnos%20y%20precios" target="_blank" rel="noopener noreferrer">Reservar mi cupo por WhatsApp &rarr;</a>
                     </div>
                 </div>
 
@@ -424,77 +438,6 @@
             <!-- Indicador visual de swipe en móviles -->
             <div class="swipe-hint">
                 <span>Seleccioná un programa para conocer sus detalles</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- 4. CONDICIONES DE LOS PLANES (TRANSPARENCIA COMERCIAL) -->
-    <section class="plan-conditions-section" id="condiciones-planes">
-        <div class="container">
-            <div class="plan-conditions-card">
-                <div class="conditions-header">
-                    <div>
-                        <span class="subtitle">TU EXPERIENCIA EN NATIVA</span>
-                        <h3>Una visita, paso a paso.</h3>
-                        <p>Elegí lo que necesitás, reservá tu turno y recibí una atención hecha a tu medida.</p>
-                    </div>
-                </div>
-
-                <ol class="experience-journey" aria-label="Recorrido de una visita en Nativa Estética">
-                    <li><span>01</span><strong>Elegí tu tratamiento</strong></li>
-                    <li><span>02</span><strong>Reservá tu turno</strong></li>
-                    <li><span>03</span><strong>Recibí una evaluación personalizada</strong></li>
-                    <li><span>04</span><strong>Disfrutá tu sesión</strong></li>
-                </ol>
-
-                <details class="plan-conditions-details">
-                    <summary>Antes de comenzar <span>Ver condiciones de los programas</span></summary>
-                    <div class="plan-conditions-content">
-                        <div class="conditions-grid">
-                    <div class="condition-item">
-                        <i class="fa-solid fa-handshake"></i>
-                        <div>
-                            <strong>Compromiso del Programa:</strong>
-                            <p>Los packs se adquieren como un tratamiento integral y continuo para asegurar resultados progresivos y reales.</p>
-                        </div>
-                    </div>
-                    <div class="condition-item">
-                        <i class="fa-solid fa-credit-card"></i>
-                        <div>
-                            <strong>Facilidades de Pago (50/50):</strong>
-                            <p>En planes de 10 sesiones podés abonar el 50% en la 1° sesión y el 50% restante en la 5° sesión, o el total anticipado.</p>
-                        </div>
-                    </div>
-                    <div class="condition-item">
-                        <i class="fa-solid fa-calendar-days"></i>
-                        <div>
-                            <strong>Coordinación y Frecuencia:</strong>
-                            <p>Los turnos se coordinan según disponibilidad de agenda. Se sugiere reservar un día y horario fijo semanal.</p>
-                        </div>
-                    </div>
-                    <div class="condition-item">
-                        <i class="fa-solid fa-hourglass-half"></i>
-                        <div>
-                            <strong>Vigencia del Paquete:</strong>
-                            <p>Los planes x10 tienen una validez de 4 meses desde el inicio; los planes x5 cuentan con 2 meses de vigencia.</p>
-                        </div>
-                    </div>
-                    <div class="condition-item full-width">
-                        <i class="fa-solid fa-bell"></i>
-                        <div>
-                            <strong>Políticas de Reprogramación:</strong>
-                            <p>Los turnos pueden reprogramarse con al menos <strong>24 horas de anticipación</strong> sin perder la sesión. Cancelaciones fuera de término o inasistencias se computarán como realizadas.</p>
-                        </div>
-                    </div>
-                        </div>
-
-                        <div class="conditions-footer">
-                            <a href="#combos" class="btn-secondary">
-                                <i class="fa-solid fa-check"></i> Ver programas
-                            </a>
-                        </div>
-                    </div>
-                </details>
             </div>
         </div>
     </section>
@@ -602,8 +545,8 @@
                     </div>
 
                     <div style="margin-top: 25px;">
-                        <a href="#reserva" class="btn-primary" style="width: auto; display: inline-block;">
-                            <i class="fa-regular fa-calendar-check"></i> Reservar con Natalia
+                        <a href="https://wa.me/5491132194320?text=Hola%20Natalia%2C%20vi%20tu%20p%C3%A1gina%20y%20quisiera%20hacerte%20una%20consulta%20para%20saber%20qu%C3%A9%20tratamiento%20me%20recomend%C3%A1s" target="_blank" rel="noopener noreferrer" class="btn-primary personalized-care-cta" style="width: auto; display: inline-block;">
+                            <i class="fa-regular fa-calendar-check"></i> Quiero una atención personalizada
                         </a>
                     </div>
                 </div>
@@ -617,14 +560,71 @@
             <div class="section-title-container">
                 <span class="subtitle">TESTIMONIOS REALES</span>
                 <h2>Lo que dicen nuestras clientas</h2>
-                <p class="section-desc">Experiencias de quienes confían su bienestar en Nativa Estética</p>
+                <p class="section-desc">Experiencias reales de quienes confían en NATIVA Estética.</p>
             </div>
 
             <div class="testimonials-wrapper">
                 <button class="carousel-arrow left-arrow" id="prevReviewBtn" aria-label="Anterior reseña"><i class="fa-solid fa-chevron-left"></i></button>
                 
                 <div class="testimonials-grid" id="testimonialsCarousel">
-                    
+                    <!-- Reseñas reales de Google -->
+                    <div class="testimonial-card testimonial-card-google">
+                        <div class="review-source-google"><i class="fa-brands fa-google" aria-hidden="true"></i><span>Reseña de Google</span></div>
+                        <div class="stars" aria-label="5 de 5 estrellas">★★★★★</div>
+                        <p>"Naty..una genia...excelentes masajes ...buena ambientacion!!!.Un placer ♡♡♡"</p>
+                        <div class="testimonial-author"><strong>Paciente de NATIVA</strong></div>
+                    </div>
+
+                    <div class="testimonial-card testimonial-card-google">
+                        <div class="review-source-google"><i class="fa-brands fa-google" aria-hidden="true"></i><span>Reseña de Google</span></div>
+                        <div class="stars" aria-label="5 de 5 estrellas">★★★★★</div>
+                        <p>"Excelente profesional con mucho conocimiento y, por sobre todo, compromiso con su trabajo. La super recomiendo."</p>
+                        <div class="testimonial-author"><strong>Paciente de NATIVA</strong></div>
+                    </div>
+
+                    <div class="testimonial-card testimonial-card-google">
+                        <div class="review-source-google"><i class="fa-brands fa-google" aria-hidden="true"></i><span>Reseña de Google</span></div>
+                        <div class="stars" aria-label="5 de 5 estrellas">★★★★★</div>
+                        <p>"Quiero destacar y recomendar el trabajo de NATALIA. Excelente profesional. Su dedicación y cuidado en cada sesión hace un ambiente de confianza y bienestar. Su técnica para atender los pacientes y los tratamientos demuestran su basta experiencia. Que invitan a volver siembre."</p>
+                        <div class="testimonial-author"><strong>Paciente de NATIVA</strong></div>
+                    </div>
+
+                    <div class="testimonial-card testimonial-card-google">
+                        <div class="review-source-google"><i class="fa-brands fa-google" aria-hidden="true"></i><span>Reseña de Google</span></div>
+                        <div class="stars" aria-label="5 de 5 estrellas">★★★★★</div>
+                        <p>"Excelente atención!"</p>
+                        <div class="testimonial-author"><strong>Paciente de NATIVA</strong></div>
+                    </div>
+
+                    <div class="testimonial-card testimonial-card-google">
+                        <div class="review-source-google"><i class="fa-brands fa-google" aria-hidden="true"></i><span>Reseña de Google</span></div>
+                        <div class="stars" aria-label="5 de 5 estrellas">★★★★★</div>
+                        <p>"Nati es la mejor masajista que tuve, desde que la conocí hace ya dos años no la cambio. Vivo en Retiro y me voy a Lanús por sus masajes. Es too much, la mejor! Por suerte ya tengo agenda fija!"</p>
+                        <div class="testimonial-author"><strong>Paciente de NATIVA</strong></div>
+                    </div>
+
+                    <div class="testimonial-card testimonial-card-google">
+                        <div class="review-source-google"><i class="fa-brands fa-google" aria-hidden="true"></i><span>Reseña de Google</span></div>
+                        <div class="stars" aria-label="5 de 5 estrellas">★★★★★</div>
+                        <p>"Ayuda mucho a la recuperación con los masajes, buena profesional"</p>
+                        <div class="testimonial-author"><strong>Paciente de NATIVA</strong></div>
+                    </div>
+
+                    <div class="testimonial-card testimonial-card-google">
+                        <div class="review-source-google"><i class="fa-brands fa-google" aria-hidden="true"></i><span>Reseña de Google</span></div>
+                        <div class="stars" aria-label="5 de 5 estrellas">★★★★★</div>
+                        <p>"Una genia Nati, me atiendo hace años, super amorosa y atención increíble. Siempre me deja renovada!"</p>
+                        <div class="testimonial-author"><strong>Paciente de NATIVA</strong></div>
+                    </div>
+
+                    <div class="testimonial-card testimonial-card-google">
+                        <div class="review-source-google"><i class="fa-brands fa-google" aria-hidden="true"></i><span>Reseña de Google</span></div>
+                        <div class="stars" aria-label="5 de 5 estrellas">★★★★★</div>
+                        <p>"Excelente profesional super recomendable he tomado masajes c maderoterapia y piedras calientes y a través de las sesiones he notado un gran alivio en mis articulaciones. Naty es una de las mejores en su profesión"</p>
+                        <div class="testimonial-author"><strong>Paciente de NATIVA</strong></div>
+                    </div>
+
+                    <!-- Testimonios de pacientes de NATIVA -->
                     <div class="testimonial-card">
                         <div class="stars">★★★★★</div>
                         <p>"La atención de Natalia es impecable. Me hice una limpieza facial profunda y la piel me quedó radiante y suave desde el primer minuto."</p>
@@ -659,6 +659,16 @@
 
                 <button class="carousel-arrow right-arrow" id="nextReviewBtn" aria-label="Siguiente reseña"><i class="fa-solid fa-chevron-right"></i></button>
             </div>
+
+            <!-- Usar la URL pública de la ficha de Google cuando esté disponible. -->
+            <div class="testimonials-google-actions" aria-label="Acciones de reseñas en Google">
+                <a href="https://maps.app.goo.gl/KQAyKdvU9sepB45LA" target="_blank" rel="noopener noreferrer" class="testimonials-google-action testimonials-google-view">
+                    <i class="fa-brands fa-google" aria-hidden="true"></i> Ver reseñas en Google
+                </a>
+                <a href="https://g.page/r/CQ7JYPsCFCinEBM/review" target="_blank" rel="noopener noreferrer" class="testimonials-google-action testimonials-google-write">
+                    <i class="fa-solid fa-star" aria-hidden="true"></i> Dejanos tu reseña
+                </a>
+            </div>
         </div>
     </section>
 
@@ -674,15 +684,15 @@
             <div class="faq-editorial">
                 <div class="faq-list">
                 
-                <!-- FAQ 1: Reserva y seña -->
+                <!-- FAQ 1: Coordinación y seña -->
                 <div class="faq-item">
                     <div class="faq-question">
-                        <span>¿Cómo realizo la reserva y confirmación de mi turno?</span>
+                        <span>¿Cómo coordino mi turno?</span>
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer-wrapper">
                         <div class="faq-answer">
-                            Seleccionás tu tratamiento, la fecha y el horario deseado en nuestra sección de turnos. Para asegurar el espacio de atención se abona una seña previa de $20.000 vía transferencia (Alias: <strong>natali1977</strong>). Luego, enviás el comprobante por WhatsApp para la confirmación instantánea.
+                            Elegís tu tratamiento o plan, dejás tus datos y Natalia coordina con vos el día y horario por WhatsApp. Una vez definido el espacio, se solicita una seña de $20.000 vía transferencia (Alias: <strong>natali1977</strong>).
                         </div>
                     </div>
                 </div>
@@ -770,34 +780,22 @@
         </div>
     </section>
 
-    <!-- 10. SECCIÓN AGENDA DE TURNOS -->
+    <!-- 10. CONSULTA DE DISPONIBILIDAD -->
     <section id="reserva" class="booking-section">
         <div class="container">
             <div class="section-title-container">
-                <span class="subtitle">AGENDA DE TURNOS</span>
-                <h2>Reservá tu Espacio</h2>
-                <p class="section-desc">Seleccioná tu tratamiento, elegí la fecha ideal y asegurá tu turno de forma ágil</p>
+                <span class="subtitle">COORDINÁ TU TURNO</span>
+                <h2>Consultá disponibilidad con Natalia</h2>
+                <p class="section-desc">Elegí tu tratamiento o plan y dejanos tus datos. Natalia coordina con vos el día y horario por WhatsApp.</p>
             </div>
 
-            <div class="booking-wrapper">
-                
-                <!-- INDICADOR DE PASOS DEL WIZARD -->
-                <div class="wizard-steps-indicator">
-                    <div class="step-item active">1. Tratamiento</div>
-                    <div class="step-item">2. Fecha y Horario</div>
-                    <div class="step-item">3. Tus Datos</div>
-                    <div class="step-item">4. Confirmación</div>
-                </div>
-
-                <p class="web-benefit-note" hidden>✨ Beneficio web aplicado · 15% OFF en tu primera sesión</p>
-
-                <!-- PASO 1: Selección de Servicio con Precios Actualizados -->
-                <div class="wizard-pane" id="stepPane1">
-                    <h3 class="step-pane-title">1. Tratamiento o Combo seleccionado</h3>
-                    <div class="form-group">
+            <div class="booking-wrapper consultation-wrapper">
+                <form id="consultationForm" class="consultation-form" novalidate>
+                    <div class="form-group booking-service-field">
+                        <label for="selectService">Tratamiento o plan *</label>
                         <select id="selectService" class="form-control">
-                            <option value="" disabled>-- Seleccioná una opción --</option>
-                            
+                            <option value="" disabled selected>-- Seleccioná una opción --</option>
+
                             <!-- TRATAMIENTOS INDIVIDUALES Y PLANES -->
                             <optgroup label="Dermapen + Rutina Glow">
                                 <option value="Dermapen + Rutina Skincare Glow — 1 Sesión">Dermapen + Rutina Skincare Glow — 1 Sesión ($88.000)</option>
@@ -821,7 +819,7 @@
                             </optgroup>
 
                             <optgroup label="Limpieza Facial Profunda">
-                                <option value="Limpieza Facial Profunda — 1 Sesión" selected>Limpieza Facial Profunda — 1 Sesión ($53.000)</option>
+                                <option value="Limpieza Facial Profunda — 1 Sesión">Limpieza Facial Profunda — 1 Sesión ($53.000)</option>
                             </optgroup>
 
                             <optgroup label="Maderoterapia Corporal (Solo en Combo)">
@@ -839,151 +837,55 @@
                             </optgroup>
                         </select>
                     </div>
-                </div>
 
-                <!-- PASO 2: Calendario y Horarios Oficiales -->
-                <div class="wizard-pane hidden" id="stepPane2">
-                    <h3 class="step-pane-title">2. Selección de Fecha y Horario</h3>
-                    <div class="calendar-layout">
-                        <!-- Calendario Visual -->
-                        <div class="cal-box">
-                            <div class="cal-header">
-                                <button class="cal-nav-btn" id="prevMonthBtn" type="button" aria-label="Mes anterior"><i class="fa-solid fa-chevron-left"></i></button>
-                                <h4 id="calMonthTitle">Mes Año</h4>
-                                <button class="cal-nav-btn" id="nextMonthBtn" type="button" aria-label="Mes siguiente"><i class="fa-solid fa-chevron-right"></i></button>
+                    <div id="bookingDetails" class="booking-details hidden" aria-hidden="true">
+                        <div class="consultation-summary" aria-live="polite">
+                            <span>Tratamiento elegido</span>
+                            <strong id="consultationServiceSummary">Elegí un tratamiento o plan.</strong>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="custName">Nombre y Apellido *</label>
+                                <input type="text" id="custName" class="form-control" placeholder="Ej: María Gómez" autocomplete="name">
                             </div>
-                            <div class="cal-grid" id="calDaysGrid">
-                                <!-- Generado dinámicamente -->
+                            <div class="form-group">
+                                <label for="custPhone">WhatsApp / Teléfono *</label>
+                                <input type="tel" id="custPhone" class="form-control" placeholder="Ej: 11 2233 4455" inputmode="tel" autocomplete="tel">
+                            </div>
+                            <div class="form-group full">
+                                <label for="custNotes">¿Querés contarle algo a Natalia? <span>(opcional)</span></label>
+                                <textarea id="custNotes" class="form-control" rows="3" placeholder="Ej.: Preferencia de día, consulta puntual o información que Natalia deba saber."></textarea>
                             </div>
                         </div>
 
-                        <!-- Horarios Disponibles -->
-                        <details class="time-box time-box-collapsible" open>
-                            <summary>
-                                <div>
-                                    <h4 class="time-box-title">Horarios de Atención</h4>
-                                    <p class="time-box-subtitle">Lun a Vie (09:00 a 19:00 hs) | Sáb (09:00 a 15:00 hs)</p>
+                        <p class="consultation-form-feedback" id="consultationFormFeedback" role="alert" aria-live="polite"></p>
+
+                        <button class="btn-primary consultation-submit" type="submit">
+                            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Consultar disponibilidad por WhatsApp
+                        </button>
+
+                        <aside class="consultation-deposit-card" aria-label="Para confirmar tu turno">
+                            <span class="consultation-deposit-eyebrow">PARA CONFIRMAR TU TURNO</span>
+                            <p>Una vez coordinado el día y horario con Natalia, se solicita una seña de <strong data-deposit-amount>$20.000</strong> para reservar el espacio.</p>
+                            <div class="consultation-bank-details">
+                                <div class="consultation-bank-item">
+                                    <span>Alias</span>
+                                    <div class="alias-container">
+                                        <strong id="aliasText">natali1977</strong>
+                                        <button type="button" class="btn-copy" id="btnCopyAlias" aria-label="Copiar alias natali1977">
+                                            <i class="fa-regular fa-copy" aria-hidden="true"></i> Copiar
+                                        </button>
+                                    </div>
                                 </div>
-                            </summary>
-                            <div class="time-grid" id="timeGrid">
-                                <!-- Los chips de horarios se inyectarán dinámicamente -->
-                            </div>
-                        </details>
-                    </div>
-                </div>
-
-                <!-- PASO 3: Formulario de Contacto -->
-                <div class="wizard-pane hidden" id="stepPane3">
-                    <h3 class="step-pane-title">3. Completá tus datos de contacto:</h3>
-                    
-                    <!-- Honeypot anti-bot -->
-                    <div style="display:none !important; visibility:hidden !important;" aria-hidden="true">
-                        <input type="text" id="website_hp" name="website_hp" tabindex="-1" autocomplete="off">
-                    </div>
-
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label for="custName">Nombre y Apellido *</label>
-                            <input type="text" id="custName" class="form-control" placeholder="Ej: María Gómez">
-                        </div>
-                        <div class="form-group">
-                            <label for="custPhone">WhatsApp / Teléfono *</label>
-                            <input type="tel" id="custPhone" class="form-control" placeholder="Ej: 11 2233 4455">
-                        </div>
-                        <div class="form-group full">
-                            <label for="custNotes">Comentarios Opcionales</label>
-                            <textarea id="custNotes" class="form-control" rows="3" placeholder="Aclaraciones, dolencias específicas o inquietudes..."></textarea>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- PASO 4: Resumen y Datos de Transferencia -->
-                <div class="wizard-pane hidden" id="stepPane4">
-                    <h3 class="step-pane-title">4. Resumen y Datos de Pago</h3>
-                    <div class="summary-box">
-                        <div class="summary-item">
-                            <span>Tratamiento:</span>
-                            <strong id="sumService">Limpieza Facial Profunda</strong>
-                        </div>
-                        <div class="summary-item">
-                            <span>Fecha seleccionada:</span>
-                            <strong id="sumDate">-</strong>
-                        </div>
-                        <div class="summary-item">
-                            <span>Horario:</span>
-                            <strong id="sumTime">-</strong>
-                        </div>
-                        <div class="summary-item">
-                            <span>Nombre:</span>
-                            <strong id="sumName">-</strong>
-                        </div>
-                        <div class="summary-item">
-                            <span>WhatsApp:</span>
-                            <strong id="sumPhone">-</strong>
-                        </div>
-                    </div>
-
-                    <!-- Datos Bancarios de la Seña -->
-                    <div class="bank-card">
-                        <div class="bank-card-header">
-                            <i class="fa-solid fa-building-columns"></i>
-                            <strong>Datos para transferir la seña ($20.000)</strong>
-                        </div>
-                        <div class="bank-card-body">
-                            <div class="bank-item">
-                                <span>Alias:</span>
-                                <div class="alias-container">
-                                    <strong id="aliasText">natali1977</strong>
-                                    <button type="button" class="btn-copy" id="btnCopyAlias" aria-label="Copiar Alias">
-                                        <i class="fa-regular fa-copy"></i> Copiar
-                                    </button>
+                                <div class="consultation-bank-item">
+                                    <span>Titular</span>
+                                    <strong>Natalia Ferrante</strong>
                                 </div>
                             </div>
-                            <div class="bank-item">
-                                <span>Titular:</span>
-                                <strong>Natalia Ferrante</strong>
-                            </div>
-                        </div>
+                        </aside>
                     </div>
-
-                    <div class="deposit-notice" style="margin-top: 15px;">
-                        <i class="fa-solid fa-shield-halved"></i>
-                        Para confirmar la reserva se requiere una <strong>seña de $20.000</strong>.
-                        <p>Al hacer clic en "Confirmar Reserva", tu turno quedará agendado y se abrirá WhatsApp para enviar el comprobante de transferencia a Natalia.</p>
-                        <p class="notice-warning"><i class="fa-solid fa-triangle-exclamation"></i> <strong>Política de cancelación:</strong> Los turnos pueden reprogramarse con al menos <strong>24 horas de anticipación</strong>. Caso contrario, la seña no será reembolsada.</p>
-                    </div>
-                </div>
-
-                <!-- Botones de Navegación del Wizard -->
-                <div class="wizard-actions">
-                    <button class="btn btn-secondary hidden" id="btnBackStep" type="button">Anterior</button>
-                    <button class="btn btn-primary" id="btnNextStep" type="button">Siguiente paso</button>
-                </div>
-
-                <!-- Resumen / Tarjeta de Confirmación Final -->
-                <div class="confirmation-card hidden" id="confirmationCard">
-                    <span class="status-badge" style="background: var(--color-verde-soft); color: var(--color-verde-texto);">
-                        <i class="fa-solid fa-circle-check"></i> TURNO PRE-RESERVADO
-                    </span>
-                    <div class="confirmation-header">
-                        <h3>¡Tu turno ha sido solicitado!</h3>
-                        <p>Tenés un tiempo estimado de <span class="timer-highlight" id="timerCount">15:00</span> para transferir los $20.000 de seña al Alias <strong>natali1977</strong> y enviar el comprobante por WhatsApp a Natalia.</p>
-                    </div>
-                    <div class="resumen-box">
-                        <p><strong>Tratamiento:</strong> <span id="resumenServicio">-</span></p>
-                        <p><strong>Fecha:</strong> <span id="resumenFecha">-</span></p>
-                        <p><strong>Horario:</strong> <span id="resumenHora">-</span></p>
-                        <p><strong>A nombre de:</strong> <span id="resumenNombre">-</span></p>
-                        <p><strong>Contacto:</strong> <span id="resumenTel">-</span></p>
-                    </div>
-                    <div class="actions-container">
-                        <a href="#" id="btnSendWhatsappBooking" target="_blank" class="btn-whatsapp-action">
-                            <i class="fa-brands fa-whatsapp" style="margin-right: 8px;"></i> Enviar Comprobante / Turno por WhatsApp
-                        </a>
-                        <button type="button" class="btn-secondary-action" id="btnResetBooking">Modificar Datos o Sacar Otro Turno</button>
-                    </div>
-                </div>
-
+                </form>
             </div>
         </div>
     </section>
@@ -1091,6 +993,26 @@
                     </div>
                 </div>
 
+            </div>
+
+            <div class="footer-legal">
+                <details class="footer-legal-details" id="condiciones-planes">
+                    <summary>Términos del servicio y condiciones de los planes</summary>
+                    <div class="footer-legal-content">
+                        <p><strong>Compromiso del Programa:</strong> Los packs se adquieren como un tratamiento integral y continuo para asegurar resultados progresivos y reales.</p>
+                        <p><strong>Facilidades de Pago (50/50):</strong> En planes de 10 sesiones podés abonar el 50% en la 1° sesión y el 50% restante en la 5° sesión, o el total anticipado.</p>
+                        <p><strong>Coordinación y Frecuencia:</strong> Los turnos se coordinan según disponibilidad de agenda. Se sugiere reservar un día y horario fijo semanal.</p>
+                        <p><strong>Vigencia del Paquete:</strong> Los planes x10 tienen una validez de 4 meses desde el inicio; los planes x5 cuentan con 2 meses de vigencia.</p>
+                        <p><strong>Política de Reprogramación:</strong> Los turnos pueden reprogramarse con al menos <strong>24 horas de anticipación</strong> sin perder la sesión. Cancelaciones fuera de término o inasistencias se computarán como realizadas.</p>
+                    </div>
+                </details>
+
+                <details class="footer-legal-details" id="politica-privacidad">
+                    <summary>Política de privacidad</summary>
+                    <div class="footer-legal-content">
+                        <p>Los datos que ingresás en la web se utilizan únicamente para facilitar el contacto con Natalia y coordinar tu consulta. NATIVA no vende ni comparte tus datos con terceros.</p>
+                    </div>
+                </details>
             </div>
 
             <div class="copyright">

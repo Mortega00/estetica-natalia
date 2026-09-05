@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ],
       care: 'Servicio en fechas especiales programadas. Consultá disponibilidad para la próxima fecha directamente por WhatsApp.',
       isWhatsappOnly: true,
-      whatsappUrl: 'https://wa.me/5491132194320?text=Hola%20Natalia,%20quisiera%20consultar%20por%20la%20próxima%20fecha%20de%20Depilación%20Definitiva'
+      whatsappUrl: 'https://wa.me/5491132194320?text=Hola%20Natalia%2C%20vi%20la%20publicaci%C3%B3n%20de%20Depilaci%C3%B3n%20Definitiva%20y%20quer%C3%ADa%20consultar%20por%20disponibilidad%2C%20turnos%20y%20precios'
     },
     'combo-1': {
       title: 'Combo: Descontracturante + Piedras + Reiki x10',
@@ -264,7 +264,7 @@ document.addEventListener('DOMContentLoaded', () => {
     whatsappFloat.target = '_blank';
   }
   document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
-    if (!link.id.includes('btnSendWhatsappBooking') && !link.id.includes('whatsappFloat') && !link.id.includes('modalWhatsappBtn')) {
+    if (!link.id.includes('whatsappFloat') && !link.id.includes('modalWhatsappBtn') && !link.classList.contains('depilation-whatsapp-direct') && !link.classList.contains('personalized-care-cta')) {
       const defaultMsg = encodeURIComponent('Hola Natalia! Me gustaría consultar por un turno.');
       link.href = `${WA_BASE_URL}?text=${defaultMsg}`;
       link.target = '_blank';
@@ -508,10 +508,34 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  const depilationPromoBanner = document.getElementById('depilationPromoBanner');
+  let depilationHighlightTimeout;
+
+  if (depilationPromoBanner) {
+    depilationPromoBanner.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+
+      const depilationCard = document.getElementById('depilacion-definitiva');
+      if (!depilationCard) return;
+
+      depilationCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      window.clearTimeout(depilationHighlightTimeout);
+      depilationCard.classList.remove('is-depilation-highlight');
+      void depilationCard.offsetWidth;
+      depilationCard.classList.add('is-depilation-highlight');
+
+      depilationHighlightTimeout = window.setTimeout(() => {
+        depilationCard.classList.remove('is-depilation-highlight');
+      }, 2200);
+    }, true);
+  }
+
   const serviceCards = document.querySelectorAll('.service-card, .combo-card');
   serviceCards.forEach(card => {
     card.addEventListener('click', (e) => {
       if (e.target.closest('.select-combo-btn')) return;
+      if (e.target.closest('.depilation-whatsapp-direct')) return;
       const dataId = card.getAttribute('data-id');
       if (dataId) {
         openModal(dataId);
@@ -548,9 +572,6 @@ document.addEventListener('DOMContentLoaded', () => {
 const selectService = document.getElementById('selectService');
 
 function applyPromo15Interface() {
-  const benefitNote = document.querySelector('.web-benefit-note');
-  if (benefitNote) benefitNote.hidden = !promo15Active;
-
   Object.entries(promo15Prices).forEach(([treatmentId, price]) => {
     const activePrice = promo15Active ? price.promo : price.regular;
     const serviceCard = document.querySelector(`.service-card[data-id="${treatmentId}"]`);
@@ -654,808 +675,134 @@ comboButtons.forEach(btn => {
 });
 
   /* ==========================================
-     5. CALENDARIO & HORARIOS
+     5. CONSULTA DE DISPONIBILIDAD POR WHATSAPP
   ========================================== */
-  const APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwiK1iVPLYIxSQa9KagmZ4x6Pl6BotylRAKtGqHRlnYSLQxjvdIp6WckR0r4z-A8FiV/exec';
-  let selectedDate = null;
-  let selectedTime = null;
-
-  const today = new Date();
-  let currentCalMonth = today.getMonth();
-  let currentCalYear = today.getFullYear();
-  const calMonthTitle = document.getElementById('calMonthTitle');
-  const calDaysGrid = document.getElementById('calDaysGrid');
-  const timeGrid = document.querySelector('.time-grid');
-  const prevMonthBtn = document.getElementById('prevMonthBtn');
-  const nextMonthBtn = document.getElementById('nextMonthBtn');
-  const monthNames = [
-    'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-    'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
-  ];
-
-  // Helper para verificar si un turno específico (fecha + hora) está a 24 horas o más en el futuro
-  function isSlotAvailable24Hs(dateObj, hourNum) {
-    if (!dateObj) return false;
-    const now = new Date();
-    const minAllowedTime = new Date(now.getTime() + 24 * 60 * 60 * 1000); // AHORA + 24 HORAS
-    
-    // Crear el objeto Date exacto del turno (por ejemplo: fecha X a las 17:00:00)
-    const slotDateTime = new Date(dateObj.getFullYear(), dateObj.getMonth(), dateObj.getDate(), hourNum, 0, 0, 0);
-    
-    return slotDateTime >= minAllowedTime;
-  }
-
-  // Helper para verificar si un día completo tiene al menos 1 horario disponible
-  function hasAvailableSlotsInDay(dateObj) {
-    const isSunday = (dateObj.getDay() === 0);
-    if (isSunday) return false;
-
-    const startHour = 8;
-    const endHour = 20;
-
-    for (let hour = startHour; hour <= endHour; hour++) {
-      if (isSlotAvailable24Hs(dateObj, hour)) {
-        return true; // Al menos un horario supera las 24 horas
-      }
-    }
-    return false;
-  }
-
-  async function renderTimeSlot() {
-  if (!timeGrid) return;
-
-  timeGrid.innerHTML = '';
-  selectedTime = null;
-
-  if (!selectedDate) return;
-
-  const startHour = 8;
-  const endHour = 20;
-
-  // ==========================================
-  // FECHA EN FORMATO YYYY-MM-DD
-  // ==========================================
-  const year = selectedDate.getFullYear();
-  const month = String(selectedDate.getMonth() + 1).padStart(2, '0');
-  const day = String(selectedDate.getDate()).padStart(2, '0');
-  const dateString = `${year}-${month}-${day}`;
-
-  // ==========================================
-  // MENSAJE DE CARGA
-  // ==========================================
-  const loadingMessage = document.createElement('div');
-  loadingMessage.classList.add('time-loading');
-  loadingMessage.textContent = 'Consultando horarios disponibles...';
-  loadingMessage.style.gridColumn = '1 / -1';
-  loadingMessage.style.textAlign = 'center';
-  loadingMessage.style.padding = '20px';
-  timeGrid.appendChild(loadingMessage);
-
-  try {
-    // ==========================================
-    // CONSULTAR GOOGLE APPS SCRIPT
-    // ==========================================
-    const response = await fetch(
-  `${APP_SCRIPT_URL}?action=disponibilidad&fecha=${encodeURIComponent(dateString)}`
-);
-
-    if (!response.ok) {
-      throw new Error(`Error HTTP: ${response.status}`);
-    }
-
-    const data = await response.json();
-
-    // ==========================================
-    // VALIDAR RESPUESTA
-    // ==========================================
-    if (!data || data.ok !== true || !Array.isArray(data.disponibles)) {
-      throw new Error('Respuesta inválida del servidor.');
-    }
-
-    // Convertimos disponibles a Set para
-    // realizar búsquedas más rápidas
-    const availableTimes = new Set(
-      data.disponibles.map(time => String(time).trim())
-    );
-
-    // ==========================================
-    // RENDERIZAR HORARIOS
-    // ==========================================
-    timeGrid.innerHTML = '';
-
-    for (let hour = startHour; hour <= endHour; hour++) {
-      const timeString = `${String(hour).padStart(2, '0')}:00`;
-
-      const chip = document.createElement('div');
-      chip.classList.add('time-chip');
-      chip.setAttribute('data-time', timeString);
-      chip.textContent = `${timeString} hs`;
-
-      // ==========================================
-      // NIVEL 1:
-      // ¿EL HORARIO ESTÁ DISPONIBLE EN APPS SCRIPT?
-      // ==========================================
-      const isAvailableFromServer = availableTimes.has(timeString);
-
-      // ==========================================
-      // NIVEL 2:
-      // ¿CUMPLE LAS 24 HORAS DE ANTICIPACIÓN?
-      // ==========================================
-      const isValid24Hs = isSlotAvailable24Hs(selectedDate, hour);
-
-      // ==========================================
-      // HORARIO FINALMENTE DISPONIBLE
-      // ==========================================
-      const isAvailable = isAvailableFromServer && isValid24Hs;
-
-      if (!isAvailable) {
-        chip.classList.add('disabled');
-        chip.style.opacity = '0.35';
-        chip.style.cursor = 'not-allowed';
-        chip.style.pointerEvents = 'none';
-
-        // Si está ocupado, dejamos indicado internamente
-        if (!isAvailableFromServer) {
-          chip.setAttribute('data-status', 'ocupado');
-        } else if (!isValid24Hs) {
-          chip.setAttribute('data-status', 'menos-de-24hs');
-        }
-      } else {
-        chip.setAttribute('data-status', 'disponible');
-
-        chip.addEventListener('click', () => {
-          document
-            .querySelectorAll('.time-chip')
-            .forEach(c => c.classList.remove('selected'));
-
-          chip.classList.add('selected');
-          selectedTime = timeString;
-          
-          if (typeof selectedTimeSlot !== 'undefined') {
-            selectedTimeSlot = timeString;
-          }
-        });
-      }
-
-      timeGrid.appendChild(chip);
-    }
-
-  } catch (error) {
-    console.error('Error al consultar disponibilidad:', error);
-
-    // ==========================================
-    // ERROR DE CONEXIÓN
-    // ==========================================
-    timeGrid.innerHTML = '';
-
-    const errorMessage = document.createElement('div');
-    errorMessage.classList.add('time-error');
-    errorMessage.textContent =
-      'No pudimos consultar los horarios disponibles. Por favor, intentá nuevamente.';
-    errorMessage.style.gridColumn = '1 / -1';
-    errorMessage.style.textAlign = 'center';
-    errorMessage.style.padding = '20px';
-
-    timeGrid.appendChild(errorMessage);
-  }
-}
-
-  function renderCalendar() {
-    if (!calDaysGrid || !calMonthTitle) return;
-    calMonthTitle.textContent = `${monthNames[currentCalMonth]} ${currentCalYear}`;
-    calDaysGrid.innerHTML = '';
-    const firstDayOfMonth = new Date(currentCalYear, currentCalMonth, 1);
-    const daysInMonth = new Date(currentCalYear, currentCalMonth + 1, 0).getDate();
-    let startingDay = firstDayOfMonth.getDay() - 1;
-    if (startingDay === -1) startingDay = 6;
-
-    // Rellenar espacios vacíos
-    for (let i = 0; i < startingDay; i++) {
-      const emptyCell = document.createElement('div');
-      emptyCell.classList.add('cal-day', 'disabled', 'empty');
-      calDaysGrid.appendChild(emptyCell);
-    }
-
-    const diasCortos = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
-
-    for (let day = 1; day <= daysInMonth; day++) {
-      const dayCell = document.createElement('div');
-      dayCell.classList.add('cal-day');
-      
-      const dateObj = new Date(currentCalYear, currentCalMonth, day);
-      const diaSemana = dateObj.getDay();
-      const nombreDia = diasCortos[diaSemana];
-
-      // Armado visual inteligente del día
-      let innerHTML = `<span class="day-name">${nombreDia}</span><span class="day-num">${day}</span>`;
-      
-      if (diaSemana === 0) { // Domingo
-          innerHTML += `<span class="day-tag">Cerrado</span>`;
-      }
-      
-      dayCell.innerHTML = innerHTML;
-
-      // Evaluación de disponibilidad
-      const hasSlots = hasAvailableSlotsInDay(dateObj);
-
-      // Si no hay turnos O es domingo (0), se bloquea
-      if (!hasSlots || diaSemana === 0) {
-        dayCell.classList.add('disabled');
-      } else {
-        if (selectedDate &&
-            selectedDate.getFullYear() === currentCalYear &&
-            selectedDate.getMonth() === currentCalMonth &&
-            selectedDate.getDate() === day) {
-          dayCell.classList.add('selected');
-        }
-        
-        dayCell.addEventListener('click', () => {
-          document.querySelectorAll('.cal-day').forEach(cell => cell.classList.remove('selected'));
-          dayCell.classList.add('selected');
-          selectedDate = new Date(currentCalYear, currentCalMonth, day);
-          renderTimeSlot();
-        });
-      }
-      calDaysGrid.appendChild(dayCell);
-    }
-    renderTimeSlot();
-  }
-
-  if (nextMonthBtn) {
-    nextMonthBtn.addEventListener('click', () => {
-      currentCalMonth++;
-      if (currentCalMonth > 11) {
-        currentCalMonth = 0;
-        currentCalYear++;
-      }
-      renderCalendar();
-    });
-  }
-  renderCalendar();
-
-  /* ==========================================
-     6. BOTÓN COPIAR ALIAS
-  ========================================== */
-  const btnCopyAlias = document.getElementById('btnCopyAlias');
-  if (btnCopyAlias) {
-    btnCopyAlias.addEventListener('click', () => {
-      const aliasText = document.getElementById('aliasText');
-      if (aliasText) {
-        navigator.clipboard.writeText(aliasText.textContent.trim()).then(() => {
-          btnCopyAlias.innerHTML = '<i class="fa-solid fa-check"></i> ¡Copiado!';
-          setTimeout(() => {
-            btnCopyAlias.innerHTML = '<i class="fa-regular fa-copy"></i> Copiar';
-          }, 2000);
-        });
-      }
-    });
-  }
-
-  /* ==========================================
-     7. WIZARD DE RESERVA (4 PASOS)
-  ========================================== */
-  let currentStep = 1;
-  const totalSteps = 4;
-  const btnNextStep = document.getElementById('btnNextStep');
-  const btnBackStep = document.getElementById('btnBackStep');
+  const DEPOSIT_AMOUNT = 20000;
+  const consultationForm = document.getElementById('consultationForm');
+  const bookingDetails = document.getElementById('bookingDetails');
+  const consultationServiceSummary = document.getElementById('consultationServiceSummary');
+  const consultationFormFeedback = document.getElementById('consultationFormFeedback');
   const custName = document.getElementById('custName');
   const custPhone = document.getElementById('custPhone');
   const custNotes = document.getElementById('custNotes');
+  const aliasText = document.getElementById('aliasText');
+  const btnCopyAlias = document.getElementById('btnCopyAlias');
 
-  function validatePhone(phone) {
-    const clean = phone.replace(/[\s\-\+\(\)]/g, '');
-    return /^\d{8,15}$/.test(clean);
+  function setConsultationFeedback(message = '') {
+    if (!consultationFormFeedback) return;
+    consultationFormFeedback.textContent = message;
+    consultationFormFeedback.classList.toggle('is-visible', Boolean(message));
   }
 
-  function formatDate(date) {
-    if (!date) return '';
-    const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const year = date.getFullYear();
-    return `${day}/${month}/${year}`;
+  function updateBookingDetails() {
+    if (!bookingDetails) return;
+
+    const hasSelectedService = Boolean(selectService && selectService.value);
+    bookingDetails.classList.toggle('hidden', !hasSelectedService);
+    bookingDetails.setAttribute('aria-hidden', String(!hasSelectedService));
   }
 
-  // Validación estricta de 24 hs previas considerando la combinación de fecha y hora elegidas
-  function isMoreThan24HoursAhead(dateObj, timeStr) {
-    if (!dateObj || !timeStr) return false;
-    const timeMatch = timeStr.match(/(\d{1,2}):(\d{2})/);
-    if (!timeMatch) return false;
+  function updateConsultationSummary() {
+    updateBookingDetails();
+    if (!consultationServiceSummary) return;
 
-    const hours = parseInt(timeMatch[1], 10);
-    const minutes = parseInt(timeMatch[2], 10);
-
-    const bookingDateTime = new Date(dateObj.getFullYear(), dateObj.getMonth(), dateObj.getDate(), hours, minutes, 0);
-    const now = new Date();
-    const diffMs = bookingDateTime.getTime() - now.getTime();
-    const hoursDiff = diffMs / (1000 * 60 * 60);
-
-    return hoursDiff >= 24;
+    const selectedOption = selectService && selectService.options[selectService.selectedIndex];
+    consultationServiceSummary.textContent = selectedOption && selectedOption.value
+      ? selectedOption.textContent
+      : 'Elegí un tratamiento o plan.';
   }
 
-  function updateWizardIndicator() {
-    const stepIndicators = document.querySelectorAll('.step-item, .wizard-step');
-    stepIndicators.forEach((ind, idx) => {
-      const stepNum = idx + 1;
-      ind.classList.remove('active', 'completed');
-      if (stepNum === currentStep) {
-        ind.classList.add('active');
-      } else if (stepNum < currentStep) {
-        ind.classList.add('completed');
-      }
+  function isValidWhatsapp(value) {
+    const digits = value.replace(/\D/g, '');
+    return digits.length >= 8 && digits.length <= 15;
+  }
+
+  function formatDepositAmount(amount) {
+    return `$${new Intl.NumberFormat('es-AR').format(amount)}`;
+  }
+
+  document.querySelectorAll('[data-deposit-amount]').forEach(element => {
+    element.textContent = formatDepositAmount(DEPOSIT_AMOUNT);
+  });
+
+  if (selectService) {
+    selectService.addEventListener('change', () => {
+      updateConsultationSummary();
+      setConsultationFeedback();
     });
   }
 
-  function updateWizard() {
-    for (let i = 1; i <= totalSteps; i++) {
-      const pane = document.getElementById(`stepPane${i}`);
-      if (pane) {
-        if (i === currentStep) {
-          pane.classList.remove('hidden');
-          pane.classList.add('active');
-        } else {
-          pane.classList.add('hidden');
-          pane.classList.remove('active');
-        }
-      }
-    }
-    if (btnBackStep) {
-      if (currentStep === 1) {
-        btnBackStep.classList.add('hidden');
-      } else {
-        btnBackStep.classList.remove('hidden');
-      }
-    }
-    if (btnNextStep) {
-      if (currentStep === totalSteps) {
-        btnNextStep.textContent = 'Confirmar Reserva';
-      } else {
-        btnNextStep.textContent = 'Siguiente paso';
-      }
-    }
-    updateWizardIndicator();
-  }
+  [custName, custPhone].filter(Boolean).forEach(field => {
+    field.addEventListener('input', () => setConsultationFeedback());
+  });
 
-  if (btnNextStep) {
-    btnNextStep.addEventListener('click', () => {
-      if (currentStep === 1) {
-        if (!selectService || !selectService.value || selectService.value === '') {
-          alert('Por favor selecciona un tratamiento o combo para continuar.');
-          if (selectService) selectService.focus();
-          return;
-        }
-      }
-      if (currentStep === 2) {
-        if (!selectedDate || !selectedTime) {
-          alert('Seleccioná una fecha y un horario antes de continuar.');
-          return;
-        }
+  updateConsultationSummary();
 
-        // Re-evaluación en tiempo real antes de avanzar al paso 3
-        const hourNum = parseInt(selectedTime.split(':')[0], 10);
-        if (!isSlotAvailable24Hs(selectedDate, hourNum)) {
-          alert('Para poder agendar el turno online y abonar la seña, la reserva debe hacerse con al menos 24 horas de anticipación desde este momento. Por favor, seleccioná otra fecha u horario.');
-          renderCalendar(); // Refresca el calendario con la hora actualizada
-          return;
-        }
-      }
-      if (currentStep === 3) {
-        if (!custName || !custName.value.trim() || custName.value.trim().length < 3) {
-          alert('Por favor ingresá tu nombre completo (mínimo 3 caracteres).');
-          if (custName) custName.focus();
-          return;
-        }
-        if (!custPhone || !custPhone.value.trim() || !validatePhone(custPhone.value.trim())) {
-          alert('Por favor ingresá un número de WhatsApp / Teléfono válido.');
-          if (custPhone) custPhone.focus();
-          return;
-        }
-      }
-      if (currentStep < totalSteps) {
-        currentStep++;
-        if (currentStep === 4) {
-          const formattedDate = formatDate(selectedDate);
-          const sumService = document.getElementById('sumService');
-          const sumDate = document.getElementById('sumDate');
-          const sumTime = document.getElementById('sumTime');
-          const sumName = document.getElementById('sumName');
-          const sumPhone = document.getElementById('sumPhone');
-          if (sumService) sumService.textContent = selectService.options[selectService.selectedIndex].text || selectService.value;
-          if (sumDate) sumDate.textContent = formattedDate;
-          if (sumTime) sumTime.textContent = selectedTime;
-          if (sumName) sumName.textContent = custName.value.trim();
-          if (sumPhone) sumPhone.textContent = custPhone.value.trim();
-        }
-        updateWizard();
-      } else if (currentStep === totalSteps) {
-        showConfirmationCard();
-      }
-    });
-  }
+  if (consultationForm) {
+    consultationForm.addEventListener('submit', event => {
+      event.preventDefault();
 
-  if (btnBackStep) {
-    btnBackStep.addEventListener('click', () => {
-      if (currentStep > 1) {
-        currentStep--;
-        updateWizard();
-      }
-    });
-  }
-
-  /* ==========================================
-     8. CONFIRMACIÓN, TIMER & MENSAJE DE WHATSAPP
-  ========================================== */
-  let timerInterval = null;
-  function startTimer() {
-    const timerCount = document.getElementById('timerCount');
-    if (!timerCount) return;
-    if (timerInterval) clearInterval(timerInterval);
-    let totalSeconds = 15 * 60;
-    function updateTimerDisplay() {
-      const minutes = Math.floor(totalSeconds / 60);
-      const seconds = totalSeconds % 60;
-      timerCount.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-    }
-    updateTimerDisplay();
-    timerInterval = setInterval(() => {
-      if (totalSeconds > 0) {
-        totalSeconds--;
-        updateTimerDisplay();
-      } else {
-        clearInterval(timerInterval);
-        timerCount.textContent = '00:00';
-      }
-    }, 1000);
-  }
-
-async function showConfirmationCard() {
-    const wizardActions = document.querySelector('.wizard-actions');
-    const stepPane4 = document.getElementById('stepPane4');
-    const confirmationCard = document.getElementById('confirmationCard');
-    if (confirmationCard) confirmationCard.classList.add('hidden');
-
-    // ==========================================
-    // 1. FORMATO DE FECHA
-    // ==========================================
-
-    const year = selectedDate.getFullYear();
-    const month = String(selectedDate.getMonth() + 1).padStart(2, '0');
-    const day = String(selectedDate.getDate()).padStart(2, '0');
-
-    const isoDate = `${year}-${month}-${day}`;
-
-    // Formato visible para la interfaz
-    const formattedDate = formatDate(selectedDate);
-
-    // ==========================================
-    // 2. DATOS DEL FORMULARIO
-    // ==========================================
-
-    const commentsText =
-      (custNotes && custNotes.value.trim())
-        ? custNotes.value.trim()
-        : 'Sin comentarios';
-
-    const serviceSelectedText =
-      selectService.options[selectService.selectedIndex].text ||
-      selectService.value;
-    const serviceCanonicalValue = selectService.value;
-
-    const reservaData = {
-      action: 'crearReserva',
-      fecha: isoDate,
-      hora: selectedTime,
-      tratamiento: serviceCanonicalValue,
-      promo15: promo15Active === true,
-      nombre: custName.value.trim(),
-      whatsapp: custPhone.value.trim(),
-      observaciones: commentsText
-    };
-
-    // ==========================================
-    // 3. MOSTRAR EN CONSOLA LO QUE VAMOS A ENVIAR
-    // ==========================================
-
-    console.log('==========================================');
-    console.log('ENVIANDO RESERVA A GOOGLE APPS SCRIPT');
-    console.log('==========================================');
-
-    console.log('URL:', APP_SCRIPT_URL);
-    console.log('DATOS DE LA RESERVA:', reservaData);
-
-    // ==========================================
-    // 3.5. VERIFICACIÓN ANTI-BOT (HONEYPOT)
-    // ==========================================
-
-    const honeypot = document.getElementById('website_hp');
-    if (honeypot && honeypot.value.trim() !== '') {
-      console.warn('🤖 Bot detectado. La reserva no se enviará a Google Sheets.');
-      return;
-    }
-
-    // ==========================================
-    // 4. ENVÍO DE DATOS A GOOGLE SHEETS (POST)
-    // ==========================================
-
-    try {
-
-      const response = await fetch(APP_SCRIPT_URL, {
-        method: 'POST',
-
-        headers: {
-          'Content-Type': 'text/plain;charset=utf-8'
-        },
-
-        body: JSON.stringify(reservaData)
-      });
-
-      // ==========================================
-      // 5. VERIFICAR RESPUESTA HTTP
-      // ==========================================
-
-      console.log('RESPUESTA HTTP DE APPS SCRIPT:', response.status);
-
-      if (!response.ok) {
-        throw new Error(
-          `Error HTTP ${response.status}`
-        );
-      }
-
-      // ==========================================
-      // 6. LEER RESPUESTA JSON
-      // ==========================================
-
-      const data = await response.json();
-
-      console.log('==========================================');
-      console.log('RESPUESTA COMPLETA DE GOOGLE APPS SCRIPT');
-      console.log('==========================================');
-
-      console.log(data);
-
-      // ==========================================
-      // 7. ANALIZAR RESPUESTA
-      // ==========================================
-
-      if (data.ok) {
-
-        console.log('✅ RESERVA REGISTRADA CON ÉXITO');
-        console.log('ID GENERADO:', data.id);
-        console.log('FECHA:', data.fecha);
-        console.log('HORA:', data.hora);
-        console.log('ESTADO:', data.estado);
-
-        esperarConfirmacionEnVivo(data.id);
-
-      } else {
-
-        console.error(
-          '❌ APPS SCRIPT RECHAZÓ LA RESERVA'
-        );
-
-        console.error(
-          'Mensaje:',
-          data.mensaje || data.error
-        );
-
-        alert(data.mensaje || data.error || 'No pudimos registrar la reserva. Por favor, intentá nuevamente.');
+      if (!selectService || !selectService.value) {
+        setConsultationFeedback('Elegí un tratamiento o plan para continuar.');
+        if (selectService) selectService.focus();
         return;
-
       }
 
-    } catch (err) {
-
-      console.error(
-        '❌ ERROR AL REGISTRAR EL TURNO EN GOOGLE SHEETS'
-      );
-
-      console.error(
-        'Detalle del error:',
-        err
-      );
-
-      alert('No pudimos registrar la reserva. Por favor, verificá tu conexión e intentá nuevamente.');
-      return;
-
-    }
-
-    // ==========================================
-    // 8. RENDERIZAR TARJETA DE CONFIRMACIÓN
-    // ==========================================
-
-    if (confirmationCard) {
-
-      if (wizardActions) wizardActions.classList.add('hidden');
-      if (stepPane4) stepPane4.classList.add('hidden');
-
-      confirmationCard.classList.remove('hidden');
-
-      const resumenServicio =
-        document.getElementById('resumenServicio');
-
-      const resumenFecha =
-        document.getElementById('resumenFecha');
-
-      const resumenHora =
-        document.getElementById('resumenHora');
-
-      const resumenNombre =
-        document.getElementById('resumenNombre');
-
-      const resumenTel =
-        document.getElementById('resumenTel');
-
-      if (resumenServicio) {
-        resumenServicio.textContent =
-          serviceSelectedText;
+      if (!custName || !custName.value.trim()) {
+        setConsultationFeedback('Escribí tu nombre para que Natalia sepa quién consulta.');
+        if (custName) custName.focus();
+        return;
       }
 
-      if (resumenFecha) {
-        resumenFecha.textContent =
-          formattedDate;
+      if (!custPhone || !isValidWhatsapp(custPhone.value.trim())) {
+        setConsultationFeedback('Revisá el número de WhatsApp.');
+        if (custPhone) custPhone.focus();
+        return;
       }
 
-      if (resumenHora) {
-        resumenHora.textContent =
-          selectedTime;
-      }
-
-      if (resumenNombre) {
-        resumenNombre.textContent =
-          custName.value.trim();
-      }
-
-      if (resumenTel) {
-        resumenTel.textContent =
-          custPhone.value.trim();
-      }
-
-      // ==========================================
-      // 9. MENSAJE DE WHATSAPP
-      // ==========================================
-
+      const selectedOption = selectService.options[selectService.selectedIndex];
+      const serviceText = selectedOption.textContent;
+      const name = custName.value.trim();
+      const phone = custPhone.value.trim();
+      const notes = custNotes ? custNotes.value.trim() : '';
+      const optionalNotes = notes ? `\n\nAclaración:\n${notes}` : '';
       const message =
-        `Hola Natalia! Quisiera reservar un turno.\n\n` +
+        `Hola Natalia! Quisiera consultar día y horario para reservar un turno de:\n\n` +
+        `Tratamiento:\n${serviceText}\n\n` +
+        `Nombre:\n${name}\n\n` +
+        `WhatsApp:\n${phone}` +
+        optionalNotes +
+        `\n\nAguardo, gracias!`;
 
-        `✨ Tratamiento:\n${serviceSelectedText}\n\n` +
-
-        `📅 Fecha:\n${formattedDate}\n\n` +
-
-        `⏰ Horario:\n${selectedTime} Hs\n\n` +
-
-        `👤 Nombre:\n${custName.value.trim()}\n\n` +
-
-        `📱 WhatsApp:\n${custPhone.value.trim()}\n\n` +
-
-        `📝 Comentarios:\n${commentsText}\n\n` +
-
-        `💸 Adjunto el comprobante de la seña ($20.000) abonado al Alias: natali1977.`;
-
-      const btnSendWhatsappBooking =
-        document.getElementById(
-          'btnSendWhatsappBooking'
-        );
-
-      if (btnSendWhatsappBooking) {
-
-        btnSendWhatsappBooking.href =
-          `${WA_BASE_URL}?text=${encodeURIComponent(message)}`;
-
-        btnSendWhatsappBooking.target =
-          '_blank';
-
-      }
-
-      // ==========================================
-      // 10. INICIAR TIMER
-      // ==========================================
-
-      startTimer();
-
-    }
+      window.open(
+        `${WA_BASE_URL}?text=${encodeURIComponent(message)}`,
+        '_blank',
+        'noopener,noreferrer'
+      );
+    });
   }
 
-  /* ==========================================
-   11. POLLING: CONSULTA DE ESTADO EN VIVO
-========================================== */
-let pollingInterval = null;
+  if (btnCopyAlias && aliasText) {
+    btnCopyAlias.addEventListener('click', async () => {
+      const alias = aliasText.textContent.trim();
 
-const btnResetBooking = document.getElementById('btnResetBooking');
-if (btnResetBooking) {
-    btnResetBooking.addEventListener('click', () => {
-        if (timerInterval) {
-            clearInterval(timerInterval);
-            timerInterval = null;
-        }
-        if (pollingInterval) {
-            clearInterval(pollingInterval);
-            pollingInterval = null;
-        }
+      try {
+        await navigator.clipboard.writeText(alias);
+      } catch (error) {
+        const temporaryInput = document.createElement('input');
+        temporaryInput.value = alias;
+        document.body.appendChild(temporaryInput);
+        temporaryInput.select();
+        document.execCommand('copy');
+        temporaryInput.remove();
+      }
 
-        const confirmationCard = document.getElementById('confirmationCard');
-        const wizardActions = document.querySelector('.wizard-actions');
-        if (confirmationCard) confirmationCard.classList.add('hidden');
-        if (wizardActions) wizardActions.classList.remove('hidden');
-
-        currentStep = 1;
-        selectedDate = null;
-        selectedTime = null;
-        if (custName) custName.value = '';
-        if (custPhone) custPhone.value = '';
-        if (custNotes) custNotes.value = '';
-
-        updateWizard();
-        renderCalendar();
-
-        const reservaSec = document.getElementById('reserva');
-        if (reservaSec) reservaSec.scrollIntoView({ behavior: 'smooth' });
+      btnCopyAlias.innerHTML = '<i class="fa-solid fa-check" aria-hidden="true"></i> ¡Copiado!';
+      window.setTimeout(() => {
+        btnCopyAlias.innerHTML = '<i class="fa-regular fa-copy" aria-hidden="true"></i> Copiar';
+      }, 1600);
     });
-}
-
-function esperarConfirmacionEnVivo(turnoId) {
-    // 1. Mostrarle al usuario que estamos esperando
-    const timerText = document.getElementById('timerCount');
-    if (timerText) {
-       // Podés agregar un texto o dejar que el timer siga corriendo
-       console.log(`Iniciando polling para el turno ${turnoId}...`);
-    }
-
-    // 2. Preguntar a Google Sheets cada 10 segundos
-    pollingInterval = setInterval(async () => {
-        try {
-            const urlConsulta = `${APP_SCRIPT_URL}?action=estadoTurno&id=${encodeURIComponent(turnoId)}`;
-            const response = await fetch(urlConsulta);
-            const statusData = await response.json();
-
-            if (statusData.ok) {
-                console.log(`Estado actual en vivo: ${statusData.estado}`);
-
-                // 3. Si tu mamá cambió el Excel a RESERVADA
-                if (statusData.estado === 'RESERVADA' || statusData.estado === 'CONFIRMADA') {
-                    clearInterval(pollingInterval);
-                    mostrarCartelExito();
-                }
-                // 4. Si lo rechaza
-                else if (statusData.estado === 'CANCELADA') {
-                    clearInterval(pollingInterval);
-                    mostrarCartelError();
-                }
-            }
-        } catch (error) {
-            console.error("Error en polling de turno:", error);
-        }
-    }, 10000); // 10000 ms = 10 segundos
-}
-
-function mostrarCartelExito() {
-    // Escondemos el timer y el botón de WhatsApp (porque ya pagó)
-    const confirmationCard = document.getElementById('confirmationCard');
-    
-    // Acá podés crear un div dinámico o modificar uno existente.
-    // Ejemplo rápido inyectando HTML en la tarjeta:
-    if(confirmationCard) {
-        confirmationCard.innerHTML = `
-            <div style="text-align:center; padding: 30px; background-color: #d4edda; color: #155724; border-radius: 10px;">
-                <i class="fa-solid fa-circle-check" style="font-size: 3rem; margin-bottom: 15px;"></i>
-                <h3 style="margin-bottom: 10px;">¡Pago Recibido!</h3>
-                <p>Tu seña ha sido confirmada y tu turno está 100% asegurado.</p>
-                <p>Te esperamos en Nativa Estética.</p>
-            </div>
-        `;
-    }
-}
-
-function mostrarCartelError() {
-    const confirmationCard = document.getElementById('confirmationCard');
-    if(confirmationCard) {
-        confirmationCard.innerHTML = `
-            <div style="text-align:center; padding: 30px; background-color: #f8d7da; color: #721c24; border-radius: 10px;">
-                <i class="fa-solid fa-circle-xmark" style="font-size: 3rem; margin-bottom: 15px;"></i>
-                <h3 style="margin-bottom: 10px;">Turno Cancelado</h3>
-                <p>Hubo un problema con la confirmación de la seña. Por favor, contactate por WhatsApp.</p>
-            </div>
-        `;
-    }
-}
+  }
 
   /* ==========================================
      12. CARRUSEL DE TESTIMONIOS
