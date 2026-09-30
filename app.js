@@ -2,6 +2,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const WA_PHONE = '5491132194320';
   const WA_BASE_URL = `https://wa.me/${WA_PHONE}`;
 
+  function trackEvent(eventName, params = {}) {
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', eventName, params);
+    }
+  }
+
   const treatmentsData = {
     dermapen: {
       title: 'Dermapen + Rutina Glow',
@@ -156,6 +162,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const data = treatmentsData[dataId];
     if (!data || !treatmentModal) return;
 
+    trackEvent('treatment_open', {
+      treatment_name: data.title,
+      treatment_id: dataId
+    });
+
     document.getElementById('modalTitle').textContent = data.title;
     document.getElementById('modalCategoryTag').textContent = data.category;
     document.getElementById('modalDesc').textContent = data.desc;
@@ -182,7 +193,12 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     if (data.whatsappOnly) {
-      setButton(modalReserveSingleBtn, data.whatsappLabel, () => openWhatsapp(data.whatsappMessage), true);
+      setButton(modalReserveSingleBtn, data.whatsappLabel, () => {
+        trackEvent('depilation_whatsapp_click', {
+          treatment_name: 'Depilación Definitiva'
+        });
+        openWhatsapp(data.whatsappMessage);
+      }, true);
       setButton(modalReservePackBtn, '', null, false);
     } else {
       const depositReminder = 'Entiendo que, una vez coordinados el día y horario, el turno se confirma con una seña de $20.000.';
@@ -192,13 +208,25 @@ document.addEventListener('DOMContentLoaded', () => {
       setButton(
         modalReserveSingleBtn,
         data.singleOnly ? 'Reservar sesión por WhatsApp' : 'Reservar 1 sesión',
-        () => openWhatsapp(sessionMessage),
+        () => {
+          trackEvent('whatsapp_treatment_click', {
+            treatment_name: data.title,
+            booking_type: 'session'
+          });
+          openWhatsapp(sessionMessage);
+        },
         !data.packOnly
       );
       setButton(
         modalReservePackBtn,
         `Consultar ${data.plan?.match(/Plan x\d+/)?.[0] || 'plan'} por WhatsApp`,
-        () => openWhatsapp(planMessage),
+        () => {
+          trackEvent('whatsapp_plan_click', {
+            treatment_name: data.title,
+            booking_type: 'plan'
+          });
+          openWhatsapp(planMessage);
+        },
         !data.singleOnly
       );
     }
@@ -211,6 +239,62 @@ document.addEventListener('DOMContentLoaded', () => {
     card.addEventListener('click', event => {
       if (event.target.closest('.depilation-whatsapp-direct')) return;
       openModal(card.dataset.id);
+    });
+  });
+
+  document.querySelectorAll('.depilation-whatsapp-direct').forEach(link => {
+    link.addEventListener('click', () => {
+      trackEvent('depilation_whatsapp_click', {
+        treatment_name: 'Depilación Definitiva'
+      });
+    });
+  });
+
+  document.querySelectorAll('.reservation-cta').forEach(link => {
+    link.addEventListener('click', () => {
+      trackEvent('whatsapp_general_click', {
+        source: 'reservation_section'
+      });
+    });
+  });
+
+  document.querySelectorAll('.personalized-care-cta').forEach(link => {
+    link.addEventListener('click', () => {
+      trackEvent('personalized_attention_click', {
+        source: 'about_natalia'
+      });
+    });
+  });
+
+  document.querySelectorAll('.plans-cta').forEach(link => {
+    link.addEventListener('click', () => {
+      trackEvent('personalized_plan_click', {
+        source: 'plans_section'
+      });
+    });
+  });
+
+  document.querySelectorAll('a[href="https://maps.app.goo.gl/KQAyKdvU9sepB45LA"]').forEach(link => {
+    link.addEventListener('click', () => {
+      trackEvent('maps_click', {
+        source: 'website'
+      });
+    });
+  });
+
+  document.querySelectorAll('.testimonials-google-view').forEach(link => {
+    link.addEventListener('click', () => {
+      trackEvent('google_reviews_click', {
+        action: 'view_reviews'
+      });
+    });
+  });
+
+  document.querySelectorAll('.testimonials-google-write').forEach(link => {
+    link.addEventListener('click', () => {
+      trackEvent('google_reviews_click', {
+        action: 'write_review'
+      });
     });
   });
 
