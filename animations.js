@@ -29,8 +29,6 @@
     '.section-title-container',
     '.trayectoria-badge',
     '.services-grid',
-    '.combos-section > .container > .combos-grid',
-    '.combos-more',
     '.plan-conditions-card',
     '.space-image-wrapper',
     '.space-content',
